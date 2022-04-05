@@ -1,4 +1,4 @@
-#include "Dialog.h"
+п»ї#include "Dialog.h"
 #include "Vector.h"
 #include "TEvent.h"
 #include<iostream>
@@ -12,7 +12,7 @@ Dialog::~Dialog()
 {
 }
 
-//получение события
+//РїРѕР»СѓС‡РµРЅРёРµ СЃРѕР±С‹С‚РёСЏ
 void Dialog::GetEvent(TEvent& event)
 {
 	std::string OpInt = "+-?/qam";
@@ -22,8 +22,8 @@ void Dialog::GetEvent(TEvent& event)
 	char code;
 	std::cout << '>';
 	std::cin >> s;
-	code = s[0]; //первый символ команды
-	if (OpInt.find(code) >= 0) //является ли символ кодом операции
+	code = s[0]; //РїРµСЂРІС‹Р№ СЃРёРјРІРѕР» РєРѕРјР°РЅРґС‹
+	if (OpInt.find(code) >= 0) //СЏРІР»СЏРµС‚СЃСЏ Р»Рё СЃРёРјРІРѕР» РєРѕРґРѕРј РѕРїРµСЂР°С†РёРё
 	{
 		event.what = evMessage;
 		switch (code)
@@ -76,24 +76,24 @@ void Dialog::HandleEvent(TEvent& event)
 	{
 		switch (event.command)
 		{
-		case cmMake: //создание группы
+		case cmMake: //СЃРѕР·РґР°РЅРёРµ РіСЂСѓРїРїС‹
 			m_size = event.a;
 			m_beg = new Object * [m_size];
 			m_cur = NULL;
 			ClearEvent(event);
 			break;
-		case cmAdd: //добавление
+		case cmAdd: //РґРѕР±Р°РІР»РµРЅРёРµ
 			Add();
 			ClearEvent(event);
 			break;
-		case cmDel: //удаление
+		case cmDel: //СѓРґР°Р»РµРЅРёРµ
 			ClearEvent(event);
 			break;
-		case cmShow: //просмотр
+		case cmShow: //РїСЂРѕСЃРјРѕС‚СЂ
 			Show();
 			ClearEvent(event);
 			break;
-		case cmQuit: //выход
+		case cmQuit: //РІС‹С…РѕРґ
 			EndExec();
 			ClearEvent(event);
 			break;
@@ -105,7 +105,7 @@ void Dialog::HandleEvent(TEvent& event)
 
 void Dialog::ClearEvent(TEvent& event)
 {
-	event.what = evNothing; // пустое сообщение
+	event.what = evNothing; // РїСѓСЃС‚РѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
 }
 
 int Dialog::Valid()
