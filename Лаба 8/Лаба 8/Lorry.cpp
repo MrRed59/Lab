@@ -14,29 +14,19 @@ Lorry::~Lorry(void)
 
 void Lorry::Show()
 {
-	std::cout << "Mark: " << m_mark << std::endl;
-	std::cout << "Cyl: " << m_cyl << std::endl;
-	std::cout << "Power: " << m_power << std::endl;
+	Car::Show();
 	std::cout << "Gruz: " << m_gruz << std::endl;
 }
 
 void Lorry::Input()
 {
-	std::cout << "Mark: ";
-	std::cin.clear();
-	std::cin.ignore(1024, '\n');
-	getline(std::cin, m_mark);
-	std::cout << "Cyl: ";
-	m_cyl = Checking_For_Valid_Input();
-	std::cout << "Power: ";
-	m_power = Checking_For_Valid_Input();
+	Car::Input();
 	std::cout << "Gruz: ";
 	m_gruz = Checking_For_Valid_Input();
-
 }
 
 
-Lorry::Lorry(const std::string mark, const int cyl, const int power, const int gruz):Car(mark, cyl, power)
+Lorry::Lorry(const std::string mark, const int cyl, const int power, const int gruz) : Car(mark, cyl, power)
 {
 	m_gruz = gruz;
 }
