@@ -1,5 +1,5 @@
 ﻿#include "Dialog.h"
-#include "Vector.h"
+#include "List.h"
 #include "TEvent.h"
 #include<iostream>
 
@@ -9,8 +9,7 @@ Dialog::Dialog()
 }
 
 Dialog::~Dialog()
-{
-}
+{}
 
 //получение события
 void Dialog::GetEvent(TEvent& event)
@@ -20,6 +19,8 @@ void Dialog::GetEvent(TEvent& event)
 	std::string param;
 
 	char code;
+	std::cout << "==================================================================" << std::endl;
+	std::cout << "+ add; - del; / get; m(num) make; s show all; z(num) show element; q quit;" << std::endl;
 	std::cout << '>';
 	std::cin >> s;
 	code = s[0]; //первый символ команды
@@ -34,14 +35,17 @@ void Dialog::GetEvent(TEvent& event)
 		case '+':
 			event.command = cmAdd;
 			break;
-		case 'm-':
+		case '-':
 			event.command = cmDel;
 			break;
-		case '?':
+		case 's':
 			event.command = cmShow;
 			break;
 		case 'q':
 			event.command = cmQuit;
+			break;
+		case 'z':
+			event.command = cmShowElem;
 			break;
 		case '/':
 			event.command = cmGet;
@@ -87,10 +91,18 @@ void Dialog::HandleEvent(TEvent& event)
 			ClearEvent(event);
 			break;
 		case cmDel: //удаление
+			Del();
 			ClearEvent(event);
 			break;
 		case cmShow: //просмотр
 			Show();
+			ClearEvent(event);
+			break;
+		case cmShowElem:
+			if (event.a)
+				Show(event.a);
+			else
+				std::cout << "Error. The element cannot be equal to zero" << std::endl;
 			ClearEvent(event);
 			break;
 		case cmQuit: //выход
@@ -98,7 +110,7 @@ void Dialog::HandleEvent(TEvent& event)
 			ClearEvent(event);
 			break;
 		default:
-			Vector::HandleEvent(event);
+			List::HandleEvent(event);
 		}
 	}
 }

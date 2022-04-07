@@ -1,14 +1,14 @@
 #pragma once
-#include"Vector.h"
+#include"List.h"
 #include"TEvent.h"
 
-class Dialog:public Vector
+class Dialog:public List
 {
 protected:
 	int EndState;
 public:
 	Dialog();
-
+	
 	virtual ~Dialog();
 	virtual void GetEvent(TEvent &);
 	virtual int Execute();
