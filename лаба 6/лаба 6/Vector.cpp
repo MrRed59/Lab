@@ -1,4 +1,4 @@
-#include "Vector.h"
+п»ї#include "Vector.h"
 #include<iostream>
 
 using namespace std;
@@ -84,7 +84,7 @@ Vector Vector::operator*(const Vector& second)
 
 	unsigned int n = 0;
 
-	//поиск пересечения множества и запись в промежуточный класс
+	//РїРѕРёСЃРє РїРµСЂРµСЃРµС‡РµРЅРёСЏ РјРЅРѕР¶РµСЃС‚РІР° Рё Р·Р°РїРёСЃСЊ РІ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Р№ РєР»Р°СЃСЃ
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < second.size; j++)
@@ -98,7 +98,7 @@ Vector Vector::operator*(const Vector& second)
 		}
 	}
 
-	//если нет пересечений
+	//РµСЃР»Рё РЅРµС‚ РїРµСЂРµСЃРµС‡РµРЅРёР№
 	if (!n)
 	{
 		Vector null(0);
@@ -106,7 +106,7 @@ Vector Vector::operator*(const Vector& second)
 		return null;
 	}
 
-	//сортировка по возрастанию
+	//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ
 	int value = 0;
 	for (unsigned int i = 0; (i < (n - 1)) && (i < (size - 1)); i++)
 	{
@@ -125,7 +125,7 @@ Vector Vector::operator*(const Vector& second)
 
 	unsigned int counter = 1;
 
-	//запись в класс temp_short чисел без повторения
+	//Р·Р°РїРёСЃСЊ РІ РєР»Р°СЃСЃ temp_short С‡РёСЃРµР» Р±РµР· РїРѕРІС‚РѕСЂРµРЅРёСЏ
 	for (unsigned int i = 0; (i < (n - 1)) && n && (i < size); i++)
 	{
 		if (temp.data[i] != temp.data[i + 1])
