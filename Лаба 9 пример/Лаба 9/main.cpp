@@ -1,12 +1,13 @@
-#include"Vector.h"
+п»ї#include"Vector.h"
+#include <exception>
 #include<iostream>
 
 int main()
 {
 	try
 	{
-		Vector x(2); //вектор на 2 элемента
-		Vector y; //пуской вектор
+		Vector x(2); //РІРµРєС‚РѕСЂ РЅР° 2 СЌР»РµРјРµРЅС‚Р°
+		Vector y; //РїСѓСЃРєРѕР№ РІРµРєС‚РѕСЂ
 
 		std::cout << x; 
 		std::cout << "Vector number? ";
@@ -30,8 +31,13 @@ int main()
 		--x;
 		std::cout << "x = " << x;
 	}
-	catch (const char* exeption)
+	catch (const char* exception)
 	{
-		std::cerr << exeption << std::endl;
+		std::cerr << exception << std::endl;
+	}
+
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
 }

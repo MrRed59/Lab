@@ -1,4 +1,4 @@
-#include "Vector.h"
+п»ї#include "Vector.h"
 #include<iostream>
 
 Vector::Vector()
@@ -9,7 +9,7 @@ Vector::Vector()
 
 Vector::Vector(int size)
 {
-	//если текущий размер больше максимального, то генерируются исключения
+	//РµСЃР»Рё С‚РµРєСѓС‰РёР№ СЂР°Р·РјРµСЂ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ, С‚Рѕ РіРµРЅРµСЂРёСЂСѓСЋС‚СЃСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ
 	if (size > MAX_SIZE)
 		throw "Error! The vector size specified is too large";
 	m_size = size;
@@ -18,7 +18,7 @@ Vector::Vector(int size)
 
 Vector::Vector(int size, int* arr)
 {
-	//если текущий размер больше максимального, то генерируются исключения
+	//РµСЃР»Рё С‚РµРєСѓС‰РёР№ СЂР°Р·РјРµСЂ Р±РѕР»СЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ, С‚Рѕ РіРµРЅРµСЂРёСЂСѓСЋС‚СЃСЏ РёСЃРєР»СЋС‡РµРЅРёСЏ
 	if (size > MAX_SIZE)
 		throw "Error! The vector size specified is too large";
 	m_size = size;
@@ -65,8 +65,8 @@ int Vector::operator[](int i)
 
 Vector Vector::operator+(int a)
 {
-	/*если при добавлении элемента размер вектора
-	станет больше макимального, то генерируется исключение*/
+	/*РµСЃР»Рё РїСЂРё РґРѕР±Р°РІР»РµРЅРёРё СЌР»РµРјРµРЅС‚Р° СЂР°Р·РјРµСЂ РІРµРєС‚РѕСЂР°
+	СЃС‚Р°РЅРµС‚ Р±РѕР»СЊС€Рµ РјР°РєРёРјР°Р»СЊРЅРѕРіРѕ, С‚Рѕ РіРµРЅРµСЂРёСЂСѓРµС‚СЃСЏ РёСЃРєР»СЋС‡РµРЅРёРµ*/
 	if (m_size + 1 == MAX_SIZE)
 		throw "Error! Unable to add element";
 	Vector temp(m_size + 1, m_beg);
@@ -76,12 +76,12 @@ Vector Vector::operator+(int a)
 
 Vector Vector::operator--()
 {
-	/*если вектор пустой, то удалить элемент нельзя
-	и генерируется исключение*/
+	/*РµСЃР»Рё РІРµРєС‚РѕСЂ РїСѓСЃС‚РѕР№, С‚Рѕ СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ РЅРµР»СЊР·СЏ
+	Рё РіРµРЅРµСЂРёСЂСѓРµС‚СЃСЏ РёСЃРєР»СЋС‡РµРЅРёРµ*/
 	if (!m_size)
-		throw "Error! Element cannot be removed";
+		throw std::range_error("Error! Element cannot be removed");
 
-	if (m_size == 1) //если в векторе один элемент
+	if (m_size == 1) //РµСЃР»Рё РІ РІРµРєС‚РѕСЂРµ РѕРґРёРЅ СЌР»РµРјРµРЅС‚
 	{
 		m_size = 0;
 		delete[] m_beg;
