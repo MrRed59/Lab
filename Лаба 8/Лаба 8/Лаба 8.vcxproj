@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,21 +140,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Car.h" />
+    <ClInclude Include="Human.h" />
     <ClInclude Include="Dialog.h" />
     <ClInclude Include="TEvent.h" />
-    <ClInclude Include="Lorry.h" />
+    <ClInclude Include="Employee.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="Vector.h" />
+    <ClInclude Include="List.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Human.cpp" />
     <ClCompile Include="Dialog.cpp" />
     <ClCompile Include="Event.cpp" />
-    <ClCompile Include="Lorry.cpp" />
+    <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="List.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
