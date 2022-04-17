@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 #include<fstream>
 #include<string>
 #include"Money.h"
@@ -28,11 +28,11 @@ int main()
 		case 1:
 		{
 			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+			std::cin >> file_name; //Р·Р°РґР°РµРј РёРјСЏ С„Р°Р№Р»Р°
 
-			k = make_file(file_name); //вызов функции для записи в файл
+			k = make_file(file_name); //РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё РґР»СЏ Р·Р°РїРёСЃРё РІ С„Р°Р№Р»
 
-			if (k < 0) //вывод сообщения об ошибке
+			if (k < 0) //РІС‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ
 				std::cout << "Can't make file" << std::endl;
 
 			break;
@@ -40,14 +40,14 @@ int main()
 		case 2:
 		{
 			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+			std::cin >> file_name; //Р·Р°РґР°РµРј РёРјСЏ С„Р°Р№Р»Р°
 
-			k = print_file(file_name); //вызов функции для чтения из файла
+			k = print_file(file_name); //РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё РґР»СЏ С‡С‚РµРЅРёСЏ РёР· С„Р°Р№Р»Р°
 
-			if (!k) //вывод сообщения об ошибке
+			if (!k) //РІС‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ
 				std::cout << "Empty file" << std::endl;
 
-			if (k < 0) //вывод сообщения об ошибке
+			if (k < 0) //РІС‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ
 				std::cout << "Can't read file" << std::endl;
 
 			break;
@@ -55,16 +55,16 @@ int main()
 		case 3:
 		{
 			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+			std::cin >> file_name; //Р·Р°РґР°РµРј РёРјСЏ С„Р°Р№Р»Р°
 
 			int num;
 
 			std::cout << "num? ";
 			std::cin >> num;
 
-			k = del_file(file_name, num); //вызов функции для чтения из файла
+			k = del_file(file_name, num); //РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё РґР»СЏ С‡С‚РµРЅРёСЏ РёР· С„Р°Р№Р»Р°
 
-			if (k < 0) //вывод сообщения об ошибке
+			if (k < 0) //РІС‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ
 				std::cout << "Can't read file" << std::endl;
 
 			break;
@@ -72,7 +72,7 @@ int main()
 		case 4:
 		{
 			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+			std::cin >> file_name; //Р·Р°РґР°РµРј РёРјСЏ С„Р°Р№Р»Р°
 
 			int num;
 
@@ -84,9 +84,9 @@ int main()
 			std::cout << "New money? ";
 			std::cin >> p1;
 
-			k = add_file(file_name, num, p1); //вызов функции для чтения из файла
+			k = add_file(file_name, num, p1); //РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё РґР»СЏ С‡С‚РµРЅРёСЏ РёР· С„Р°Р№Р»Р°
 
-			if (k < 0) //вывод сообщения об ошибке
+			if (k < 0) //РІС‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ
 				std::cout << "Can't read file" << std::endl;
 
 			break;
@@ -94,7 +94,7 @@ int main()
 		case 5:
 		{
 			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+			std::cin >> file_name; //Р·Р°РґР°РµРј РёРјСЏ С„Р°Р№Р»Р°
 
 			int num;
 
@@ -106,9 +106,9 @@ int main()
 			std::cout << "New person? ";
 			std::cin >> p2;
 
-			k = change_file(file_name, num, p2); //вызов функции для чтения из файла
+			k = change_file(file_name, num, p2); //РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё РґР»СЏ С‡С‚РµРЅРёСЏ РёР· С„Р°Р№Р»Р°
 
-			if (k < 0) //вывод сообщения об ошибке
+			if (k < 0) //РІС‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєРµ
 				std::cout << std::endl << "Can't read file" << std::endl;
 
 			if (!k)

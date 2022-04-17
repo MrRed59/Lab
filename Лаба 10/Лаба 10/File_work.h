@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -7,10 +7,10 @@
 
 int add_file(const char* f_name, int k, Money& p)
 {
-	std::fstream temp("temp", std::ios::out); //открыть для записи
-	std::fstream stream(f_name, std::ios::in); // открыть для чтения
+	std::fstream temp("temp", std::ios::out); //РѕС‚РєСЂС‹С‚СЊ РґР»СЏ Р·Р°РїРёСЃРё
+	std::fstream stream(f_name, std::ios::in); // РѕС‚РєСЂС‹С‚СЊ РґР»СЏ С‡С‚РµРЅРёСЏ
 
-	if (!stream) //ошибка открытия файла
+	if (!stream) //РѕС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 		return -1;
 
 	int i{};
@@ -33,18 +33,18 @@ int add_file(const char* f_name, int k, Money& p)
 
 	stream.close();
 	temp.close();
-	std::remove(f_name); // удалить старый файл
+	std::remove(f_name); // СѓРґР°Р»РёС‚СЊ СЃС‚Р°СЂС‹Р№ С„Р°Р№Р»
 	if (!std::rename("temp", f_name))
-		std::cout << "The file was successfully renamed"; //переименовать в temp
-	return i; //кол-во прочитанных
+		std::cout << "The file was successfully renamed"; //РїРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ РІ temp
+	return i; //РєРѕР»-РІРѕ РїСЂРѕС‡РёС‚Р°РЅРЅС‹С…
 }
 
 int del_file(const char* f_name, int k)
 {
-	std::fstream temp("temp", std::ios::out); //открыть для записи
-	std::fstream stream(f_name, std::ios::in); // открыть для чтения
+	std::fstream temp("temp", std::ios::out); //РѕС‚РєСЂС‹С‚СЊ РґР»СЏ Р·Р°РїРёСЃРё
+	std::fstream stream(f_name, std::ios::in); // РѕС‚РєСЂС‹С‚СЊ РґР»СЏ С‡С‚РµРЅРёСЏ
 
-	if (!stream) //ошибка открытия файла
+	if (!stream) //РѕС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 		return -1;
 
 	int i{};
@@ -63,17 +63,17 @@ int del_file(const char* f_name, int k)
 
 	stream.close();
 	temp.close();
-	std::remove(f_name); // удалить старый файл
+	std::remove(f_name); // СѓРґР°Р»РёС‚СЊ СЃС‚Р°СЂС‹Р№ С„Р°Р№Р»
 	if(!std::rename("temp", f_name))
-		std::cout << "The file was successfully renamed"; //переименовать в temp
-	return i; //кол-во прочитанных
+		std::cout << "The file was successfully renamed"; //РїРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ РІ temp
+	return i; //РєРѕР»-РІРѕ РїСЂРѕС‡РёС‚Р°РЅРЅС‹С…
 }
 
 int print_file(const char* f_name)
 {
-	std::fstream stream(f_name, std::ios::in); //открыть для чтения
+	std::fstream stream(f_name, std::ios::in); //РѕС‚РєСЂС‹С‚СЊ РґР»СЏ С‡С‚РµРЅРёСЏ
 	
-	if (!stream) //ошибка открытия файла
+	if (!stream) //РѕС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 		return -1;
 
 	int n{};
@@ -92,10 +92,10 @@ int print_file(const char* f_name)
 
 int change_file(const char* f_name, int k, Money& p)
 {
-	std::fstream temp("temp", std::ios::out); //открыть для записи
-	std::fstream stream(f_name, std::ios::in); // открыть для чтения
+	std::fstream temp("temp", std::ios::out); //РѕС‚РєСЂС‹С‚СЊ РґР»СЏ Р·Р°РїРёСЃРё
+	std::fstream stream(f_name, std::ios::in); // РѕС‚РєСЂС‹С‚СЊ РґР»СЏ С‡С‚РµРЅРёСЏ
 
-	if (!stream) //ошибка открытия файла
+	if (!stream) //РѕС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 		return -1;
 
 	int i{}, n{};
@@ -125,17 +125,17 @@ int change_file(const char* f_name, int k, Money& p)
 
 	stream.close();
 	temp.close();
-	std::remove(f_name); // удалить старый файл
+	std::remove(f_name); // СѓРґР°Р»РёС‚СЊ СЃС‚Р°СЂС‹Р№ С„Р°Р№Р»
 	if (!std::rename("temp", f_name))
-		std::cout << "The file was successfully renamed"; //переименовать в temp
-	return i; //кол-во прочитанных
+		std::cout << "The file was successfully renamed"; //РїРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ РІ temp
+	return i; //РєРѕР»-РІРѕ РїСЂРѕС‡РёС‚Р°РЅРЅС‹С…
 }
 
 int make_file(const char* f_name)
 {
-	std::fstream stream(f_name, std::ios::out | std::ios::trunc); //открыть для записи
+	std::fstream stream(f_name, std::ios::out | std::ios::trunc); //РѕС‚РєСЂС‹С‚СЊ РґР»СЏ Р·Р°РїРёСЃРё
 	
-	if (!stream) //ошибка открытия файла
+	if (!stream) //РѕС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 		return -1;
 
 	int n;
