@@ -4,6 +4,105 @@
 #include<string>
 #include"Money.h"
 
+int Add_entries_at_the_beginning(const char* f_name, int k)
+{
+	std::fstream temp("temp", std::ios::out); //открыть для записи
+	std::fstream stream(f_name, std::ios::in); // открыть для чтения
+
+	if (!stream) //ошибка открытия файла
+		return -1;
+
+	int i{};
+	Money m_p;
+	Money temp_money;
+
+	for (int j = 0; j < k; j++)
+	{
+		std::cin >> temp_money;
+		temp << temp_money;
+		i++;
+	}
+
+	while (stream >> m_p)
+	{
+		if (stream.eof())
+			break;
+
+		i++;
+
+		temp << m_p;
+	}
+
+	stream.close();
+	temp.close();
+	std::remove(f_name); // удалить старый файл
+	if (std::rename("temp", f_name))
+		std::cout << "Renaming error."; //переименовать в temp
+	return 1; //кол-во прочитанных
+}
+
+int halve(const char* f_name, Money& p)
+{
+	std::fstream temp("temp", std::ios::out); //открыть для записи
+	std::fstream stream(f_name, std::ios::in); // открыть для чтения
+
+	if (!stream) //ошибка открытия файла
+		return -1;
+
+	int i{};
+	Money m_p;
+
+	while (stream >> m_p)
+	{
+		if (stream.eof())
+			break;
+
+		i++;
+
+		if (m_p != p)
+			temp << m_p;
+		else
+			temp << (m_p / 2);
+	}
+
+	stream.close();
+	temp.close();
+	std::remove(f_name); // удалить старый файл
+	if (std::rename("temp", f_name)) //переименовать в temp
+		std::cout << "Renaming error.";
+	return 1; //кол-во прочитанных
+}
+
+int delete_does_not_equal(const char* f_name, Money & p)
+{
+	std::fstream temp("temp", std::ios::out); //открыть для записи
+	std::fstream stream(f_name, std::ios::in); // открыть для чтения
+
+	if (!stream) //ошибка открытия файла
+		return -1;
+
+	int i{};
+	Money m_p;
+
+	while (stream >> m_p)
+	{
+		if (stream.eof())
+			break;
+
+		i++;
+
+		if (m_p != p)
+			//temp << p;
+			temp << m_p;
+	}
+
+	stream.close();
+	temp.close();
+	std::remove(f_name); // удалить старый файл
+	if (std::rename("temp", f_name)) //переименовать в temp
+		std::cout << "Renaming error.";
+	return i; //кол-во прочитанных
+}
 
 int add_file(const char* f_name, int k, Money& p)
 {
@@ -34,8 +133,8 @@ int add_file(const char* f_name, int k, Money& p)
 	stream.close();
 	temp.close();
 	std::remove(f_name); // удалить старый файл
-	if (!std::rename("temp", f_name))
-		std::cout << "The file was successfully renamed"; //переименовать в temp
+	if (std::rename("temp", f_name)) //переименовать в temp
+		std::cout << "Renaming error.";
 	return i; //кол-во прочитанных
 }
 
@@ -126,8 +225,8 @@ int change_file(const char* f_name, int k, Money& p)
 	stream.close();
 	temp.close();
 	std::remove(f_name); // удалить старый файл
-	if (!std::rename("temp", f_name))
-		std::cout << "The file was successfully renamed"; //переименовать в temp
+	if (std::rename("temp", f_name)) //переименовать в temp
+		std::cout << "Renaming error."; 
 	return i; //кол-во прочитанных
 }
 

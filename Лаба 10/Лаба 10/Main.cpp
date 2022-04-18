@@ -25,96 +25,147 @@ int main()
 		std::cin >> c;
 		switch (c)
 		{
-		case 1:
-		{
-			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+			case 1:
+			{
+				std::cout << "File name? ";
+				std::cin >> file_name; //задаем имя файла
 
-			k = make_file(file_name); //вызов функции для записи в файл
+				k = make_file(file_name); //вызов функции для записи в файл
 
-			if (k < 0) //вывод сообщения об ошибке
-				std::cout << "Can't make file" << std::endl;
+				if (k < 0) //вывод сообщения об ошибке
+					std::cout << "Can't make file" << std::endl;
 
-			break;
-		}
-		case 2:
-		{
-			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+				break;
+			}
+			case 2:
+			{
+				std::cout << "File name? ";
+				std::cin >> file_name; //задаем имя файла
 
-			k = print_file(file_name); //вызов функции для чтения из файла
+				k = print_file(file_name); //вызов функции для чтения из файла
 
-			if (!k) //вывод сообщения об ошибке
-				std::cout << "Empty file" << std::endl;
+				if (!k) //вывод сообщения об ошибке
+					std::cout << "Empty file" << std::endl;
 
-			if (k < 0) //вывод сообщения об ошибке
-				std::cout << "Can't read file" << std::endl;
+				if (k < 0) //вывод сообщения об ошибке
+					std::cout << "Can't read file" << std::endl;
 
-			break;
-		}
-		case 3:
-		{
-			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+				break;
+			}
+			case 3:
+			{
+				std::cout << "File name? ";
+				std::cin >> file_name; //задаем имя файла
 
-			int num;
+				int num;
 
-			std::cout << "num? ";
-			std::cin >> num;
+				std::cout << "num? ";
+				std::cin >> num;
 
-			k = del_file(file_name, num); //вызов функции для чтения из файла
+				k = del_file(file_name, num); //вызов функции для чтения из файла
 
-			if (k < 0) //вывод сообщения об ошибке
-				std::cout << "Can't read file" << std::endl;
+				if (k < 0) //вывод сообщения об ошибке
+					std::cout << "Can't read file" << std::endl;
 
-			break;
-		}
-		case 4:
-		{
-			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+				break;
+			}
+			case 4:
+			{
+				std::cout << "File name? ";
+				std::cin >> file_name; //задаем имя файла
 
-			int num;
+				int num;
 
-			std::cout << "num? ";
-			std::cin >> num;
+				std::cout << "num? ";
+				std::cin >> num;
 
-			Money p1;
+				Money p1;
 
-			std::cout << "New money? ";
-			std::cin >> p1;
+				std::cout << "New money? ";
+				std::cin >> p1;
 
-			k = add_file(file_name, num, p1); //вызов функции для чтения из файла
+				k = add_file(file_name, num, p1); //вызов функции для чтения из файла
 
-			if (k < 0) //вывод сообщения об ошибке
-				std::cout << "Can't read file" << std::endl;
+				if (k < 0) //вывод сообщения об ошибке
+					std::cout << "Can't read file" << std::endl;
 
-			break;
-		}
-		case 5:
-		{
-			std::cout << "File name? ";
-			std::cin >> file_name; //задаем имя файла
+				break;
+			}
+			case 5:
+			{
+				std::cout << "File name? ";
+				std::cin >> file_name; //задаем имя файла
 
-			int num;
+				int num;
 
-			std::cout << "num? ";
-			std::cin >> num;
+				std::cout << "num? ";
+				std::cin >> num;
 
-			Money p2;
+				Money p2;
 
-			std::cout << "New person? ";
-			std::cin >> p2;
+				std::cout << "New person? ";
+				std::cin >> p2;
 
-			k = change_file(file_name, num, p2); //вызов функции для чтения из файла
+				k = change_file(file_name, num, p2); //вызов функции для чтения из файла
 
-			if (k < 0) //вывод сообщения об ошибке
-				std::cout << std::endl << "Can't read file" << std::endl;
+				if (k < 0) //вывод сообщения об ошибке
+					std::cout << std::endl << "Can't read file" << std::endl;
 
-			if (!k)
-				std::cout << std::endl << "Not such record" << std::endl;
-			break;
-		}
+				if (!k)
+					std::cout << std::endl << "Not such record" << std::endl;
+				break;
+			}
+			case 6:
+			{
+				std::cout << "File name? ";
+				std::cin >> file_name; //задаем имя файла
+
+				Money money;
+
+				std::cout << "Enter the value to delete ";
+				std::cin >> money;
+
+				k = delete_does_not_equal(file_name, money); //вызов функции для чтения из файла
+
+				if (k < 0) //вывод сообщения об ошибке
+					std::cout << "Can't read file" << std::endl;
+
+				break;
+			}
+			case 7:
+			{
+				std::cout << "File name? ";
+				std::cin >> file_name; //задаем имя файла
+
+				Money money;
+
+				std::cout << "Enter the value to decrease by 2 times" << std::endl;
+				std::cin >> money;
+
+				k = halve(file_name, money); //вызов функции для чтения из файла
+
+				if (k < 0) //вывод сообщения об ошибке
+					std::cout << "Can't read file" << std::endl;
+
+				break;
+			}
+			case 8:
+			{
+				std::cout << "File name? ";
+				std::cin >> file_name; //задаем имя файла
+
+				int num;
+
+				std::cout << "Add objects in quantity? ";
+				std::cin >> num;
+
+				k = Add_entries_at_the_beginning(file_name, num); //вызов функции для чтения из файла
+
+				if (k < 0) //вывод сообщения об ошибке
+					std::cout << "Can't read file" << std::endl;
+
+				break;
+			}
 		}
 	} while (c);
 }
