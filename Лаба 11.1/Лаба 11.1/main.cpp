@@ -2,19 +2,19 @@
 #include<vector>
 #include<cstdlib>
 
-typedef std::vector<int>Vec; //определяем тип для работы с вектором
-Vec make_vector(int n) //функция для формирования вектора
+typedef std::vector<int>Vec; //Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГ¬ ГІГЁГЇ Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г± ГўГҐГЄГІГ®Г°Г®Г¬
+Vec make_vector(int n) //ГґГіГ­ГЄГ¶ГЁГї Г¤Г«Гї ГґГ®Г°Г¬ГЁГ°Г®ГўГ Г­ГЁГї ГўГҐГЄГІГ®Г°Г 
 {
-    Vec v; //пустой вектор
+    Vec v; //ГЇГіГ±ГІГ®Г© ГўГҐГЄГІГ®Г°
     for (int i = 0; i < n; i++)
     {
         int a = rand() % 100 - 50;
-        v.push_back(a); //добавляем а в конец вектора
+        v.push_back(a); //Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г  Гў ГЄГ®Г­ГҐГ¶ ГўГҐГЄГІГ®Г°Г 
     }
     return v;
 }
 
-void print_vector(Vec v)
+void print_vector(const Vec& v)
 {
     for (size_t i = 0; i < v.size(); i++)
     {
@@ -26,24 +26,24 @@ void print_vector(Vec v)
     std::cout << "." << std::endl;
 }
 
-int arithmetic_mean(Vec v)
+int arithmetic_mean(const Vec& v)
 {
     int s = 0;
 
-    for (size_t i = 0; i < v.size(); i ++) //перебор вектора
+    for (size_t i = 0; i < v.size(); i ++) //ГЇГҐГ°ГҐГЎГ®Г° ГўГҐГЄГІГ®Г°Г 
     {
         s += v[i];
     }
-    int n = v.size(); //количество элментов вектора
+    int n = v.size(); //ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЅГ«Г¬ГҐГ­ГІГ®Гў ГўГҐГЄГІГ®Г°Г 
     return s / n;
 }
 
 void add_vector(Vec& v, int el, int pos)
 {
-    v.insert(v.begin() + pos, el); //добавляем на место pos элемент el
+    v.insert(v.begin() + pos, el); //Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г­Г  Г¬ГҐГ±ГІГ® pos ГЅГ«ГҐГ¬ГҐГ­ГІ el
 }
 
-int max(Vec v)
+int max(const Vec& v)
 {
     int m = v[0];
     int n = 0;
@@ -97,31 +97,31 @@ int main()
         int n;
         std::cout << "N? ";
         std::cin >> n;
-        v = make_vector(n); //формирование вектора
-        print_vector(v); //печать вектора
+        v = make_vector(n); //ГґГ®Г°Г¬ГЁГ°Г®ГўГ Г­ГЁГҐ ГўГҐГЄГІГ®Г°Г 
+        print_vector(v); //ГЇГҐГ·Г ГІГј ГўГҐГЄГІГ®Г°Г 
 
-        int el = arithmetic_mean(v); //вычисление среднего - арифметического значения
+        int el = arithmetic_mean(v); //ГўГ»Г·ГЁГ±Г«ГҐГ­ГЁГҐ Г±Г°ГҐГ¤Г­ГҐГЈГ® - Г Г°ГЁГґГ¬ГҐГІГЁГ·ГҐГ±ГЄГ®ГЈГ® Г§Г­Г Г·ГҐГ­ГЁГї
         std::cout << "Position? ";
         int pos;
         std::cin >> pos;
 
-        if (pos > v.size()) //если позиция вставки больше размера вектора
+        if (pos > v.size()) //ГҐГ±Г«ГЁ ГЇГ®Г§ГЁГ¶ГЁГї ГўГ±ГІГ ГўГЄГЁ ГЎГ®Г«ГјГёГҐ Г°Г Г§Г¬ГҐГ°Г  ГўГҐГЄГІГ®Г°Г 
             throw 1;
 
-        add_vector(v, el, pos); //вызов функции для добавления
+        add_vector(v, el, pos); //ГўГ»Г§Г®Гў ГґГіГ­ГЄГ¶ГЁГЁ Г¤Г«Гї Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГї
         std::cout << "add_vector: " << std::endl;
-        print_vector(v); //печать вектора
+        print_vector(v); //ГЇГҐГ·Г ГІГј ГўГҐГЄГІГ®Г°Г 
 
         //
 
-        int n_max = max(v); //найти номер максимального
-        del_vector(v, n_max); //удалить элемент с таким номером
+        int n_max = max(v); //Г­Г Г©ГІГЁ Г­Г®Г¬ГҐГ° Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ®
+        del_vector(v, n_max); //ГіГ¤Г Г«ГЁГІГј ГЅГ«ГҐГ¬ГҐГ­ГІ Г± ГІГ ГЄГЁГ¬ Г­Г®Г¬ГҐГ°Г®Г¬
         std::cout << "del_vector: " << std::endl;
         print_vector(v);
 
         //
 
-        division(v); //каждый элемент разделить на минимальное значение вектора
+        division(v); //ГЄГ Г¦Г¤Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ Г°Г Г§Г¤ГҐГ«ГЁГІГј Г­Г  Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ ГўГҐГЄГІГ®Г°Г 
         std::cout << "division: " << std::endl;
         print_vector(v);
     }
