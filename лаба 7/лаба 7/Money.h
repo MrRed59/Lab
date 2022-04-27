@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<iostream>
 
 using namespace std;
@@ -26,7 +26,7 @@ public:
 	template <class T>
 	Money operator+(const T);
 
-	Money& operator/(const Money&);
+	Money operator/(const Money&);
 	Money operator*(double);
 
 	friend istream& operator>>(istream&, Money&);

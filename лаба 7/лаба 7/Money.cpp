@@ -1,4 +1,4 @@
-#include "Money.h"
+ï»¿#include "Money.h"
 #include<iostream>
 
 using namespace std;
@@ -54,7 +54,7 @@ void Money::Set_kopeck(short kopeck)
 	this->kopeck = kopeck;
 }
 
-//ïåðåãðóæåííûå îïåðàöèè
+//Ð¿ÐµÑ€ÐµÐ³Ñ€ÑƒÐ¶ÐµÐ½Ð½Ñ‹Ðµ Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸
 Money& Money::operator=(const Money& t)
 {
 	if (&t == this)
@@ -101,7 +101,7 @@ Money Money::operator+(const Money& t)
 	return p;
 }
 
-Money& Money::operator/(const Money&p)
+Money Money::operator/(const Money&p)
 {
 	Money division;
 	if (&p == this)
@@ -134,7 +134,7 @@ Money Money::operator*(const double value)
 	return multiplication;
 }
 
-//ïåðåãðóçêè ôóíêöèè ââîäà-âûâîäà
+//Ð¿ÐµÑ€ÐµÐ³Ñ€ÑƒÐ·ÐºÐ¸ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð²Ð²Ð¾Ð´Ð°-Ð²Ñ‹Ð²Ð¾Ð´Ð°
 istream& operator>>(istream& in, Money& t)
 {
 	int value;

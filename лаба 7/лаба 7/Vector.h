@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include<iostream>
 #include<ctime>
 using namespace std;
@@ -89,7 +89,7 @@ int Vector<T>::GetSize()
 template <class T>
 void Vector<T>::SetRand()
 {
-	srand(time(NULL));
+	srand(unsigned(time(NULL)));
 	for (int i = 0; i < size; i++)
 	{
 		data[i] = rand() % 50;
@@ -140,9 +140,9 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 {
 	Vector<T> temp(size);
 
-	unsigned int n = 0;
+	int n = 0;
 
-	//поиск пересечения множества и запись в промежуточный класс
+	//РїРѕРёСЃРє РїРµСЂРµСЃРµС‡РµРЅРёСЏ РјРЅРѕР¶РµСЃС‚РІР° Рё Р·Р°РїРёСЃСЊ РІ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Р№ РєР»Р°СЃСЃ
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < second.size; j++)
@@ -156,7 +156,7 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 		}
 	}
 
-	//если нет пересечений
+	//РµСЃР»Рё РЅРµС‚ РїРµСЂРµСЃРµС‡РµРЅРёР№
 	if (!n)
 	{
 		Vector<T> null(0);
@@ -164,7 +164,7 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 		return null;
 	}
 
-	//сортировка по возрастанию
+	//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ
 	T value = 0;
 	for (int i = 0; (i < (n - 1)) && (i < (size - 1)); i++)
 	{
@@ -183,7 +183,7 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 
 	unsigned int counter = 1;
 
-	//запись в класс temp_short чисел без повторения
+	//Р·Р°РїРёСЃСЊ РІ РєР»Р°СЃСЃ temp_short С‡РёСЃРµР» Р±РµР· РїРѕРІС‚РѕСЂРµРЅРёСЏ
 	for (int i = 0; (i < (n - 1)) && n && (i < size); i++)
 	{
 		if (temp.data[i] != temp.data[i + 1])

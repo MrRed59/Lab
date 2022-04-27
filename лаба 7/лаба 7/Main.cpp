@@ -1,4 +1,4 @@
-#include "Vector.h"
+﻿#include "Vector.h"
 #include "Money.h"
 #include<iostream>
 
@@ -36,7 +36,6 @@ int main()
 	cin >> a;
 
 	cout << "===========================================================================" << endl;
-
 	cout << "A: \t\t" << a << endl;
 
 	Vector<int> b(10, 1);
@@ -46,13 +45,9 @@ int main()
 	b.SetRand();
 
 	cout << "===========================================================================" << endl;
-
 	cout << "B filled with random numbers: \t" << b << endl;
-
 	cout << "===========================================================================" << endl;
-
 	cout << "Intersection of many: \t\t" << a * b << endl;
-
 	cout << "===========================================================================" << endl;
 
 	b = a;
@@ -66,43 +61,40 @@ int main()
 	cout << "B = A + 10: \t" << b << endl;
 
 	cout << "===========================================================================" << endl;
-
-	//class Money
-
 	cout << "===========================================================================" << endl;
 	cout << "class Money" << endl;
 
-	//Money money;
+	Money money;
 
-	//cin >> money;
-	//cout << "Money \'1\': " << money << endl;
+	cin >> money;
+	cout << "Money \'1\': " << money << endl;
 
-	//int k;
+	int k;
 
-	//cout << "k: ";
-	//cin >> k;
+	cout << "k: ";
+	cin >> k;
 
-	//Money m;
-	//m = money + k;
-	//cout << "Money \'2\'+ k : " << m << endl;
+	Money m;
+	m = money + k;
+	cout << "Money \'2\'+ k : " << m << endl;
 
-	//Vector <Money> test_Vector_Time_first(5, money);
-	//cout << "Enter the elements in Money A: ";
-	//cin >> test_Vector_Time_first;
-	//cout << "Money A: " << test_Vector_Time_first << endl;
+	Vector <Money> test_Vector_Time_first(5, money);
+	cout << "Enter the elements in Money A: ";
+	cin >> test_Vector_Time_first;
+	cout << "Money A: " << test_Vector_Time_first << endl;
 
-	//Vector <Money> test_Vector_Time_second(10, money);
-	//cout << "Money B: " << test_Vector_Time_second << endl;
+	Vector <Money> test_Vector_Time_second(10, money);
+	cout << "Money B: " << test_Vector_Time_second << endl;
 
-	//test_Vector_Time_second = test_Vector_Time_first;
+	test_Vector_Time_second = test_Vector_Time_first;
 
-	//cout << "B = A: \t\t" << test_Vector_Time_second << endl;
-	//cout << "A[2]: \t\t" << test_Vector_Time_first[2] << endl;
-	//cout << "Size \'A\': \t" << test_Vector_Time_first() << endl;
+	cout << "B = A: \t\t" << test_Vector_Time_second << endl;
+	cout << "A[2]: \t\t" << test_Vector_Time_first[2] << endl;
+	cout << "Size \'A\': \t" << test_Vector_Time_first() << endl;
 
-	//test_Vector_Time_second = test_Vector_Time_first + money;
+	test_Vector_Time_second = test_Vector_Time_first + money;
 
-	//cout << "B = A + Money 1: \t" << test_Vector_Time_second << endl;
+	cout << "B = A + Money 1: \t" << test_Vector_Time_second << endl;
 
 	return 0;
 }
