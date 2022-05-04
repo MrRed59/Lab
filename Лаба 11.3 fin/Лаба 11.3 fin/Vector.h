@@ -8,10 +8,8 @@ template <class T>
 class Vector
 {
 	std::vector <T> v;
-	//int len;
 public:
 	//---------constructor-----------
-	//Vector() :len(0) {};
 	Vector(int);
 	~Vector();
 	//-------overloaded-functions----
@@ -24,11 +22,6 @@ public:
 	T& operator[](int);
 };
 
-//template<class T>
-//inline Vector<T>::Vector()
-//{
-//	size = 0;
-//}
 
 template<class T>
 inline Vector<T>::Vector(int n)
@@ -103,7 +96,7 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 
 	size_t n = 0;
 
-	//поиск пересечения множества и запись в промежуточный класс
+	//ГЇГ®ГЁГ±ГЄ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї Г¬Г­Г®Г¦ГҐГ±ГІГўГ  ГЁ Г§Г ГЇГЁГ±Гј Гў ГЇГ°Г®Г¬ГҐГ¦ГіГІГ®Г·Г­Г»Г© ГЄГ«Г Г±Г±
 	for (size_t i = 0; i < v.size(); i++)
 	{
 		for (size_t j = 0; j < second.v.size(); j++)
@@ -117,7 +110,7 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 		}
 	}
 
-	//если нет пересечений
+	//ГҐГ±Г«ГЁ Г­ГҐГІ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГ©
 	if (!n)
 	{
 		Vector<T> null(0);
@@ -125,7 +118,7 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 		return null;
 	}
 
-	//сортировка по возрастанию
+	//Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЇГ® ГўГ®Г§Г°Г Г±ГІГ Г­ГЁГѕ
 	T value = 0;
 	for (size_t i = 0; (i < (n - 1)) && (i < (v.size() - 1)); i++)
 	{
@@ -144,7 +137,7 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 
 	size_t counter = 1;
 
-	//запись в класс temp_short чисел без повторения
+	//Г§Г ГЇГЁГ±Гј Гў ГЄГ«Г Г±Г± temp_short Г·ГЁГ±ГҐГ« ГЎГҐГ§ ГЇГ®ГўГІГ®Г°ГҐГ­ГЁГї
 	for (size_t i = 0; (i < (n - 1)) && n && (i < v.size()); i++)
 	{
 		//if (temp.v[i] != temp.v[i + 1])
