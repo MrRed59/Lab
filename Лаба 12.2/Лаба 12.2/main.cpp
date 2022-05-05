@@ -1,16 +1,16 @@
 ﻿#include<iostream>
+#include"Money.h"
 #include<map>
 
-typedef std::map<int, int> TMap;
+typedef std::map<int, Money> TMap;
 typedef TMap::iterator it;
 
 TMap make_map(size_t n)
 {
 	TMap m;
-	int a;
+	Money a;
 	for (size_t i = 0; i < n; i++) //создать пару и добавить её в словарь
 	{
-		std::cout << "value: ";
 		std::cin >> a;
 		m.insert(std::make_pair(i, a));
 	}
@@ -23,19 +23,19 @@ void print_map(TMap m)
 		std::cout << i << " : " << m[i] << " " << std::endl;
 }
 
-int arithmetic_mean(TMap v)
+Money arithmetic_mean(TMap v)
 {
-	int s{};
+	Money s{};
 	for (size_t i = 0; i < v.size(); i++)
 		s += v[i];
-	return s / v.size(); 
+	return s / v.size();
 }
 
 int Max(TMap v)
 {
 	it i = v.begin();
 	int num_max{}, k{}; //номер максимального и счетчик элементов
-	int m = i->second; //значение первого элемента
+	Money m = i->second; //значение первого элемента
 	while (i != v.end())
 	{
 		if (m < (*i).second)
@@ -53,7 +53,7 @@ int Min(TMap v)
 {
 	it i = v.begin();
 	int num_min{}, k{}; //номер максимального и счетчик элементов
-	int m = i->second; //значение первого элемента
+	Money m = i->second; //значение первого элемента
 	while (i != v.end())
 	{
 		if (m > (*i).second)
@@ -69,7 +69,7 @@ int Min(TMap v)
 
 void division(TMap& v)
 {
-	int m = v[Min(v)];
+	Money m = v[Min(v)];
 	for (size_t i = 0; i < v.size(); i++)
 		v[i] = v[i] / m;
 }
@@ -84,7 +84,7 @@ int main()
 	TMap m = make_map(n); //создать словарь
 	print_map(m);
 
-	int el = arithmetic_mean(m); //вычислить среднее значение
+	Money el = arithmetic_mean(m); //вычислить среднее значение
 	std::cout << "Arithmetic mean: " << el << std::endl;
 	m.insert(std::make_pair(n, el)); //добавить в конец
 	print_map(m);
