@@ -100,6 +100,5 @@ int main()
 	division(m);
 	print_map(m);
 
-
 	return 0;
 }
