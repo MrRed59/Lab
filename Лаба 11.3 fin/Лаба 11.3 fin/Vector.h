@@ -140,24 +140,11 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 	//çàïèñü â êëàññ temp_short ÷èñåë áåç ïîâòîðåíèÿ
 	for (size_t i = 0; (i < (n - 1)) && n && (i < v.size()); i++)
 	{
-		//if (temp.v[i] != temp.v[i + 1])
-		//{
-		//	temp_short.v[i] = temp.v[i];
-		//	counter++;
-		//}
 		if (temp.v[i] == temp.v[i + 1])
 			v.erase(i + 1);
 	}
 
 	return temp;
-
-	//if (temp.v.size() == counter)
-	//	return temp;
-	//else
-	//{
-	//	Vector<T> temp_fin(temp, counter);
-	//	return temp_fin;
-	//}
 }
 
 template <class T>
