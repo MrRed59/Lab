@@ -1,17 +1,17 @@
-#pragma once
+п»ї#pragma once
 #include<iostream>
-#include<stack>
 #include<queue>
+#include<vector>
 
 
 template <class T>
 class Vector
 {
-	std::queue <T> s;
-	int len;
+	std::queue <T> q;
+	size_t len;
 public:
 	//---------constructor-----------
-	Vector();
+	Vector() :len(0) {};
 	Vector(int);
 	Vector(const Vector<T>&);
 	~Vector();
@@ -21,35 +21,29 @@ public:
 };
 
 template<class T>
-Vector<T> copy_stack_to_vector(std::queue <T> s)
+Vector<T> copy_queue_to_vector(std::queue <T> q)
 {
 	std::vector<T> v;
-	while (!s.empty()) //пока стек не пустой
+	while (!s.empty()) //ГЇГ®ГЄГ  Г±ГІГҐГЄ Г­ГҐ ГЇГіГ±ГІГ®Г©
 	{
-		v.push_back(s.top()); //добавить в вектор элемент из вершины стека
-		s.pop();
+		v.push_back(s.top()); //Г¤Г®ГЎГ ГўГЁГІГј Гў ГўГҐГЄГІГ®Г° ГЅГ«ГҐГ¬ГҐГ­ГІ ГЁГ§ ГўГҐГ°ГёГЁГ­Г» Г±ГІГҐГЄГ 
+		q.pop();
 	}
-	return v; //вернуть вектор как результат функции
+	return v; //ГўГҐГ°Г­ГіГІГј ГўГҐГЄГІГ®Г° ГЄГ ГЄ Г°ГҐГ§ГіГ«ГјГІГ ГІ ГґГіГ­ГЄГ¶ГЁГЁ
 };
 
 template<class T>
-std::queue<T> copy_vector_to_stack(std::vector<T> v) //копируем вектор в стек
+std::queue<T> copy_vector_to_queue(std::vector<T> v) //ГЄГ®ГЇГЁГ°ГіГҐГ¬ ГўГҐГЄГІГ®Г° Гў Г±ГІГҐГЄ
 {
-	std::queue<T> s;
+	std::queue<T> q;
 	for (size_t i = 0; i < v.size(); i++)
 	{
-		s.push(v[i]);
+		q.push(v[i]);
 	}
 	return s;
 };
 
 
-
-template<class T>
-Vector<T>::Vector()
-{
-	len = 0;
-}
 
 template<class T>
 Vector<T>::Vector(int n)
@@ -58,14 +52,17 @@ Vector<T>::Vector(int n)
 	for (int i = 0; i < n; i++)
 	{
 		std::cin >> a;
-		s.push(a);
+		q.push(a);
 	}
 	len = s.size();
 }
 
 template<class T>
-inline Vector<T>::Vector(const Vector<T>&)
+inline Vector<T>::Vector(const Vector<T>& Vec)
 {
+	len = Vec.len;
+	std::vector<T> v = copy_queue_to_vector(Vec.q);
+	s = copy_vector_to_queue(v);
 }
 
 template<class T>

@@ -1,15 +1,15 @@
 #include<iostream>
 #include"Time.h"
-#include<stack>
+#include<queue>
 #include<vector>
 
 
-typedef std::stack<Time> St;
+typedef std::queue<Time> Qu;
 typedef std::vector<Time> Vec;
 
-St make_stack(int n)
+Qu make_queue(int n)
 {
-	St s;
+	Qu s;
 	Time t;
 	for (int i = 0; i < n; i++)
 	{
@@ -19,7 +19,7 @@ St make_stack(int n)
 	return s;
 }
 
-//Vec copy_stack_to_vector(St s) //копируем стек в вектор
+//Vec copy_stack_to_vector(Qu s) //копируем стек в вектор
 //{
 //	Vec v;
 //	while (!s.empty()) //пока стек не пустой
@@ -30,9 +30,9 @@ St make_stack(int n)
 //	return v; //вернуть вектор как результат функции
 //}
 
-//St copy_vector_to_stack(Vec v) //копируем вектор в стек
+//Qu copy_vector_to_stack(Vec v) //копируем вектор в стек
 //{
-//	St s;
+//	Qu s;
 //	for (size_t i = 0; i < v.size(); i++)
 //	{
 //		s.push(v[i]);
@@ -40,7 +40,7 @@ St make_stack(int n)
 //	return s;
 //}
 
-void print_stack(St s)
+void print_stack(Qu s)
 {
 	while (!s.empty())
 	{
@@ -52,7 +52,7 @@ void print_stack(St s)
 
 //
 
-Time arithmetic_mean(St s) //вычисление среднего значения
+Time arithmetic_mean(Qu s) //вычисление среднего значения
 {
 	Vec v = copy_stack_to_vector(s); //копируем значение для суммы
 	int n = 1;
@@ -72,7 +72,7 @@ Time arithmetic_mean(St s) //вычисление среднего значения
 	return (sum / n);
 }
 
-void Add_to_stack(St& s, Time el, int pos) //добавление элемента в стек
+void Add_to_stack(Qu& s, Time el, int pos) //добавление элемента в стек
 {
 	Vec v;
 	Time t;
@@ -95,7 +95,7 @@ void Add_to_stack(St& s, Time el, int pos) //добавление элемента в стек
 	s = copy_vector_to_stack(v); //скопировать вектор в стек
 }
 
-Time Max(St s) // поиск максимального элемента в стеке
+Time Max(Qu s) // поиск максимального элемента в стеке
 {
 	Time m = s.top(); //переменной m присваивается значение из вершины стека
 	Vec v = copy_stack_to_vector(s); //копируем стек в вектор
@@ -113,7 +113,7 @@ Time Max(St s) // поиск максимального элемента в стеке
 	return m;
 }
 
-void Delete_from_stack(St& s)//удалить максимальный элемент из стека
+void Delete_from_stack(Qu& s)//удалить максимальный элемент из стека
 {
 	Time m = Max(s); //находим максимальный элемент
 	Vec v;
@@ -132,7 +132,7 @@ void Delete_from_stack(St& s)//удалить максимальный элемент из стека
 
 }
 
-Time Min(St s)
+Time Min(Qu s)
 {
 	Time m = s.top();
 	Vec v = copy_stack_to_vector(s);
@@ -149,7 +149,7 @@ Time Min(St s)
 	return m;
 }
 
-void Division(St& s)
+void Division(Qu& s)
 {
 	Time m = Min(s);
 	Vec v;
@@ -169,7 +169,7 @@ void Division(St& s)
 int main()
 {
 	Time t;
-	St s;
+	Qu s;
 	int n;
 
 	std::cout << "n? ";
