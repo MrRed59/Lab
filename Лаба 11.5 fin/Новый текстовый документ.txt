@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<iostream>
 #include<queue>
 #include<vector>
@@ -31,7 +31,7 @@ public:
 };
 
 template<class T>
-std::vector<T> copy_queue_to_vector(std::queue <T> q)
+Vector<T> copy_queue_to_vector(std::queue <T> q)
 {
 	std::vector<T> v;
 	while (!q.empty()) //пока очередь не пустая
@@ -63,7 +63,7 @@ Vector<T>::Vector(int n)
 		std::cin >> a;
 		q.push(a);
 	}
-	len = q.size();
+	len = s.size();
 }
 
 template<class T>
@@ -119,7 +119,7 @@ void Vector<T>::Add_to_queue(const T& el, int pos) //добавление эле
 	std::vector<T> v;
 	T t;
 	int i = q.size(); //размер очереди
-
+	
 	if (!pos)
 		v.push_back(el); //если номер позиции 0, то добавить его в конец
 
@@ -160,7 +160,7 @@ T Vector<T>::Max() // поиск максимального элемента в 
 template<class T>
 void Vector<T>::Delete_from_queue()//удалить максимальный элемент из очереди
 {
-	T m = Max(); //находим максимальный элемент
+	T m = Max(q); //находим максимальный элемент
 	std::vector<T> v;
 	T t;
 	while (!q.empty()) //пока очередь пустая
@@ -197,7 +197,7 @@ T Vector<T>::Min()
 template<class T>
 void Vector<T>::Division()
 {
-	T m = Min();
+	T m = Min(q);
 	std::vector<T> v;
 	Money t;
 
@@ -215,7 +215,7 @@ template<class T>
 void Vector<T>::add_min_element()
 {
 	std::vector<T> v;
-	Money min = Min();
+	Money min = Min(q);
 	Money t;
 	size_t i = 0;
 	while (!q.empty()) //пока очередь пустая
@@ -256,7 +256,7 @@ template<class T>
 void Vector<T>::add_sum_max_min()
 {
 	std::vector<T> v;
-	T sum_min_max = Max() + Min();
+	T sum_min_max = Max(q) + Min(q);
 	T t;
 	size_t i = 0;
 	while (!q.empty()) //пока очередь пустая
@@ -268,4 +268,3 @@ void Vector<T>::add_sum_max_min()
 	}
 	q = copy_vector_to_queue(v); //скопировать вектор в очередь
 }
-
