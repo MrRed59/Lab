@@ -1,0 +1,14 @@
+﻿"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Users\Алекс\source\repos\Лаба 12.1 fin\Debug\Лаба 12.1 fin.exe". Символы загружены.
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\ntdll.dll". 
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\kernel32.dll". 
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\KernelBase.dll". 
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\msvcp140d.dll". 
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\vcruntime140d.dll". 
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\ucrtbased.dll". 
+Поток 0x1904 завершился с кодом 0 (0x0).
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\kernel.appcore.dll". 
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\msvcrt.dll". 
+"Лаба 12.1 fin.exe" (Win32). Загружено "C:\Windows\SysWOW64\rpcrt4.dll". 
+Поток 0x2a24 завершился с кодом 0 (0x0).
+Поток 0x2e94 завершился с кодом 0 (0x0).
+Программа "[17720] Лаба 12.1 fin.exe" завершилась с кодом 0 (0x0).
