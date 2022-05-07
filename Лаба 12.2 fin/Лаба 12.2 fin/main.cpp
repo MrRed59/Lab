@@ -82,22 +82,11 @@ void add_min_el(TMSet& m)
 
 void remove_element_by_index(TMSet& m, size_t pos)
 {
-	size_t value = m.size();
-
-	if (pos > value)
-	{
-		std::cout << "Error. Position > size" << std::endl;
-	}
-
-
 	if (pos > m.size())
 	{
 		std::cout << "Error. Position > size" << std::endl;
 		return;
 	}
-
-
-
 	it i = m.begin();
 	for (size_t j = 0; j < pos; i++, j++);
 	m.erase(i);
