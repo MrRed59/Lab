@@ -65,14 +65,6 @@ void division(Money& money)
 	money /= temp;
 }
 
-void add_sum_max_min(TMoney& s)
-{
-	Money sum_min_max = *std::max_element(s.begin(), s.end()) + *std::max_element(s.begin(), s.end());
-	size_t i = 0;
-	for (size_t i = 0; i < s.size(); i++)
-		s[i] += sum_min_max;
-}
-
 
 int main()
 {
@@ -120,15 +112,6 @@ int main()
 	i = std::max_element(tmoney.begin(), tmoney.end());
 	temp = *i;
 	std::for_each(tmoney.begin(), tmoney.end(), division);
-	print_vector(tmoney);
-
-	std::cout << "Add a minimal element: " << std::endl;
-	i = std::min_element(tmoney.begin(), tmoney.end());
-	tmoney.push_back(*i);
-	print_vector(tmoney);
-
-	std::cout << "Add the sum of the maximum and minimum: " << std::endl;
-	add_sum_max_min(tmoney);
 	print_vector(tmoney);
 
 	return 0;
