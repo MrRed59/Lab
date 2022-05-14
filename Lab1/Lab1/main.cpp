@@ -13,13 +13,6 @@ Fraction make_fraction(const double A, const double B, const double x)
 int main()
 {
 	setlocale(LC_ALL, "ru");
-	//Fraction linear_equation;
-	//linear_equation.Read();
-	//cout << endl;
-	//linear_equation.SetX();
-	//cout << "y = " << linear_equation.function() << endl;
-	//cout << endl;
-
 	Fraction A;
 	Fraction B;
 	A.Init(3, 2, 5); //инициализация переменной А
