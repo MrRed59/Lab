@@ -1,6 +1,7 @@
 #include <iostream>
 #include<conio.h>
-#include "Money.h"
+
+#include"Money.h"
 
 using namespace std;
 
@@ -87,7 +88,8 @@ int main()
 	Selection(change);
 	cout << "Enter the number to multiply" << endl;
 	cin >> value;
-	multiplication = (Choice_of_equation((change/10), money_first, money_second, money_third, money_fourth) + Choice_of_equation((change%10), money_first, money_second, money_third, money_fourth)) * value;
+	multiplication = (Choice_of_equation((change / 10), money_first, money_second, money_third, money_fourth) + Choice_of_equation((change % 10), money_first, money_second, money_third, money_fourth));
+	multiplication *= value;
 
 	cout << "Division of multiplication: " << multiplication << endl;
 

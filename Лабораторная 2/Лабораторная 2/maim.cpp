@@ -30,13 +30,16 @@ void Print_Computer(Computer &Comp)
 int main()
 {
 	Computer Comp1;
+	cout << "1: " << endl;
 	Comp1.Show();
 	Computer Comp2("AMD FX6350", 1024, 2048);
+	cout << "2: " << endl;
 	Comp2.Show();
 	Computer Comp3 = Comp2;
 	Comp3.Set_CPU("Intel Core I3");
 	Comp3.Set_amount_of_RAM(256);
 	Comp3.Set_HDD_memory_capacity(512);
+	cout << "3: " << endl;
 	Print_Computer(Comp3);
 	Comp1 = Make_Computer();
 	Comp1.Show();
