@@ -3,52 +3,82 @@
 #include "conio.h"
 using namespace std;
 
-short Selection()
+Fraction make_fraction(const double A, const double B, const double x)
 {
-	bool boolean_Selection = 1;
-	short choise;
-	while (boolean_Selection)
-	{
-		cout << "Выберите нужный пункт: " << endl;
-		cout << "1 - Ввести значения коэффициентов для линейного уравнения \'y=Ax+B\'" << endl;
-		cout << "2 - Ввести значение \'x\' и вывести на экран значение \'y\'" << endl;
-		cout << "0 - Закрыть программу" << endl;
-
-		choise = _getche();
-		cout << endl;
-		if (choise > 51 || choise < 48)
-			cout << "Ошибка синтаксиса!" << endl;
-		else
-		{
-			boolean_Selection = false;
-			choise -= 48;
-		}
-	}
-	return choise;
+	Fraction t;
+	t.Init(A, B, x);
+	return t;
 }
-
 
 int main()
 {
 	setlocale(LC_ALL, "ru");
-	Fraction linear_equation;
-	bool boolean_main = 1;
-	while (boolean_main)
+	//Fraction linear_equation;
+	//linear_equation.Read();
+	//cout << endl;
+	//linear_equation.SetX();
+	//cout << "y = " << linear_equation.function() << endl;
+	//cout << endl;
+
+	Fraction A;
+	Fraction B;
+	A.Init(3, 2, 5); //инициализация переменной А
+	B.Read(); //инициализация переменной В
+	cout << "A:" << endl;
+	A.Show(); //Вывод значений полей переменной А
+	cout << "B:" << endl;
+	B.Show(); //Вывод значений полей переменной В
+	//вывод значения степени, вычесленного с помощью функции function
+	cout << "Вывод значения степени, вычесленного с помощью функции function" << endl;
+	cout << "A:" << endl;
+	cout << "y = " << A.function() << endl;
+	cout << "B:" << endl;
+	B.SetX();
+	cout << "y = " << B.function() << endl;
+	//указатели
+	cout << "Указатели:" << endl;
+	Fraction* p_fraction = new Fraction;
+	p_fraction->Init(2, 5, 3);
+	p_fraction->Show();
+	cout << "y = " << p_fraction->function() << endl;
+	//массивы
+	cout << "Mассивы:" << endl;
+	Fraction arr[3];
+	for (size_t i = 0; i < 3; i++)
+		arr[i].Read();
+	for (size_t i = 0; i < 3; i++)
+		arr[i].Show();
+	for (size_t i = 0; i < 3; i++)
 	{
-		switch (Selection())
-		{
-		case 1:
-			linear_equation.Read();
-			cout << endl;
-			break;
-		case 2:
-			linear_equation.SetX();
-			cout << "y = " << linear_equation.function() << endl;
-			cout << endl;
-			break;
-		case 0:
-			boolean_main = 0;
-			break;
-		}
+		arr[i].SetX();
+		arr[i].function();
+		cout << "y[" << i << "] = " << arr[i].function() << endl;
 	}
+	//динамические массивы
+	cout << "Динамические массивы:" << endl;
+	Fraction* p_arr = new Fraction[3];
+	for (size_t i = 0; i < 3; i++)
+		p_arr[i].Read();
+	for (size_t i = 0; i < 3; i++)
+		p_arr[i].Show();
+	for (size_t i = 0; i < 3; i++)
+	{
+		p_arr[i].SetX();
+		p_arr[i].function();
+		cout << "y[" << i << "] = " << p_arr[i].function() << endl;
+	}
+	delete[] p_arr;
+	//вызов функции make_fraction()
+	cout << "Bызов функции make_fraction() " << endl;
+	double a, b, x;
+	cout << "A= ";
+	cin >> a;
+	cout << "B= ";
+	cin >> b;
+	cout << "x= ";
+	cin >> x;
+	Fraction F = make_fraction(a, b, x);
+	F.Show();
+	cout << F.function();
+	return 0;
 }
