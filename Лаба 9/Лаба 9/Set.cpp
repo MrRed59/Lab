@@ -221,3 +221,19 @@ std::istream& operator>>(std::istream& in, Set& temp)
 	}
 	return in;
 }
+
+
+struct TEvent
+{
+	int what;//тип события
+	union
+	{
+		int command;//код команды
+		struct
+		{
+			int message;
+			int a;//параметр команды
+		};
+	};
+};
+

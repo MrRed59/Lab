@@ -5,49 +5,33 @@
 
 int main()
 {
-	Vector<Money>vec(2);
+	int n;
+	std::cout << "N? ";
+	std::cin >> n;
+	Vector <Money> money(n);
+	money.Add();
 
-	std::cout << "Money \'1\': ";
-	std::cin >> vec[0];
+	money.Print();
 
-	int k;
+	//
 
-	std::cout << "k: ";
-	std::cin >> k;
+	std::cout << "\nAdd minimal element: ";
+	money.add_min_el();
+	money.Print();
 
-	std::cout << "Money \'2\': ";
-	std::cin >> vec[1];
+	int pos;
 
-	vec[1] = vec[1] + k;
-	std::cout << "Money \'2\'+ k : " << vec[1] << std::endl;
+	std::cout << "\nPosition to delete an element? ";
+	std::cin >> pos;
 
-	std::cout << "Enter the elements in Money A: ";
-	Vector <Money> V_money_1(5);
-	V_money_1.Add();
-	std::cout << "Money A: ";
-	V_money_1.Print();
-	std::cout << std::endl;
+	std::cout << "\nRemove element by index: " << std::endl;
+	money.remove_element_by_index(pos);
+	money.Print();
 
-	std::cout << "Money B: " << std::endl;
-	Vector <Money> V_money_2(10);
-	V_money_2.Add();
-	std::cout << "Money B: " << std::endl;
-	V_money_2.Print();
-	std::cout << std::endl;
+	//
 
-	V_money_2 = V_money_1;
+	std::cout << "\nAdd the sum of the minimum and maximum elements: " << std::endl;
+	money.add_min_max();
+	money.Print();
 
-	std::cout << "B = A: \t";
-	V_money_2.Print();
-	std::cout << std::endl;
-
-
-	std::cout << "A[2]: \t" << V_money_1[2] << std::endl;
-	std::cout << "Size \'A\': \t" << V_money_2.Size() << std::endl;
-
-	V_money_2 = V_money_1 + vec[0];
-
-	std::cout << "B = A + Money 1: \t";
-	V_money_2.Print();
-	std::cout << std::endl;
 }

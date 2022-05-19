@@ -169,3 +169,11 @@ int main()
 		}
 	} while (c);
 }
+
+double areaTriangle(const double& a, const double& b, const double& c)
+{
+	    double halfPerimeter = (a + b + c) / 2;
+	    return sqrt(halfPerimeter * (halfPerimeter - a) * (halfPerimeter - b) * (halfPerimeter - c));
+}
+
+

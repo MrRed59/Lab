@@ -266,10 +266,4 @@ int main()
 
 	Delete_from_queue(q);
 	print_queue(q);
-
-	std::cout << "Division = " << std::endl;
-
-	Division(q);
-	print_queue(q);
-
 }

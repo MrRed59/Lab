@@ -25,6 +25,5 @@ public:
 	friend std::istream& operator>>(std::istream&, Money&);
 	friend std::fstream& operator<<(std::fstream&, const Money&);
 	friend std::fstream& operator>>(std::fstream&, Money&);
-
 };
 

@@ -235,18 +235,8 @@ int main()
 	q = make_queue(n);
 	print_queue(q);
 
-	t = arithmetic_mean(q);
-
-	std::cout << "Arithmetic mean = " << arithmetic_mean(q) << std::endl;
-	std::cout << "Add arithmetic mean: " << std::endl;
-	std::cout << "Position? ";
-
 	int pos;
 
-	std::cin >> pos;
-
-	Add_to_queue(q, t, pos);
-	print_queue(q);
 
 	add_min_element(q);
 	std::cout << "Add a minimal element: " << std::endl;

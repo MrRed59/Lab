@@ -140,9 +140,6 @@ int main()
 
 	Money min = *Min(m);
 	std::cout << "\nMin: " << min << std::endl;
-	std::cout << "\Division: " << std::endl;
-	division(m);
-	print_multiset(m);
 
 	add_min_el(m);
 	std::cout << "\nAdd minimal element: " << std::endl;

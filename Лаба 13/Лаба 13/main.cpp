@@ -116,12 +116,6 @@ int main()
 	tmoney.erase(i, tmoney.end());
 	print_vector(tmoney);
 
-	std::cout << "Division: " << std::endl;
-	i = std::max_element(tmoney.begin(), tmoney.end());
-	temp = *i;
-	std::for_each(tmoney.begin(), tmoney.end(), division);
-	print_vector(tmoney);
-
 	std::cout << "Add a minimal element: " << std::endl;
 	i = std::min_element(tmoney.begin(), tmoney.end());
 	tmoney.push_back(*i);

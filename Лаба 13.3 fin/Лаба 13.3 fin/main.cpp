@@ -111,10 +111,6 @@ int main()
 	tmoney.erase(i);
 	print_map(tmoney);
 
-	std::cout << "Division: " << std::endl;
-	division(tmoney);
-	print_map(tmoney);
-
 	std::cout << "Add a minimal element: " << std::endl;
 	i = std::min_element(tmoney.begin(), tmoney.end());
 	tmoney.insert(std::make_pair(i->first, i->second));

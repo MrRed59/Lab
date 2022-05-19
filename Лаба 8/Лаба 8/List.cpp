@@ -49,7 +49,7 @@ void List::Add()
 		human->Input(counter);
 		p = human;
 
-		if (m_cur < m_size)
+		if (m_cur <= m_size)
 		{
 			m_beg[m_cur] = p;
 			m_cur++;

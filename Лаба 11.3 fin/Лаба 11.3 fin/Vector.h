@@ -16,6 +16,11 @@ public:
 	void Add();
 	void Print();
 	size_t Size();
+	int min();
+	int max();
+	void remove_element_by_index(int);
+	void add_min_max();
+	void add_min_el();
 	Vector& operator=(const Vector <T>&);
 	Vector operator+(const T&);
 	Vector operator*(const Vector <T>&);
@@ -66,6 +71,64 @@ inline size_t Vector<T>::Size()
 	return v.size();
 }
 
+template<class T>
+inline int Vector<T>::min()
+{
+	T time = v[0];
+	int n = 0;
+
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		if (time > v[i])
+		{
+			time = v[i];
+			n = i;
+		}
+	}
+
+	return n;
+}
+
+template<class T>
+inline int Vector<T>::max()
+{
+	T time = v[0];
+	int n = 0;
+
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		if (time < v[i])
+		{
+			time = v[i];
+			n = i;
+		}
+	}
+
+	return n;
+}
+
+template<class T>
+inline void Vector<T>::remove_element_by_index(int pos)
+{
+	v.erase(v.begin() + pos);
+}
+
+template<class T>
+inline void Vector<T>::add_min_max()
+{
+	T m = v[min()] + v[max()];
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		v[i] += m;
+	}
+}
+
+template<class T>
+inline void Vector<T>::add_min_el()
+{
+	v.push_back(v[min()]);
+}
+
 template <class T>
 Vector<T>& Vector<T>::operator=(const Vector<T>& temp)
 {
@@ -96,7 +159,6 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 
 	size_t n = 0;
 
-	//ïîèñê ïåðåñå÷åíèÿ ìíîæåñòâà è çàïèñü â ïðîìåæóòî÷íûé êëàññ
 	for (size_t i = 0; i < v.size(); i++)
 	{
 		for (size_t j = 0; j < second.v.size(); j++)
@@ -110,7 +172,6 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 		}
 	}
 
-	//åñëè íåò ïåðåñå÷åíèé
 	if (!n)
 	{
 		Vector<T> null(0);
@@ -118,7 +179,6 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 		return null;
 	}
 
-	//ñîðòèðîâêà ïî âîçðàñòàíèþ
 	T value = 0;
 	for (size_t i = 0; (i < (n - 1)) && (i < (v.size() - 1)); i++)
 	{
@@ -137,7 +197,6 @@ Vector<T> Vector<T>::operator*(const Vector<T>& second)
 
 	size_t counter = 1;
 
-	//çàïèñü â êëàññ temp_short ÷èñåë áåç ïîâòîðåíèÿ
 	for (size_t i = 0; (i < (n - 1)) && n && (i < v.size()); i++)
 	{
 		if (temp.v[i] == temp.v[i + 1])

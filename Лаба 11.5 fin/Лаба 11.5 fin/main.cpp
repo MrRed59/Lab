@@ -12,18 +12,7 @@ int main()
 	Vector<Money> v(n);
 	v.Print();
 
-	Money money = v.arithmetic_mean();
-
-	std::cout << "Arithmetic mean = " << money << std::endl;
-	std::cout << "Add arithmetic mean: " << std::endl;
-	std::cout << "Position? ";
-
 	int pos;
-
-	std::cin >> pos;
-
-	v.Add_to_queue(money, pos);
-	v.Print();
 
 	v.add_min_element();
 	std::cout << "Add a minimal element: " << std::endl;

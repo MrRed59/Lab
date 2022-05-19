@@ -3,6 +3,7 @@
 #include<cstdlib>
 
 typedef std::vector<float>Vec; //определить тип для работы с вектором
+
 Vec make_vector(int n) //функция для формирования вектора
 {
     Vec v; //пустой вектор
@@ -41,25 +42,20 @@ float arithmetic_mean(const Vec& v)
     return s / n;
 }
 
-void add_vector(Vec& v, float el, int pos)
+int max(const Vec& v)
 {
-    v.insert(v.begin() + pos, el); //добавить на место pos элемент el
+    int m = v[0]; //мин. элемент
+    int n = 0; //номер мин. элемента
+    for (size_t i = 0; i < v.size(); i++)
+    {
+        if (m < v[i])
+        {
+            m = v[i]; //макс. элемент
+            n = i; //номер макс. элемента
+        }
+    }
+    return n;
 }
-
-//int max(const Vec& v)
-//{
-//    int m = v[0]; //мин. элемент
-//    int n = 0; //номер мин. элемента
-//    for (size_t i = 0; i < v.size(); i++)
-//    {
-//        if (m < v[i])
-//        {
-//            m = v[i]; //макс. элемент
-//            n = i; //номер макс. элемента
-//        }
-//    }
-//    return n;
-//}
 
 void remove_element_by_index(Vec& v, int pos) //удалить элемент из позиции pos
 {
@@ -83,18 +79,11 @@ int min(const Vec& v) //поиск минимального элемента
 
 void subtract_min_element(Vec& v)
 {
-    int m = min(v);
-    float min_element = v[m];
+    float m = v[min(v)] + v[max(v)];
     for (size_t i = 0; i < v.size(); i++)
     {
-        v[i] -= min_element;
+        v[i] += m;
     }
-}
-
-void add_to_the_end_of_the_vector(Vec& v)
-{
-    int m = min(v);
-    v.push_back(v[m]);
 }
 
 
@@ -114,19 +103,13 @@ int main()
         v = make_vector(n); //формирование вектора
         print_vector(v); //печать вектора
 
-        float el = arithmetic_mean(v); //вычисление средне - арифметического значения
-        std::cout << "\nPosition for adding an element? ";
-        int pos;
-        std::cin >> pos;
-
-        if (pos > v.size()) //генерируется ошибка, если позиция для вставки больше размера вектора
-            throw 1;
-
-        add_vector(v, el, pos); //вызов функции для добавления
-        std::cout << "\nadd_vector: " << std::endl;
+        std::cout << "\nAdd minimal element: ";
+        v.push_back(v[min(v)]);
         print_vector(v); //печать вектора
 
         //
+
+        int pos;
 
         std::cout << "\nPosition to delete an element? ";
         std::cin >> pos;
@@ -138,7 +121,7 @@ int main()
         //
 
         subtract_min_element(v); //каждый элемент разделить на мин. значение вектора
-        std::cout << "\nSubtract min element: " << std::endl;
+        std::cout << "\nAdd the sum of the minimum and maximum elements: " << std::endl;
         print_vector(v);
     }
     catch (int)

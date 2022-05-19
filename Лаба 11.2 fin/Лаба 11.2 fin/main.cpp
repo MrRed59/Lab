@@ -89,11 +89,10 @@ int min(const Vec& v)
 
 void subtract_min_element(Vec& v)
 {
-	int m = min(v);
-	Money min_element = v[m];
+	Money m = v[min(v)] + v[max(v)];
 	for (size_t i = 0; i < v.size(); i++)
 	{
-		v[i] -= min_element;
+		v[i] += m;
 	}
 }
 
@@ -116,20 +115,11 @@ int main()
 
 		//
 
-		Money el = arithmetic_mean(v);
-
-		int pos;
-		std::cout << "Position: ";
-		std::cin >> pos;
-
-		if (pos > v.size())
-			throw 1;
-
-		add_vector(v, el, pos); //вызов функции для добавления
-		std::cout << "\nadd_vector: " << std::endl;
+		std::cout << "\nAdd minimal element: ";
+		v.push_back(v[min(v)]);
 		print_vector(v); //печать вектора
 
-		//
+		int pos;
 
 		std::cout << "\nPosition to delete an element? ";
 		std::cin >> pos;
@@ -141,8 +131,11 @@ int main()
 		//
 
 		subtract_min_element(v); //каждый элемент разделить на мин. значение вектора
-		std::cout << "\nSubtract min element: " << std::endl;
+		std::cout << "\nAdd the sum of the minimum and maximum elements: " << std::endl;
 		print_vector(v);
+
+		if (pos > v.size())
+			throw 1;
 	}
 	catch (int)
 	{

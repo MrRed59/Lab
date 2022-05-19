@@ -1,9 +1,5 @@
 ﻿#include "Money.h"
 
-//Money::Money()
-//{
-//	m_rubles = m_kopeck = 0;
-//}
 
 Money::Money(const long rubles, const short kopeck)
 {
@@ -43,7 +39,6 @@ void Money::Set_rubles(const long rubles)
 		m_rubles = rubles;
 	else
 		m_rubles = -abs(rubles);
-	//m_rubles = rubles;
 }
 
 void Money::Set_kopeck(const short kopeck)
