@@ -1,8 +1,8 @@
-#include<iostream>
-#include"Search.h"
-#include<vector>
-#include"Tree.h"
-#include"functions.cpp"
+//#include<iostream>
+//#include"Search.h"
+//#include<vector>
+//#include"Tree.h"
+#include"functions.h"
 
 
 

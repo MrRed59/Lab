@@ -4,13 +4,7 @@
 #include<fstream>
 #include<queue>
 #include"draw.h"
-//#pragma clang diagnostic push
-//#pragma ide diagnostic ignored "InfiniteRecursion"
-//#pragma ide diagnostic ignored "misc-no-recursion"
-//#include"stdafx.h"
-//using namespace std;
 template <class T>
-
 class Tree
 {
 		T data; // Данные типа Т
@@ -70,10 +64,9 @@ public:
 		void printVTree(int); // Печать дерева вертикально
 		void printVTree2(); // Печать дерева вертикально (2)
 
+		//
+		size_t number_by_symbol(const T&);
 };
-
-//template <class T>
-//int getLevel(Tree<T>* tree);
 
 template<class T>
 Tree<T>::Tree(T dt)/* :data(dt), left(nullptr), right(nullptr), parent(nullptr)*/ // Конструктор узла
@@ -119,8 +112,8 @@ void Tree<T>::preOrder(Tree<T>* node) // ПРЯМОЙ ОБХОД (СВЕРХУ ВНИЗ)
 	if (node != NULL)
 	{
 		std::cout << node->getData() << "";
-		reorder(node->left);
-		reorder(node->right);
+		preOrder(node->left);
+		preOrder(node->right);
 	}
 }
 
@@ -218,7 +211,8 @@ Tree<T>* Tree<T>::copyTree()
 template <class T>
 Tree<T>* Tree<T>::balancedTree(int n)
 {
-	if (n == 0) return NULL;
+	if (!n) 
+		return nullptr;
 	std::cout << "data=";
 	T dt;
 	std::cin >> dt;
@@ -521,7 +515,29 @@ void Tree<T>::printVTree2()
 	delete[] spaces;
 }
 
+template <class T>
+size_t Tree<T>::number_by_symbol(const T& value)
+{
+	size_t n_l{}, n_r{};
+
+	if (this == nullptr)
+	{
+		return 0;
+	}
+
+	if (this->left != nullptr)
+	{
+		n_l = this->left->number_by_symbol(value);
+	}
+	if (this->right != nullptr)
+	{
+		n_r = this->right->number_by_symbol(value);
+	}
+	if (this->data == value)
+	{
+		return (n_l + n_r + 1);
+	}
+	return (n_l + n_r);
+}
 
 
-
-//#include "Tree.cpp"
