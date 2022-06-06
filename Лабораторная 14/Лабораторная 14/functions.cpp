@@ -1,11 +1,11 @@
-#include<iostream>
+п»ї#include<iostream>
 #include"Search.h"
 #include<vector>
-#include"Tree.h"
 #include<conio.h>
 #include"functions.h"
+#include<algorithm>
 
-short Checking_For_Valid_Input()											//проверка ввода для типа данных short
+short Checking_For_Valid_Input()											//РїСЂРѕРІРµСЂРєР° РІРІРѕРґР° РґР»СЏ С‚РёРїР° РґР°РЅРЅС‹С… short
 {
 	short value;
 	do
@@ -21,7 +21,7 @@ short Checking_For_Valid_Input()											//проверка ввода для типа данных shor
 	return value;
 }
 
-char Checking_For_Valid_Input_Char()											//проверка ввода для типа данных char
+char Checking_For_Valid_Input_Char()											//РїСЂРѕРІРµСЂРєР° РІРІРѕРґР° РґР»СЏ С‚РёРїР° РґР°РЅРЅС‹С… char
 {
 	char symbol;
 	do
@@ -39,286 +39,212 @@ char Checking_For_Valid_Input_Char()											//проверка ввода для типа данных 
 
 //------functions-for-tree------
 
-Tree<char>* create_tree()														//создать дерево
+Tree<char>* create_tree()														//СЃРѕР·РґР°С‚СЊ РґРµСЂРµРІРѕ
 {
 	Tree<char>* tree = new Tree<char>('A');
 
-	tree->insertLeft('B');														//добавить Элемент слева
-	tree->getLeft()->insertLeft('D');											//перейти к Элементу слева, добавляется Элемент слева
-	tree->getLeft()->getLeft()->insertLeft('G');								//перейти к Элементу слева, переход к Элементу слева, добавляется Элемент слева
-	tree->getLeft()->insertRight('E');											//перейти к Элементу слева,добавляется Элемент справа
-	tree->getLeft()->getLeft()->insertRight('H');								//перейти к Элементу слева, переход к элементу слева, добавляется Элемент справа
-	tree->insertRight('C');														//добавить Элемент справа
-	tree->getRight()->insertRight('F');											//перейти к Элементу справа и добавляется Элемент справа
-	tree->getRight()->getRight()->insertLeft('I');								//перейти к Элементу справа, переход к Элементу справа, добавляется Элемент слева
-	tree->getRight()->getRight()->insertRight('J');								//перейти к Элементу справа, переход к Элементу справа, добавляется Элемент справа
+	tree->insertLeft('B');														//РґРѕР±Р°РІРёС‚СЊ Р­Р»РµРјРµРЅС‚ СЃР»РµРІР°
+	tree->getLeft()->insertLeft('D');											//РїРµСЂРµР№С‚Рё Рє Р­Р»РµРјРµРЅС‚Сѓ СЃР»РµРІР°, РґРѕР±Р°РІР»СЏРµС‚СЃСЏ Р­Р»РµРјРµРЅС‚ СЃР»РµРІР°
+	tree->getLeft()->getLeft()->insertLeft('G');								//РїРµСЂРµР№С‚Рё Рє Р­Р»РµРјРµРЅС‚Сѓ СЃР»РµРІР°, РїРµСЂРµС…РѕРґ Рє Р­Р»РµРјРµРЅС‚Сѓ СЃР»РµРІР°, РґРѕР±Р°РІР»СЏРµС‚СЃСЏ Р­Р»РµРјРµРЅС‚ СЃР»РµРІР°
+	tree->getLeft()->insertRight('E');											//РїРµСЂРµР№С‚Рё Рє Р­Р»РµРјРµРЅС‚Сѓ СЃР»РµРІР°,РґРѕР±Р°РІР»СЏРµС‚СЃСЏ Р­Р»РµРјРµРЅС‚ СЃРїСЂР°РІР°
+	tree->getLeft()->getLeft()->insertRight('H');								//РїРµСЂРµР№С‚Рё Рє Р­Р»РµРјРµРЅС‚Сѓ СЃР»РµРІР°, РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°, РґРѕР±Р°РІР»СЏРµС‚СЃСЏ Р­Р»РµРјРµРЅС‚ СЃРїСЂР°РІР°
+	tree->insertRight('C');														//РґРѕР±Р°РІРёС‚СЊ Р­Р»РµРјРµРЅС‚ СЃРїСЂР°РІР°
+	tree->getRight()->insertRight('F');											//РїРµСЂРµР№С‚Рё Рє Р­Р»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР° Рё РґРѕР±Р°РІР»СЏРµС‚СЃСЏ Р­Р»РµРјРµРЅС‚ СЃРїСЂР°РІР°
+	tree->getRight()->getRight()->insertLeft('I');								//РїРµСЂРµР№С‚Рё Рє Р­Р»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°, РїРµСЂРµС…РѕРґ Рє Р­Р»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°, РґРѕР±Р°РІР»СЏРµС‚СЃСЏ Р­Р»РµРјРµРЅС‚ СЃР»РµРІР°
+	tree->getRight()->getRight()->insertRight('J');								//РїРµСЂРµР№С‚Рё Рє Р­Р»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°, РїРµСЂРµС…РѕРґ Рє Р­Р»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°, РґРѕР±Р°РІР»СЏРµС‚СЃСЏ Р­Р»РµРјРµРЅС‚ СЃРїСЂР°РІР°
 
 	return tree;
 }
 
-Tree<char>* create_ideal_tree()													//создать идеально сбалансированное дерево
+SearchTree<char>* create_ideal_tree()													//СЃРѕР·РґР°С‚СЊ РёРґРµР°Р»СЊРЅРѕ СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°РЅРЅРѕРµ РґРµСЂРµРІРѕ
 {
 	int n;
 
-	std::cout << "Введите количество Элементов:  ";
+	std::cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р­Р»РµРјРµРЅС‚РѕРІ:  ";
 	std::cin >> n;
 	std::cout << std::endl;
 
-	Tree<char>* tree = Tree<char>::balancedTree(n);
+	SearchTree<char>* tree = SearchTree<char>::balancedTree(n);
 
 	std::cout << std::endl;
 
 	return tree;
 }
 
-Tree<char>* create_array_tree()														//создать бинарное дерево из массива
+SearchTree<char>* create_array_search_tree()										//РЎРѕР·РґР°С‚СЊ РґРµСЂРµРІРѕ РїРѕРёСЃРєР° РёР· РјР°СЃСЃРёРІР°
 {
-	std::vector<char> arr = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };	//создать контейнер значений элементов дерева
+	std::vector<char> arr = { 'A', 'B', 'D', 'G', 'E', 'H', 'C', 'F', 'I', 'J' };	//РЎРѕР·РґР°С‚СЊ РєРѕРЅС‚РµР№РЅРµСЂ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°
 
-	Tree<char>* tree = new Tree<char>(arr.at(0));									//создать первый элемент дерева
-
-	for (int i = 0; i < arr.size(); i++)
-	{
-		int left = 2 * i + 1;														//задать номер элемента слева от текущего равным 2n+1
-		int right = left + 1;														//задать номер элемента справа от текущего равным 2n+2
-
-		if (left < arr.size())														//проверить не выходит ли элемент с номером left за границы контейнера
-		{
-			tree->findElement_insertLeft(tree, arr.at(i), arr.at(left));			//добавить элемент с номером left слева от текущего
-		}
-
-		if (right < arr.size())														//проверить не выходит элемент с номером right за границы контейнера
-		{
-			tree->findElement_insertRight(tree, arr.at(i), arr.at(right));			//добавить элемент с номером right справа от текущего
-		}
-	}
-
-	return tree;
-}
-
-SearchTree<char>* create_array_search_tree()										//Создать дерево поиска из массива
-{
-	std::vector<char> arr = { 'A', 'B', 'D', 'G', 'E', 'H', 'C', 'F', 'I', 'J' };	//Создать контейнер значений элементов дерева
-
-	SearchTree<char>* tree = new SearchTree<char>(arr.at(0));						//Создать первый элемент дерева
+	SearchTree<char>* tree = new SearchTree<char>(arr.at(0));						//РЎРѕР·РґР°С‚СЊ РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ РґРµСЂРµРІР°
 
 	for (int i = 1; i < arr.size(); i++)
 	{
-		tree->insertNode(arr.at(i));												//Добавить элемент с текущим номером в дерево
+		tree->insertNode(arr.at(i));												//Р”РѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ СЃ С‚РµРєСѓС‰РёРј РЅРѕРјРµСЂРѕРј РІ РґРµСЂРµРІРѕ
 	}
 
 	return tree;																
 }
 
-void show_tree(Tree<char>* tree)												//печать дерева
+void show_tree(Tree<char>* tree)												//РїРµС‡Р°С‚СЊ РґРµСЂРµРІР°
 {
-	std::cout << "Прямой обход:         ";
-	tree->preOrder(tree);														//Вывод значений элементов (сверху вниз)
+	std::cout << "РџСЂСЏРјРѕР№ РѕР±С…РѕРґ:         ";
+	tree->preOrder(tree);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (СЃРІРµСЂС…Сѓ РІРЅРёР·)
 	std::cout << std::endl << std::endl;
 
-	std::cout << "Симметричный обход:   ";
-	tree->inOrder(tree);														//Вывод значений элементов (слева направо)
+	std::cout << "РЎРёРјРјРµС‚СЂРёС‡РЅС‹Р№ РѕР±С…РѕРґ:   ";
+	tree->inOrder(tree);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ)
 	std::cout << std::endl << std::endl;
 
-	std::cout << "Обратный обход:       ";
-	tree->postOrder(tree);														//Вывод значений элементов (cниз вверх)
+	std::cout << "РћР±СЂР°С‚РЅС‹Р№ РѕР±С…РѕРґ:       ";
+	tree->postOrder(tree);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (cРЅРёР· РІРІРµСЂС…)
 	std::cout << std::endl << std::endl;
 
-	std::cout << "Горизонтальная печать дерева: " << std::endl;
-	tree->printTree(12);														//Вывод значений элементов (слева направо)
+	std::cout << "Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РїРµС‡Р°С‚СЊ РґРµСЂРµРІР°: " << std::endl;
+	tree->printTree(12);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ)
 	std::cout << std::endl;
 
-	std::cout << "Вертикальная печать дерева: " << std::endl;
-	tree->printVTree(3);														//Вывод значений элементов (слева направо)
+	std::cout << "Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РїРµС‡Р°С‚СЊ РґРµСЂРµРІР°: " << std::endl;
+	tree->printVTree(3);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ)
 	std::cout << std::endl;
 
-	std::cout << "Поперечный обход:     ";
+	std::cout << "РџРѕРїРµСЂРµС‡РЅС‹Р№ РѕР±С…РѕРґ:     ";
 	tree->levelScan();
 	std::cout << std::endl;
 }
 
-void show_tree(SearchTree<char>* tree)											//печать дерева поиска
+void show_tree(SearchTree<char>* tree)											//РїРµС‡Р°С‚СЊ РґРµСЂРµРІР° РїРѕРёСЃРєР°
 {
-	std::cout << "Прямой обход:         ";
-	tree->preOrder(tree);														//Вывод значений элементов (сверху вниз)
+	std::cout << "РџСЂСЏРјРѕР№ РѕР±С…РѕРґ:         ";
+	tree->preOrder(tree);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (СЃРІРµСЂС…Сѓ РІРЅРёР·)
 	std::cout << std::endl << std::endl;
 
-	std::cout << "Симметричный обход:   ";
-	tree->inOrder(tree);														//Вывод значений элементов (слева направо)
+	std::cout << "РЎРёРјРјРµС‚СЂРёС‡РЅС‹Р№ РѕР±С…РѕРґ:   ";
+	tree->inOrder(tree);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ)
 	std::cout << std::endl << std::endl;
 
-	std::cout << "Обратный обход:       ";
-	tree->postOrder(tree);														//Вывод значений элементов (cниз вверх)
+	std::cout << "РћР±СЂР°С‚РЅС‹Р№ РѕР±С…РѕРґ:       ";
+	tree->postOrder(tree);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (cРЅРёР· РІРІРµСЂС…)
 	std::cout << std::endl << std::endl;
 
-	std::cout << "Горизонтальная печать дерева: " << std::endl;
-	tree->printTree(12);														//Вывод значений элементов (слева направо)
+	std::cout << "Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РїРµС‡Р°С‚СЊ РґРµСЂРµРІР°: " << std::endl;
+	tree->printTree(12);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ)
 	std::cout << std::endl;
 
-	std::cout << "Вертикальная печать дерева: " << std::endl;
-	tree->printVTree(1);														//Вывод значений элементов (слева направо)
+	std::cout << "Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РїРµС‡Р°С‚СЊ РґРµСЂРµРІР°: " << std::endl;
+	tree->printVTree(1);														//Р’С‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ)
 	std::cout << std::endl;
 }
 
-void add(Tree<char>* tree) //добавить элемент
+void add(SearchTree<char>* tree)									//РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚
 {
-	char post_elem{};
-	char new_elem{};
-	char choise{};
-
-	std::cout << "Введите значение элемента, после которого нужно добавить новый элемент:  ";
-	std::cin >> post_elem;
-	std::cout << std::endl << "Введите значение нового элемента:  ";
+	char new_elem{};	
+	std::cout << std::endl << "Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°:  ";
 	std::cin >> new_elem;
-	std::cout << std::endl << "Добавить элемент слева [L] или справа [R]?  ";
-	std::cin >> choise;
-	std::cout << std::endl;
-
-	switch (choise)
-	{
-	case 'L':
-	case 'l':
-		tree->findElement_insertLeft(tree, post_elem, new_elem);
-		break;
-	case 'R':
-	case 'r':
-		tree->findElement_insertRight(tree, post_elem, new_elem);
-		break;
-	default:
-		std::cout << "Ошибка ввода." << std::endl << std::endl;
-		break;
-	}
-
-	//return tree;
+	tree->add(new_elem);
 }
 
-void eject_left(Tree<char>* tree)								//извлечь поддерево слева
-{
-	tree->ejectLeft();
-}
-
-void eject_right(Tree<char>* tree)								//извлечь поддерево справа
-{
-	tree->ejectRight();
-}
-
-void delete_left(Tree<char>* tree)								//удалить поддерево слева
+void delete_left(SearchTree<char>* tree)							//СѓРґР°Р»РёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃР»РµРІР°
 {
 	tree->deleteLeft();														
 }
 
-void delete_right(Tree<char>* tree)								//удалить поддерево справа
+void delete_right(SearchTree<char>* tree)							//СѓРґР°Р»РёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃРїСЂР°РІР°
 {
 	tree->deleteRight();
 }
 
-void number_of_elements(Tree<char>* tree)
+void number_of_elements(SearchTree<char>* tree)
 {
-	std::cout << "Количество элементов в дереве:  " << tree->getAmountOfNodes() << std::endl << std::endl;
+	std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РґРµСЂРµРІРµ:  " << tree->getAmountOfNodes() << std::endl << std::endl;
 }
 
-void height(Tree<char>* tree)
+void height(SearchTree<char>* tree)
 {
-	std::cout << "Высота дерева:  " << tree->getHeight() << std::endl << std::endl;
+	std::cout << "Р’С‹СЃРѕС‚Р° РґРµСЂРµРІР°:  " << tree->getHeight() << std::endl << std::endl;
 }
 
-void number_by_symbol(Tree<char>* tree)				//найти количество элементов дерева, начинающихся с заданного символа
+void number_by_symbol(Tree<char>* tree)						//РЅР°Р№С‚Рё РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°, РЅР°С‡РёРЅР°СЋС‰РёС…СЃСЏ СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СЃРёРјРІРѕР»Р°
 {
 	char symbol{};
-	std::cout << "Введите символ:\t";
+	std::cout << "Р’РІРµРґРёС‚Рµ СЃРёРјРІРѕР»:\t";
 	std::cin >> symbol;
-	std::cout << "Кол-во элементов, начинающихся с \'" << symbol << "\': " << tree->number_by_symbol(symbol) << std::endl;
+	std::cout << "РљРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ, РЅР°С‡РёРЅР°СЋС‰РёС…СЃСЏ СЃ \'" << symbol << "\': " << tree->number_by_symbol(symbol) << std::endl;
 }
 
-void number_by_symbol(SearchTree<char>* tree)				//найти количество элементов дерева, начинающихся с заданного символа
+void number_by_symbol(SearchTree<char>* tree)				//РЅР°Р№С‚Рё РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР° РїРѕРёСЃРєР°, РЅР°С‡РёРЅР°СЋС‰РёС…СЃСЏ СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СЃРёРјРІРѕР»Р°
 {
 	char symbol{};
-	std::cout << "Введите символ:\t";
+	std::cout << "Р’РІРµРґРёС‚Рµ СЃРёРјРІРѕР»:\t";
 	std::cin >> symbol;
-	std::cout << "Кол-во элементов, начинающихся с \'" << symbol << "\': " << tree->number_by_symbol(symbol) << std::endl;
+	std::cout << "РљРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ, РЅР°С‡РёРЅР°СЋС‰РёС…СЃСЏ СЃ \'" << symbol << "\': " << tree->number_by_symbol(symbol) << std::endl;
+}
+
+SearchTree<char>* create_ideal_search(SearchTree<char>* tree)
+{
+	std::vector<char> v = tree->copy_to_vector();
+	std::sort(v.begin(), v.end());
+	SearchTree<char>* temp;
+	temp = tree->ideal_to_search(v, 0, v.size() - 1);
+	return temp;
 }
 
 //------main-menu------
 void Selection()
 {
-	Tree<char>* tree = new Tree<char>('X');	
+	SearchTree<char>* tree = new SearchTree<char>('X');
 	SearchTree<char>* seartch_tree = new SearchTree<char>('X');	
 
 	bool boolean = true;
 
 	while (boolean)
 	{
-		std::cout << "Выберите нужный пункт меню:" << std::endl;
-		std::cout << "1. Создать бинарное дерево (символы)." << std::endl;
-		std::cout << "2. Создать идеально сбалансированное дерево." << std::endl;
-		std::cout << "3. Создать бинарное дерево(массив)." << std::endl;
-		std::cout << "4. Создать бинарное дерево поиска." << std::endl;
-		std::cout << "5. Добавить новый элемент." << std::endl;
-		std::cout << "6. Извлечь поддерево слева." << std::endl;
-		std::cout << "7. Извлечь поддерево справа." << std::endl;
-		std::cout << "8. Удалить поддерево слева." << std::endl;
-		std::cout << "9. Удалить поддерево справа." << std::endl;
-		std::cout << "10. Показать кол-во элементов в дереве." << std::endl;
-		std::cout << "11. Показать высоту дерева." << std::endl;
-		std::cout << "12. Печать дерева" << std::endl;
-		std::cout << "13. Печать дерева поиска." << std::endl;
-		std::cout << "14. Найти количество элементов дерева, начинающихся с заданного символа." << std::endl;
-		std::cout << "15. Найти количество элементов дерева поиска, начинающихся с заданного символа." << std::endl;
-		std::cout << "0. Закрыть программу." << std::endl;
-		std::cout << "//////////////////////////////////////////////////////" << std::endl;
+		std::cout <<	"Р’С‹Р±РµСЂРёС‚Рµ РЅСѓР¶РЅС‹Р№ РїСѓРЅРєС‚ РјРµРЅСЋ:"														<< std::endl;
+		std::cout <<	"1. РЎРѕР·РґР°С‚СЊ РёРґРµР°Р»СЊРЅРѕ СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°РЅРЅРѕРµ РґРµСЂРµРІРѕ."										<< std::endl;
+		std::cout <<	"2. РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°РЅРЅРѕРµ РґРµСЂРµРІРѕ РІ РґРµСЂРµРІРѕ РїРѕРёСЃРєР°."							<< std::endl;
+		std::cout <<	"3. Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚."														<< std::endl;
+		std::cout <<	"4. РЈРґР°Р»РёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃР»РµРІР°."														<< std::endl;
+		std::cout <<	"5. РЈРґР°Р»РёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃРїСЂР°РІР°."														<< std::endl;
+		std::cout <<	"6. РџРѕРєР°Р·Р°С‚СЊ РєРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РґРµСЂРµРІРµ."											<< std::endl;
+		std::cout <<	"7. РџРѕРєР°Р·Р°С‚СЊ РІС‹СЃРѕС‚Сѓ РґРµСЂРµРІР°."														<< std::endl;
+		std::cout <<	"8. РџРµС‡Р°С‚СЊ РґРµСЂРµРІР° РїРѕРёСЃРєР°."															<< std::endl;
+		std::cout <<	"9. РќР°Р№С‚Рё РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР° РїРѕРёСЃРєР°, РЅР°С‡РёРЅР°СЋС‰РёС…СЃСЏ СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СЃРёРјРІРѕР»Р°."	<< std::endl;
+		std::cout <<	"0. Р—Р°РєСЂС‹С‚СЊ РїСЂРѕРіСЂР°РјРјСѓ."																<< std::endl;
+		std::cout <<	"///////////////////////////////////////////////////////////////////////////////"	<< std::endl;
 
 		switch (Checking_For_Valid_Input())
 		{
 		case 1:
-			tree = create_tree();
-			break;
-		case 2:
 			tree = create_ideal_tree();
 			break;
+		case 2:
+			seartch_tree = create_ideal_search(tree);
+			break;
 		case 3:
-			tree = create_array_tree();
+			add(seartch_tree);
 			break;
 		case 4:
-			seartch_tree = create_array_search_tree();
+			delete_left(seartch_tree);
 			break;
 		case 5:
-			add(tree);
+			delete_right(seartch_tree);
 			break;
 		case 6:
-			eject_left(tree);
+			number_of_elements(seartch_tree);
 			break;
 		case 7:
-			eject_right(tree);
+			height(seartch_tree);
 			break;
 		case 8:
-			delete_left(tree);
-			break;
-		case 9:
-			delete_right(tree);
-			break;
-		case 10:
-			number_of_elements(tree);
-			break;
-		case 11:
-			height(tree);
-			break;
-		case 12:
-			show_tree(tree);
-			break;
-		case 13:
 			show_tree(seartch_tree);
 			break;
-		case 14:
-			number_by_symbol(tree);
-			break;
-		case 15:
+		case 9:
 			number_by_symbol(seartch_tree);
 			break;
 		case 0:
 			boolean = false;
 			break;
 		default:
-			std::cout << "Ошибка. Неверный пункт меню." << std::endl;
+			std::cout << "РћС€РёР±РєР°. РќРµРІРµСЂРЅС‹Р№ РїСѓРЅРєС‚ РјРµРЅСЋ." << std::endl;
 			break;
 		}
 		system("pause");

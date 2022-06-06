@@ -1,27 +1,25 @@
-#pragma once
+п»ї#pragma once
 #include<iostream>
 #include"Search.h"
 #include<vector>
 #include"Tree.h"
 #include<conio.h>
 
-short Checking_For_Valid_Input();				//проверка ввода для типа данных short
-char Checking_For_Valid_Input_Char();			//проверка ввода для типа данных char
+short Checking_For_Valid_Input();								//РїСЂРѕРІРµСЂРєР° РІРІРѕРґР° РґР»СЏ С‚РёРїР° РґР°РЅРЅС‹С… short
+char Checking_For_Valid_Input_Char();							//РїСЂРѕРІРµСЂРєР° РІРІРѕРґР° РґР»СЏ С‚РёРїР° РґР°РЅРЅС‹С… char
 //------functions-for-tree------
-Tree<char>* create_tree();						//создать дерево
-Tree<char>* create_ideal_tree();				//создать идеальное дерево
-Tree<char>* create_array_tree();				//создать дерево из массива
-SearchTree<char>* create_array_search_tree();	//создать дерево поиска из массива
-void show_tree(Tree<char>*);					//печать дерева
-void show_tree(SearchTree<char>*);				//печать дерева поиска
-void add(Tree<char>*);							//добавить элемент
-void eject_left(Tree<char>*);					//извлечь поддерево слева
-void eject_right(Tree<char>*);					//извлечь поддерево справа
-void delete_left(Tree<char>*);					//удалить поддерево слева
-void delete_right(Tree<char>*);					//удалить поддерево справа
-void number_of_elements(Tree<char>*);			//кол-во элементов дерева
-void height(Tree<char>*);						//высота дерева
-void number_by_symbol(Tree<char>*);				//найти количество элементов дерева, начинающихся с заданного символа
+Tree<char>* create_tree();										//СЃРѕР·РґР°С‚СЊ РґРµСЂРµРІРѕ
+SearchTree<char>* create_ideal_tree();							//СЃРѕР·РґР°С‚СЊ РёРґРµР°Р»СЊРЅРѕРµ РґРµСЂРµРІРѕ
+SearchTree<char>* create_array_search_tree();					//СЃРѕР·РґР°С‚СЊ РґРµСЂРµРІРѕ РїРѕРёСЃРєР° РёР· РјР°СЃСЃРёРІР°
+void show_tree(Tree<char>*);									//РїРµС‡Р°С‚СЊ РґРµСЂРµРІР°
+void show_tree(SearchTree<char>*);								//РїРµС‡Р°С‚СЊ РґРµСЂРµРІР° РїРѕРёСЃРєР°
+void add(Tree<char>*);											//РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚
+void delete_left(SearchTree<char>*);							//СѓРґР°Р»РёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃР»РµРІР°
+void delete_right(SearchTree<char>*);							//СѓРґР°Р»РёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃРїСЂР°РІР°
+void number_of_elements(SearchTree<char>*);						//РєРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°
+void height(SearchTree<char>*);									//РІС‹СЃРѕС‚Р° РґРµСЂРµРІР°
+void number_by_symbol(Tree<char>*);								//РЅР°Р№С‚Рё РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°, РЅР°С‡РёРЅР°СЋС‰РёС…СЃСЏ СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СЃРёРјРІРѕР»Р°
+SearchTree<char>* create_ideal_search(SearchTree<char>*);		// РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РёРґРµР°Р»СЊРЅРѕРµ РґРµСЂРµРІРѕ РІ РґРµСЂРµРІРѕ РїРѕРёСЃРєР°
 
 //------main-menu------
 

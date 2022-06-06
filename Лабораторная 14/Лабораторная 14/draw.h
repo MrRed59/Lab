@@ -1,11 +1,10 @@
-#pragma once
-//#include "Tree.h"
+п»ї#pragma once
 int getPos(int index, int width, int curLevel, int maxLevel);
 
 struct pos
 {
-    int col;    // Столбец (х)
-    int str;    // Строка  (у)
+    int col;    // РЎС‚РѕР»Р±РµС† (С…)
+    int str;    // РЎС‚СЂРѕРєР°  (Сѓ)
 };
 
 

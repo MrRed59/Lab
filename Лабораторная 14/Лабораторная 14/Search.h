@@ -1,74 +1,88 @@
-#pragma once
+п»ї#pragma once
 #include<iostream>
 #include<vector>
 #include<fstream>
 #include<queue>
 #include"draw.h"
+#include<algorithm>
 
 template <class S>
 class SearchTree
 {
-	S data; // Данные типа Т
-	SearchTree* left;							// Указатель на узел слева
-	SearchTree* right;							// Указатель на узел справа
-	SearchTree* parent;							// Указатель на предка
+	S data; // Р”Р°РЅРЅС‹Рµ С‚РёРїР° Рў
+	SearchTree* left;											// РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СѓР·РµР» СЃР»РµРІР°
+	SearchTree* right;											// РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СѓР·РµР» СЃРїСЂР°РІР°
+	SearchTree* parent;											// РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРµРґРєР°
 public:
 	//-------------Constructors-------------//
 
-	SearchTree(S);								// Конструктор
-	~SearchTree();								// Деструктор
+	SearchTree(S);												// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+	~SearchTree();												// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
+	SearchTree(const SearchTree<S>&);							// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 
 	//
 
-	int getHeight(); //Получить высоту дерева (считает с текущего узла по направлению к листьям)
-	S getData() { return data; }; // Получить данные с узла	
-	int getAmountOfNodes(); // Получить количество элементов дерева
-	SearchTree<S>* getLeft() { return left; } // Получить левый узел
-	SearchTree<S>* getRight() { return right; } // Получить правый узел
-	SearchTree<S>* getParent() { return parent; } // Получить родителя
+	//SearchTree<S>& 
+	int getHeight();											// РџРѕР»СѓС‡РёС‚СЊ РІС‹СЃРѕС‚Сѓ РґРµСЂРµРІР° (СЃС‡РёС‚Р°РµС‚ СЃ С‚РµРєСѓС‰РµРіРѕ СѓР·Р»Р° РїРѕ РЅР°РїСЂР°РІР»РµРЅРёСЋ Рє Р»РёСЃС‚СЊСЏРј)
+	S getData() { return data; };								// РџРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅС‹Рµ СЃ СѓР·Р»Р°	
+	int getAmountOfNodes();										// РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°
+	SearchTree<S>* getLeft() { return left; }					// РџРѕР»СѓС‡РёС‚СЊ Р»РµРІС‹Р№ СѓР·РµР»
+	SearchTree<S>* getRight() { return right; }					// РџРѕР»СѓС‡РёС‚СЊ РїСЂР°РІС‹Р№ СѓР·РµР»
+	SearchTree<S>* getParent() { return parent; }				// РџРѕР»СѓС‡РёС‚СЊ СЂРѕРґРёС‚РµР»СЏ
 	int getLevel(SearchTree* tree);
 
-	SearchTree<S>* copyTree(); // Скопировать дерево
-	SearchTree<S>* replaceNULLforEmpty(); //Если дерево неполное, сделать его полным (недостающие узлы приобретут данные NULL)
+	SearchTree<S>* copyTree();									// РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РґРµСЂРµРІРѕ
+	SearchTree<S>* replaceNULLforEmpty();						// Р•СЃР»Рё РґРµСЂРµРІРѕ РЅРµРїРѕР»РЅРѕРµ, СЃРґРµР»Р°С‚СЊ РµРіРѕ РїРѕР»РЅС‹Рј (РЅРµРґРѕСЃС‚Р°СЋС‰РёРµ СѓР·Р»С‹ РїСЂРёРѕР±СЂРµС‚СѓС‚ РґР°РЅРЅС‹Рµ NULL)
 	SearchTree<S>* replace_help(SearchTree* node, int h);
 
-	void insertLeft(S); // Вставить узел слева
-	void insertRight(S); // Вставить узел справа		
-	void addLeftTree(SearchTree<S>* tree) { left = tree; } // Добавить поддерево слева		
-	void addRightTree(SearchTree<S>* tree) { right = tree; } // Добавить поддерево справа
+	void insertLeft(S);											// Р’СЃС‚Р°РІРёС‚СЊ СѓР·РµР» СЃР»РµРІР°
+	void insertRight(S);										// Р’СЃС‚Р°РІРёС‚СЊ СѓР·РµР» СЃРїСЂР°РІР°		
+	void addLeftTree(SearchTree<S>* tree) { left = tree; }		// Р”РѕР±Р°РІРёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃР»РµРІР°		
+	void addRightTree(SearchTree<S>* tree) { right = tree; }	// Р”РѕР±Р°РІРёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃРїСЂР°РІР°
 
 
-	void deleteSearchTree() { delete this; }	// Удалить дерево	
-	void printSearchTree(int);					// Горизонтальная печать дерева	
-	void inOrder(SearchTree<S>*);				// Симметричный обход дерева	
-	void preOrder(SearchTree<S>*);				//Вывести значения элементов (сверху вниз)
-	void postOrder(SearchTree<S>*);				//Вывести значения элементов (cниз вверх)
-	void printTree(int);						//Вывести значения элементов (горизонтально)
-	void printVTree(int);						// Печать дерева вертикально
-	void setData(S dt) { data = dt; }			// Установить данные для узла	
-	SearchTree<S>* next();						// Найти следующий элемент
-	SearchTree<S>* prev();						// Найти предыдущий элемент
-	void insertNode(S);							// Вставить узел
-	void deleteNode(S);							// Удалить узел
-	SearchTree<S>* findElement(S);				// Найти элемент
-	SearchTree<S>* findMax();					// Найти максимум
-	SearchTree<S>* findMin();					// Найти минимум
+	void deleteSearchTree() { delete this; }					// РЈРґР°Р»РёС‚СЊ РґРµСЂРµРІРѕ	
+	void deleteNode(S);											// РЈРґР°Р»РёС‚СЊ СѓР·РµР»
+	void deleteLeft();											// РЈРґР°Р»РёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃР»РµРІР°
+	void deleteRight();											// РЈРґР°Р»РёС‚СЊ РїРѕРґРґРµСЂРµРІРѕ СЃРїСЂР°РІР°
+	SearchTree<S>* ejectLeft();									// РР·РІР»РµС‡СЊ РїРѕРґРґРµСЂРµРІРѕ СЃР»РµРІР°
+	SearchTree<S>* ejectRight();								// РР·РІР»РµС‡СЊ РїРѕРґРґРµСЂРµРІРѕ СЃРїСЂР°РІР°
+
+	void printSearchTree(int);									// Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РїРµС‡Р°С‚СЊ РґРµСЂРµРІР°	
+	void inOrder(SearchTree<S>*);								// РЎРёРјРјРµС‚СЂРёС‡РЅС‹Р№ РѕР±С…РѕРґ РґРµСЂРµРІР°	
+	void preOrder(SearchTree<S>*);								// Р’С‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ (СЃРІРµСЂС…Сѓ РІРЅРёР·)
+	void postOrder(SearchTree<S>*);								// Р’С‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ (cРЅРёР· РІРІРµСЂС…)
+	void printTree(int);										// Р’С‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ (РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕ)
+	void printVTree(int);										// РџРµС‡Р°С‚СЊ РґРµСЂРµРІР° РІРµСЂС‚РёРєР°Р»СЊРЅРѕ
+	void setData(S dt) { data = dt; }							// РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ РґР»СЏ СѓР·Р»Р°	
+	SearchTree<S>* next();										// РќР°Р№С‚Рё СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
+	SearchTree<S>* prev();										// РќР°Р№С‚Рё РїСЂРµРґС‹РґСѓС‰РёР№ СЌР»РµРјРµРЅС‚
+	void insertNode(S);											// Р’СЃС‚Р°РІРёС‚СЊ СѓР·РµР»
+	SearchTree<S>* findElement(S);								// РќР°Р№С‚Рё СЌР»РµРјРµРЅС‚
+	SearchTree<S>* findMax();									// РќР°Р№С‚Рё РјР°РєСЃРёРјСѓРј
+	SearchTree<S>* findMin();									// РќР°Р№С‚Рё РјРёРЅРёРјСѓРј
 	size_t number_by_symbol(const S&);
+	static SearchTree<S>* balancedTree(int n);					// РџРѕСЃС‚СЂРѕРёС‚СЊ РёРґРµР°Р»СЊРЅРѕ СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°РЅРЅРѕРµ РґРµСЂРµРІРѕ РїРѕРёСЃРєР° РїРѕ РґР°РЅРЅРѕРјСѓ РєРѕР»РёС‡РµСЃС‚РІСѓ СЌР»РµРјРµРЅС‚РѕРІ
+	void findElement_insertLeft(SearchTree<S>*, S, S);			// РќР°Р№С‚Рё СЌР»РµРјРµРЅС‚ Рё РґРѕР±Р°РІРёС‚СЊ Рє РЅРµРјСѓ СЃР»РµРІР° СѓР·РµР»
+	void findElement_insertRight(SearchTree<S>*, S, S);			// РќР°Р№С‚Рё СЌР»РµРјРµРЅС‚ Рё РґРѕР±Р°РІРёС‚СЊ Рє РЅРµРјСѓ СЃРїСЂР°РІР° СѓР·РµР»
+	void add(S dt);												// Р”РѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ РІ РґРµСЂРµРІРѕ
+	std::vector<S> copy_to_vector();							// РљРѕРїРёСЂРѕРІР°С‚СЊ РґРµСЂРµРІРѕ РІ РІРµРєС‚РѕСЂ
+	SearchTree<S>* ideal_to_search( std::vector<S>, int, int);		// РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РёРґРµР»СЊРЅРѕ СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°РЅРЅРѕРµ РґРµСЂРµРІРѕ РІ РґРµСЂРµРІРѕ РїРѕРёСЃРєР°
 };
 
 template <class S>
-void SearchTree<S>::insertLeft(S dt) //вставка узла слева
+void SearchTree<S>::insertLeft(S dt) //РІСЃС‚Р°РІРєР° СѓР·Р»Р° СЃР»РµРІР°
 {
 	SearchTree<S>* node = new SearchTree(dt);
 	if (this->left != nullptr)
-		this->left->parent = node;// Сделать так, чтобы его предком был новый узел
-	node->left = this->left; //Теперь у нового узла левый потомок – это левый потомок вызывающего узла
-	this->left = node; //А вызывающий узел теперь имеет	левого потомка – это новый узел
-	node->parent = this; //Указываем, что у нового узла теперь предком является текущий узел
+		this->left->parent = node;// РЎРґРµР»Р°С‚СЊ С‚Р°Рє, С‡С‚РѕР±С‹ РµРіРѕ РїСЂРµРґРєРѕРј Р±С‹Р» РЅРѕРІС‹Р№ СѓР·РµР»
+	node->left = this->left; //РўРµРїРµСЂСЊ Сѓ РЅРѕРІРѕРіРѕ СѓР·Р»Р° Р»РµРІС‹Р№ РїРѕС‚РѕРјРѕРє вЂ“ СЌС‚Рѕ Р»РµРІС‹Р№ РїРѕС‚РѕРјРѕРє РІС‹Р·С‹РІР°СЋС‰РµРіРѕ СѓР·Р»Р°
+	this->left = node; //Рђ РІС‹Р·С‹РІР°СЋС‰РёР№ СѓР·РµР» С‚РµРїРµСЂСЊ РёРјРµРµС‚	Р»РµРІРѕРіРѕ РїРѕС‚РѕРјРєР° вЂ“ СЌС‚Рѕ РЅРѕРІС‹Р№ СѓР·РµР»
+	node->parent = this; //РЈРєР°Р·С‹РІР°РµРј, С‡С‚Рѕ Сѓ РЅРѕРІРѕРіРѕ СѓР·Р»Р° С‚РµРїРµСЂСЊ РїСЂРµРґРєРѕРј СЏРІР»СЏРµС‚СЃСЏ С‚РµРєСѓС‰РёР№ СѓР·РµР»
 }
 
 template<class S>
-void SearchTree<S>::insertRight(S dt) //вставка узла справа
+void SearchTree<S>::insertRight(S dt) //РІСЃС‚Р°РІРєР° СѓР·Р»Р° СЃРїСЂР°РІР°
 {
 	SearchTree<S>* node = new SearchTree(dt);
 	if (this->right != nullptr)
@@ -77,7 +91,6 @@ void SearchTree<S>::insertRight(S dt) //вставка узла справа
 	this->right = node;
 	node->parent = this;
 }
-
 
 template <class	S>
 int SearchTree<S>::getHeight()
@@ -154,8 +167,6 @@ SearchTree<S>* SearchTree<S>::replace_help(SearchTree<S>* node, int h)
 	return node;
 }
 
-
-
 template <class S>
 SearchTree<S>* SearchTree<S>::findElement(S dt)
 {
@@ -212,40 +223,40 @@ SearchTree<S>* SearchTree<S>::prev()
 	return t;
 }
 
-template <class S>														//реализация метода Вставить элемент
+template <class S>														//СЂРµР°Р»РёР·Р°С†РёСЏ РјРµС‚РѕРґР° Р’СЃС‚Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚
 void SearchTree<S>::insertNode(S dt)
 {
-	SearchTree<S>* tree = this;											//создаётся элемент равный текущему
+	SearchTree<S>* tree = this;											//СЃРѕР·РґР°С‘С‚СЃСЏ СЌР»РµРјРµРЅС‚ СЂР°РІРЅС‹Р№ С‚РµРєСѓС‰РµРјСѓ
 
-	while (tree != NULL)												//проверяется существование элемента
+	while (tree != NULL)												//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		if (dt >= tree->data)											//проверяется значение элемента
+		if (dt >= tree->data)											//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 		{
-			if (tree->right != NULL)									//проверяется существование элемента справа
+			if (tree->right != NULL)									//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃРїСЂР°РІР°
 			{
-				tree = tree->right;										//переход к элементу справа
+				tree = tree->right;										//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 			}
 			else
 			{
-				SearchTree<S>* temp = new SearchTree<S>(dt);			//создаётся новый элемент
+				SearchTree<S>* temp = new SearchTree<S>(dt);			//СЃРѕР·РґР°С‘С‚СЃСЏ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 
-				temp->parent = tree;									//задаётся новому элементу значение элемента предка
-				tree->right = temp;										//задаётся элементу значение элемента справа
+				temp->parent = tree;									//Р·Р°РґР°С‘С‚СЃСЏ РЅРѕРІРѕРјСѓ СЌР»РµРјРµРЅС‚Сѓ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїСЂРµРґРєР°
+				tree->right = temp;										//Р·Р°РґР°С‘С‚СЃСЏ СЌР»РµРјРµРЅС‚Сѓ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃРїСЂР°РІР°
 				break;
 			}
 		}
-		else if (dt < tree->data)										//проверяется значение элемента
+		else if (dt < tree->data)										//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 		{
-			if (tree->left != NULL)										//проверяется существование элемента слева
+			if (tree->left != NULL)										//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃР»РµРІР°
 			{
-				tree = tree->left;										//переход к элементу слева
+				tree = tree->left;										//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
 			}
 			else
 			{
-				SearchTree<S>* temp = new SearchTree<S>(dt);			//создаётся новый элемент
+				SearchTree<S>* temp = new SearchTree<S>(dt);			//СЃРѕР·РґР°С‘С‚СЃСЏ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 
-				temp->parent = tree;									//задаётся новому элементу значение элемента предка
-				tree->left = temp;										//задаётся элементу значение элемента слева
+				temp->parent = tree;									//Р·Р°РґР°С‘С‚СЃСЏ РЅРѕРІРѕРјСѓ СЌР»РµРјРµРЅС‚Сѓ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїСЂРµРґРєР°
+				tree->left = temp;										//Р·Р°РґР°С‘С‚СЃСЏ СЌР»РµРјРµРЅС‚Сѓ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃР»РµРІР°
 				break;
 			}
 		}
@@ -256,15 +267,15 @@ template<class S>
 void SearchTree<S>::deleteNode(S dt)
 {
 	SearchTree<S>* e = this->findElement(dt);
-	SearchTree<S>* p = e->parent; //предок удаляемого элемента
+	SearchTree<S>* p = e->parent; //РїСЂРµРґРѕРє СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 
-	if ((e->left == nullptr) && (e->right == nullptr)) // Первый случай: удаляемый элемент не имеет потомков
+	if ((e->left == nullptr) && (e->right == nullptr)) // РџРµСЂРІС‹Р№ СЃР»СѓС‡Р°Р№: СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РЅРµ РёРјРµРµС‚ РїРѕС‚РѕРјРєРѕРІ
 	{
 		if (p->left == e) p->left = nullptr;
 		if (p->right == e) p->right = nullptr;
 	}
 
-	else if ((e->left == NULL) || (e->right == NULL)) // Второй случай: удаляемый элемент имеет одного потомка
+	else if ((e->left == NULL) || (e->right == NULL)) // Р’С‚РѕСЂРѕР№ СЃР»СѓС‡Р°Р№: СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РёРјРµРµС‚ РѕРґРЅРѕРіРѕ РїРѕС‚РѕРјРєР°
 	{
 		if (e->left == NULL)
 		{
@@ -280,11 +291,11 @@ void SearchTree<S>::deleteNode(S dt)
 		}
 	}
 
-	// Третий случай: удаляемый элемент имеет двух потомков
+	// РўСЂРµС‚РёР№ СЃР»СѓС‡Р°Р№: СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РёРјРµРµС‚ РґРІСѓС… РїРѕС‚РѕРјРєРѕРІ
 	else
 	{
 		SearchTree<S>* s = e->next();
-		// Следующий элемент за удаляемым
+		// РЎР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ Р·Р° СѓРґР°Р»СЏРµРјС‹Рј
 		e->data = s->data;
 		if (s->parent->left == s)
 		{
@@ -304,95 +315,99 @@ void SearchTree<S>::deleteNode(S dt)
 template<class S>
 inline SearchTree<S>::SearchTree(S dt)
 {
-	data = dt;															//задаётся значение элемента
-	left = NULL;														//задаётся значение элемента слева
-	right = NULL;														//задаётся значение элемента справа
-	parent = NULL;														//задаётся значение элемента предка
+	data = dt;															//Р·Р°РґР°С‘С‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+	left = NULL;														//Р·Р°РґР°С‘С‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃР»РµРІР°
+	right = NULL;														//Р·Р°РґР°С‘С‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃРїСЂР°РІР°
+	parent = NULL;														//Р·Р°РґР°С‘С‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїСЂРµРґРєР°
 }
 
-template <class S>														//реализация Деструктора
+template <class S>														//СЂРµР°Р»РёР·Р°С†РёСЏ Р”РµСЃС‚СЂСѓРєС‚РѕСЂР°
 SearchTree<S>::~SearchTree()
 {
-	delete this->left;													//удаляется элемент слева
-	delete this->right;													//удаляется элемент справа
+	delete this->left;													//СѓРґР°Р»СЏРµС‚СЃСЏ СЌР»РµРјРµРЅС‚ СЃР»РµРІР°
+	delete this->right;													//СѓРґР°Р»СЏРµС‚СЃСЏ СЌР»РµРјРµРЅС‚ СЃРїСЂР°РІР°
 }
 
-template <class S>														//реализация метода Вывести значения элементов (горизонтально)
+template<class S>
+inline SearchTree<S>::SearchTree(const SearchTree<S>& temp) :data(temp.data), left(temp.left), right(temp.right), parent(temp.parent)
+{}
+
+template <class S>														//СЂРµР°Р»РёР·Р°С†РёСЏ РјРµС‚РѕРґР° Р’С‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ (РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕ)
 void SearchTree<S>::printSearchTree(int level)
 {
-	if (this != NULL)													//проверяется существование элемента
+	if (this != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		this->right->printSearchTree(level + 1);						//переход к элементу справа
+		this->right->printSearchTree(level + 1);						//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 
-		for (int i = 1; i < level; i++)									//выводятся пробелы
+		for (int i = 1; i < level; i++)									//РІС‹РІРѕРґСЏС‚СЃСЏ РїСЂРѕР±РµР»С‹
 		{
 			std::cout << "  ";
 		}
 
-		std::cout << this->data << std::endl;										//выводится значение элемента
-		this->left->printSearchTree(level + 1);								//переход к элементу слева
+		std::cout << this->data << std::endl;										//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+		this->left->printSearchTree(level + 1);								//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
 	}
 }
 
-template <class S>														//реализация метода Вывести значения элементов (сверху вниз)
+template <class S>														//СЂРµР°Р»РёР·Р°С†РёСЏ РјРµС‚РѕРґР° Р’С‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ (СЃРІРµСЂС…Сѓ РІРЅРёР·)
 void SearchTree<S>::preOrder(SearchTree<S>* temp)
 {
-	if (temp != NULL)													//проверяется существование элемента
+	if (temp != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		std::cout << temp->data << "   ";									//выводится значение элемента
-		preOrder(temp->left);											//переход к элементу слева
-		preOrder(temp->right);											//переход к элементу справа
+		std::cout << temp->data << "   ";									//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+		preOrder(temp->left);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
+		preOrder(temp->right);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 	}
 }
 
-template <class S>														//реализация метода Вывести значения элементов (слева направо)
+template <class S>														//СЂРµР°Р»РёР·Р°С†РёСЏ РјРµС‚РѕРґР° Р’С‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ)
 void SearchTree<S>::inOrder(SearchTree<S>* temp)
 {
-	if (temp != NULL)													//проверяется существование элемента
+	if (temp != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		inOrder(temp->left);											//переход к элементу слева
-		std::cout << temp->data << "   ";									//выводится значение элемента
-		inOrder(temp->right);											//переход к элементу справа
+		inOrder(temp->left);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
+		std::cout << temp->data << "   ";									//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+		inOrder(temp->right);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 	}
 }
 
-template <class S>														//реализация метода Вывести значения элементов (cниз вверх)
+template <class S>														//СЂРµР°Р»РёР·Р°С†РёСЏ РјРµС‚РѕРґР° Р’С‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ (cРЅРёР· РІРІРµСЂС…)
 void SearchTree<S>::postOrder(SearchTree<S>* temp)
 {
-	if (temp != NULL)													//проверяется существование элемента
+	if (temp != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		postOrder(temp->left);											//переход к элементу слева
-		postOrder(temp->right);											//переход к элементу справа
-		std::cout << temp->data << "   ";									//выводится значение элемента
+		postOrder(temp->left);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
+		postOrder(temp->right);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
+		std::cout << temp->data << "   ";									//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	}
 }
 
-template <class S>														//реализация метода Вывести значения элементов (горизонтально)
+template <class S>														//СЂРµР°Р»РёР·Р°С†РёСЏ РјРµС‚РѕРґР° Р’С‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ (РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕ)
 void SearchTree<S>::printTree(int level)
 {
-	if (this != NULL)													//проверяется существование элемента
+	if (this != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		this->right->printTree(level + 1);								//переход к элементу справа
+		this->right->printTree(level + 1);								//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 
-		for (int i = 1; i < level; i++)									//выводятся пробелы
+		for (int i = 1; i < level; i++)									//РІС‹РІРѕРґСЏС‚СЃСЏ РїСЂРѕР±РµР»С‹
 		{
 			std::cout << "  ";
 		}
 
-		std::cout << this->data << std::endl;										//выводится значение элемента
-		this->left->printTree(level + 1);								//переход к элементу слева
+		std::cout << this->data << std::endl;										//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+		this->left->printTree(level + 1);								//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
 	}
 }
 
 template <class S>
 void SearchTree<S>::printVTree(int k)
 {
-	int height = this->getHeight(); //Максимальное число листов на нижнем уровне(нумерация с нуля)
-	int maxLeafs = pow(2, height - 1); //Минимальная ширина дерева для печати	(не конечная, но необходимая)
-	int width = 2 * maxLeafs - 1;
-	int curLevel = 0; // Номер строки (на выводе)
-	int index = 0; // Номер элемента в строке (нумерация с нуля)
-	int factSpaces = getPos(index, width, curLevel, height - 1); //Позиция корня (число пробелов перед ним)
+	int height = this->getHeight(); //РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ Р»РёСЃС‚РѕРІ РЅР° РЅРёР¶РЅРµРј СѓСЂРѕРІРЅРµ(РЅСѓРјРµСЂР°С†РёСЏ СЃ РЅСѓР»СЏ)
+	int maxLeafs = pow(2, height - 1); //РњРёРЅРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР° РґРµСЂРµРІР° РґР»СЏ РїРµС‡Р°С‚Рё	(РЅРµ РєРѕРЅРµС‡РЅР°СЏ, РЅРѕ РЅРµРѕР±С…РѕРґРёРјР°СЏ)
+	int width = (2 * maxLeafs - 1);
+	int curLevel = 0; // РќРѕРјРµСЂ СЃС‚СЂРѕРєРё (РЅР° РІС‹РІРѕРґРµ)
+	int index = 0; // РќРѕРјРµСЂ СЌР»РµРјРµРЅС‚Р° РІ СЃС‚СЂРѕРєРµ (РЅСѓРјРµСЂР°С†РёСЏ СЃ РЅСѓР»СЏ)
+	int factSpaces = getPos(index, width, curLevel, height - 1); //РџРѕР·РёС†РёСЏ РєРѕСЂРЅСЏ (С‡РёСЃР»Рѕ РїСЂРѕР±РµР»РѕРІ РїРµСЂРµРґ РЅРёРј)
 	pos node;
 	std::vector<SearchTree<S>*> V;
 	std::vector<pos> Vi;
@@ -403,6 +418,7 @@ void SearchTree<S>::printVTree(int k)
 	node.col = factSpaces;
 	node.str = curLevel;
 	Vi.push_back(node);
+
 	for (int i = 0; i < t->getAmountOfNodes(); i++)
 	{
 		if (pow(2, curLevel) <= index + 1)
@@ -429,8 +445,8 @@ void SearchTree<S>::printVTree(int k)
 			index++;
 		}
 	}
-	/* Редактируем позиции в строчках (теперь они обозначают количество пробелов перед данным символом начиная с предыдущего символа):
- до этого эти значения представляли собой координаты (как х) */
+	/* Р РµРґР°РєС‚РёСЂСѓРµРј РїРѕР·РёС†РёРё РІ СЃС‚СЂРѕС‡РєР°С… (С‚РµРїРµСЂСЊ РѕРЅРё РѕР±РѕР·РЅР°С‡Р°СЋС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР±РµР»РѕРІ РїРµСЂРµРґ РґР°РЅРЅС‹Рј СЃРёРјРІРѕР»РѕРј РЅР°С‡РёРЅР°СЏ СЃ РїСЂРµРґС‹РґСѓС‰РµРіРѕ СЃРёРјРІРѕР»Р°):
+ РґРѕ СЌС‚РѕРіРѕ СЌС‚Рё Р·РЅР°С‡РµРЅРёСЏ РїСЂРµРґСЃС‚Р°РІР»СЏР»Рё СЃРѕР±РѕР№ РєРѕРѕСЂРґРёРЅР°С‚С‹ (РєР°Рє С…) */
 	for (int i = V.size() - 1; i >= 0; i--)
 	{
 		if (i != 0)
@@ -438,11 +454,11 @@ void SearchTree<S>::printVTree(int k)
 			if (Vi.at(i - 1).str == Vi.at(i).str) Vi.at(i).col = Vi.at(i).col - Vi.at(i - 1).col - 1;
 		}
 	}
-	int flag = 0; // Следит за тем, что y меняется
+	int flag = 0; // РЎР»РµРґРёС‚ Р·Р° С‚РµРј, С‡С‚Рѕ y РјРµРЅСЏРµС‚СЃСЏ
 	for (int i = 0; i < V.size(); i++)
 	{
 		node = Vi.at(i);
-		curLevel = node.str; //Переход на новую строчку будет, когда y1	станет меньше y (слежка за изменением y)
+		curLevel = node.str; //РџРµСЂРµС…РѕРґ РЅР° РЅРѕРІСѓСЋ СЃС‚СЂРѕС‡РєСѓ Р±СѓРґРµС‚, РєРѕРіРґР° y1	СЃС‚Р°РЅРµС‚ РјРµРЅСЊС€Рµ y (СЃР»РµР¶РєР° Р·Р° РёР·РјРµРЅРµРЅРёРµРј y)
 		if (flag < curLevel)
 		{
 			flag = curLevel;
@@ -483,4 +499,141 @@ size_t SearchTree<S>::number_by_symbol(const S& value)
 		return (n_l + n_r + 1);
 	}
 	return (n_l + n_r);
+}
+
+template <class S>
+SearchTree<S>* SearchTree<S>::balancedTree(int n)
+{
+	if (!n)
+		return nullptr;
+	std::cout << "data=";
+	S dt;
+	std::cin >> dt;
+	int nLeft = n / 2;
+	int nRight = n - n / 2 - 1;
+	SearchTree<S>* tree = new SearchTree<S>(dt);
+	tree->addLeftTree(balancedTree(nLeft));
+	tree->addRightTree(balancedTree(nRight));
+	return tree;
+}
+
+template <class S>
+void SearchTree<S>::findElement_insertLeft(SearchTree<S>* node, S dt1, S dt2)
+{
+	if (node != nullptr)
+	{
+		findElement_insertLeft(node->getLeft(), dt1, dt2);
+		if (dt1 == node->getData()) node->insertLeft(dt2);
+		findElement_insertLeft(node->getRight(), dt1, dt2);
+	}
+}
+
+template <class S>
+void SearchTree<S>::findElement_insertRight(SearchTree<S>* node, S dt1, S dt2)
+{
+	if (node != nullptr)
+	{
+		findElement_insertRight(node->getLeft(), dt1, dt2);
+		if (dt1 == node->getData()) node->insertRight(dt2);
+		findElement_insertRight(node->getRight(), dt1, dt2);
+	}
+}
+
+template <class S>
+void SearchTree<S>::add(S dt)
+{
+	if (this == nullptr)
+		return;
+
+	if (this->data <= dt)
+	{
+		if (this->right == nullptr)
+		{
+			this->insertRight(dt);
+		}
+		else
+		{
+			this->right->add(dt);
+		}
+	}
+	if (this->data > dt)
+	{
+		if (this->left == nullptr)
+		{
+			this->insertLeft(dt);
+		}
+		else
+		{
+			this->left->add(dt);			
+		}		
+	}
+}
+
+template<class S>
+SearchTree<S>* SearchTree<S>::ejectLeft() // РР·РІР»РµС‡РµРЅРёРµ
+{
+	if (this->left != nullptr)
+	{
+		SearchTree<S>* temp = this->left;
+		this->left = nullptr;
+		return temp;
+	}
+	return nullptr;
+}
+
+template<class S>
+void SearchTree<S>::deleteLeft() // РЈРґР°Р»РµРЅРёРµ
+{
+	SearchTree<S>* temp = this->ejectLeft();
+	delete temp;
+}
+
+template<class S>
+SearchTree<S>* SearchTree<S>::ejectRight()
+{
+	if (this->right != nullptr)
+	{
+		SearchTree<S>* temp = this->right;
+		this->right = nullptr;
+		return temp;
+	}
+	return nullptr;
+}
+
+template<class S>
+void SearchTree<S>::deleteRight()
+{
+	SearchTree<S>* temp = this->ejectRight();
+	delete temp;
+}
+
+template<class S>
+std::vector<S> SearchTree<S>::copy_to_vector()
+{
+	static std::vector<S> v;
+	if (this != nullptr)
+	{
+		v.push_back(this->data);
+		this->left->copy_to_vector();
+		this->right->copy_to_vector();
+	}
+	return v;
+}
+
+template<class S>
+inline SearchTree<S>* SearchTree<S>::ideal_to_search( std::vector<S> v, int start, int end)
+{
+	if (!v.size() || start > end)
+	{
+		return nullptr;
+	}
+
+	int average = (start + end) / 2;
+
+	SearchTree<S>* tree = new SearchTree<S>(v[average]);
+
+	tree->right = ideal_to_search(v, average +1, end);
+	tree->left = ideal_to_search(v, start, average -1);
+
+	return tree;
 }
