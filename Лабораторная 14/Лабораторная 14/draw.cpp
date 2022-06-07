@@ -1,5 +1,4 @@
 ﻿#include "draw.h"
-#include"Tree.h"
 #include <math.h>
 
 int getPos(int index, int width, int curLevel, int maxLevel)
