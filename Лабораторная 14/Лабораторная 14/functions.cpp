@@ -39,7 +39,7 @@ char Checking_For_Valid_Input_Char()											//проверка ввода д�
 
 //------functions-for-tree------
 
-SearchTree<char>* create_ideal_tree()													//создать идеально сбалансированное дерево
+SearchTree* create_ideal_tree()													//создать идеально сбалансированное дерево
 {
 	int n;
 
@@ -47,18 +47,18 @@ SearchTree<char>* create_ideal_tree()													//создать идеаль�
 	std::cin >> n;
 	std::cout << std::endl;
 
-	SearchTree<char>* tree = SearchTree<char>::balancedTree(n);
+	SearchTree* tree = SearchTree::balancedTree(n);
 
 	std::cout << std::endl;
 
 	return tree;
 }
 
-SearchTree<char>* create_array_search_tree()										//Создать дерево поиска из массива
+SearchTree* create_array_search_tree()										//Создать дерево поиска из массива
 {
 	std::vector<char> arr = { 'A', 'B', 'D', 'G', 'E', 'H', 'C', 'F', 'I', 'J' };	//Создать контейнер значений элементов дерева
 
-	SearchTree<char>* tree = new SearchTree<char>(arr.at(0));						//Создать первый элемент дерева
+	SearchTree* tree = new SearchTree(arr.at(0));						//Создать первый элемент дерева
 
 	for (int i = 1; i < arr.size(); i++)
 	{
@@ -68,8 +68,7 @@ SearchTree<char>* create_array_search_tree()										//Создать дере�
 	return tree;																
 }
 
-
-void show_tree(SearchTree<char>* tree)											//печать дерева поиска
+void show_tree(SearchTree* tree)											//печать дерева поиска
 {
 	std::cout << "Прямой обход:         ";
 	tree->preOrder(tree);														//Вывод значений элементов (сверху вниз)
@@ -92,7 +91,7 @@ void show_tree(SearchTree<char>* tree)											//печать дерева п�
 	std::cout << std::endl;
 }
 
-void add(SearchTree<char>* tree)									//добавить элемент
+void add(SearchTree* tree)									//добавить элемент
 {
 	char new_elem{};	
 	std::cout << std::endl << "Введите значение нового элемента:  ";
@@ -100,27 +99,27 @@ void add(SearchTree<char>* tree)									//добавить элемент
 	tree->add(new_elem);
 }
 
-void delete_left(SearchTree<char>* tree)							//удалить поддерево слева
+void delete_left(SearchTree* tree)							//удалить поддерево слева
 {
 	tree->deleteLeft();														
 }
 
-void delete_right(SearchTree<char>* tree)							//удалить поддерево справа
+void delete_right(SearchTree* tree)							//удалить поддерево справа
 {
 	tree->deleteRight();
 }
 
-void number_of_elements(SearchTree<char>* tree)
+void number_of_elements(SearchTree* tree)
 {
 	std::cout << "Количество элементов в дереве:  " << tree->getAmountOfNodes() << std::endl << std::endl;
 }
 
-void height(SearchTree<char>* tree)
+void height(SearchTree* tree)
 {
 	std::cout << "Высота дерева:  " << tree->getHeight() << std::endl << std::endl;
 }
 
-void number_by_symbol(SearchTree<char>* tree)				//найти количество элементов дерева поиска, начинающихся с заданного символа
+void number_by_symbol(SearchTree* tree)				//найти количество элементов дерева поиска, начинающихся с заданного символа
 {
 	char symbol{};
 	std::cout << "Введите символ:\t";
@@ -128,20 +127,25 @@ void number_by_symbol(SearchTree<char>* tree)				//найти количеств
 	std::cout << "Кол-во элементов, начинающихся с \'" << symbol << "\': " << tree->number_by_symbol(symbol) << std::endl;
 }
 
-SearchTree<char>* create_ideal_search(SearchTree<char>* tree)
+SearchTree* create_ideal_search(SearchTree* tree)
 {
 	std::vector<char> v = tree->copy_to_vector();
 	std::sort(v.begin(), v.end());
-	SearchTree<char>* temp;
+	SearchTree* temp;
 	temp = tree->ideal_to_search(v, 0, v.size() - 1);
 	return temp;
 }
 
-//------main-menu------
-void Selection()
+void print_OpenGL(SearchTree* tree, int argc, char** argv)
 {
-	SearchTree<char>* tree = new SearchTree<char>('X');
-	SearchTree<char>* seartch_tree = new SearchTree<char>('X');	
+	tree->drawTree(argc, argv, 800, 600, 1, 2);
+}
+
+//------main-menu------
+void Selection(int argc, char** argv)
+{
+	SearchTree* tree = new SearchTree('X');
+	SearchTree* seartch_tree = new SearchTree('X');	
 
 	bool boolean = true;
 
@@ -156,7 +160,8 @@ void Selection()
 		std::cout <<	"6. Показать кол-во элементов в дереве."											<< std::endl;
 		std::cout <<	"7. Показать высоту дерева."														<< std::endl;
 		std::cout <<	"8. Печать дерева поиска."															<< std::endl;
-		std::cout <<	"9. Найти количество элементов дерева поиска, начинающихся с заданного символа."	<< std::endl;
+		std::cout <<	"9. Печать дерева поиска в OpenGL."													<< std::endl;
+		std::cout <<	"10. Найти количество элементов дерева поиска, начинающихся с заданного символа."	<< std::endl;
 		std::cout <<	"0. Закрыть программу."																<< std::endl;
 		std::cout <<	"///////////////////////////////////////////////////////////////////////////////"	<< std::endl;
 
@@ -187,6 +192,9 @@ void Selection()
 			show_tree(seartch_tree);
 			break;
 		case 9:
+			print_OpenGL(seartch_tree, argc, argv);
+			break;
+		case 10:
 			number_by_symbol(seartch_tree);
 			break;
 		case 0:
