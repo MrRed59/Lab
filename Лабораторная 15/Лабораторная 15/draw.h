@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 void reshape(int w, int h);
 void display();

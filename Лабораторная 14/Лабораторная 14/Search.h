@@ -22,9 +22,9 @@ public:
 
 	//-------------Constructors-------------//
 
-	SearchTree(char);												// Конструктор
+	SearchTree(char);											// Конструктор
 	~SearchTree();												// Деструктор
-	SearchTree(const SearchTree&);							// Конструктор копирования
+	SearchTree(const SearchTree&);								// Конструктор копирования
 
 	//
 

@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 #include<vector>
 #include<fstream>
 #include<queue>
@@ -7,20 +7,17 @@
 #include"Search.h"
 
 
-
-
-
-void SearchTree::insertLeft(char dt) //вставка узла слева
+void SearchTree::insertLeft(char dt) //РІСЃС‚Р°РІРєР° СѓР·Р»Р° СЃР»РµРІР°
 {
 	SearchTree* node = new SearchTree(dt);
 	if (this->left != nullptr)
-		this->left->parent = node;// Сделать так, чтобы его предком был новый узел
-	node->left = this->left; //Теперь у нового узла левый потомок – это левый потомок вызывающего узла
-	this->left = node; //А вызывающий узел теперь имеет	левого потомка – это новый узел
-	node->parent = this; //Указываем, что у нового узла теперь предком является текущий узел
+		this->left->parent = node;// РЎРґРµР»Р°С‚СЊ С‚Р°Рє, С‡С‚РѕР±С‹ РµРіРѕ РїСЂРµРґРєРѕРј Р±С‹Р» РЅРѕРІС‹Р№ СѓР·РµР»
+	node->left = this->left; //РўРµРїРµСЂСЊ Сѓ РЅРѕРІРѕРіРѕ СѓР·Р»Р° Р»РµРІС‹Р№ РїРѕС‚РѕРјРѕРє вЂ“ СЌС‚Рѕ Р»РµРІС‹Р№ РїРѕС‚РѕРјРѕРє РІС‹Р·С‹РІР°СЋС‰РµРіРѕ СѓР·Р»Р°
+	this->left = node; //Рђ РІС‹Р·С‹РІР°СЋС‰РёР№ СѓР·РµР» С‚РµРїРµСЂСЊ РёРјРµРµС‚	Р»РµРІРѕРіРѕ РїРѕС‚РѕРјРєР° вЂ“ СЌС‚Рѕ РЅРѕРІС‹Р№ СѓР·РµР»
+	node->parent = this; //РЈРєР°Р·С‹РІР°РµРј, С‡С‚Рѕ Сѓ РЅРѕРІРѕРіРѕ СѓР·Р»Р° С‚РµРїРµСЂСЊ РїСЂРµРґРєРѕРј СЏРІР»СЏРµС‚СЃСЏ С‚РµРєСѓС‰РёР№ СѓР·РµР»
 }
 
-void SearchTree::insertRight(char dt) //вставка узла справа
+void SearchTree::insertRight(char dt) //РІСЃС‚Р°РІРєР° СѓР·Р»Р° СЃРїСЂР°РІР°
 {
 	SearchTree* node = new SearchTree(dt);
 	if (this->right != nullptr)
@@ -155,37 +152,37 @@ SearchTree* SearchTree::prev()
 
 void SearchTree::insertNode(char dt)
 {
-	SearchTree* tree = this;											//создаётся элемент равный текущему
+	SearchTree* tree = this;											//СЃРѕР·РґР°С‘С‚СЃСЏ СЌР»РµРјРµРЅС‚ СЂР°РІРЅС‹Р№ С‚РµРєСѓС‰РµРјСѓ
 
-	while (tree != NULL)												//проверяется существование элемента
+	while (tree != NULL)												//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		if (dt >= tree->data)											//проверяется значение элемента
+		if (dt >= tree->data)											//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 		{
-			if (tree->right != NULL)									//проверяется существование элемента справа
+			if (tree->right != NULL)									//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃРїСЂР°РІР°
 			{
-				tree = tree->right;										//переход к элементу справа
+				tree = tree->right;										//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 			}
 			else
 			{
-				SearchTree* temp = new SearchTree(dt);			//создаётся новый элемент
+				SearchTree* temp = new SearchTree(dt);			//СЃРѕР·РґР°С‘С‚СЃСЏ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 
-				temp->parent = tree;									//задаётся новому элементу значение элемента предка
-				tree->right = temp;										//задаётся элементу значение элемента справа
+				temp->parent = tree;									//Р·Р°РґР°С‘С‚СЃСЏ РЅРѕРІРѕРјСѓ СЌР»РµРјРµРЅС‚Сѓ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїСЂРµРґРєР°
+				tree->right = temp;										//Р·Р°РґР°С‘С‚СЃСЏ СЌР»РµРјРµРЅС‚Сѓ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃРїСЂР°РІР°
 				break;
 			}
 		}
-		else if (dt < tree->data)										//проверяется значение элемента
+		else if (dt < tree->data)										//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 		{
-			if (tree->left != NULL)										//проверяется существование элемента слева
+			if (tree->left != NULL)										//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃР»РµРІР°
 			{
-				tree = tree->left;										//переход к элементу слева
+				tree = tree->left;										//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
 			}
 			else
 			{
-				SearchTree* temp = new SearchTree(dt);			//создаётся новый элемент
+				SearchTree* temp = new SearchTree(dt);			//СЃРѕР·РґР°С‘С‚СЃСЏ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 
-				temp->parent = tree;									//задаётся новому элементу значение элемента предка
-				tree->left = temp;										//задаётся элементу значение элемента слева
+				temp->parent = tree;									//Р·Р°РґР°С‘С‚СЃСЏ РЅРѕРІРѕРјСѓ СЌР»РµРјРµРЅС‚Сѓ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїСЂРµРґРєР°
+				tree->left = temp;										//Р·Р°РґР°С‘С‚СЃСЏ СЌР»РµРјРµРЅС‚Сѓ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃР»РµРІР°
 				break;
 			}
 		}
@@ -195,15 +192,15 @@ void SearchTree::insertNode(char dt)
 void SearchTree::deleteNode(char dt)
 {
 	SearchTree* e = this->findElement(dt);
-	SearchTree* p = e->parent; //предок удаляемого элемента
+	SearchTree* p = e->parent; //РїСЂРµРґРѕРє СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 
-	if ((e->left == nullptr) && (e->right == nullptr)) // Первый случай: удаляемый элемент не имеет потомков
+	if ((e->left == nullptr) && (e->right == nullptr)) // РџРµСЂРІС‹Р№ СЃР»СѓС‡Р°Р№: СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РЅРµ РёРјРµРµС‚ РїРѕС‚РѕРјРєРѕРІ
 	{
 		if (p->left == e) p->left = nullptr;
 		if (p->right == e) p->right = nullptr;
 	}
 
-	else if ((e->left == NULL) || (e->right == NULL)) // Второй случай: удаляемый элемент имеет одного потомка
+	else if ((e->left == NULL) || (e->right == NULL)) // Р’С‚РѕСЂРѕР№ СЃР»СѓС‡Р°Р№: СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РёРјРµРµС‚ РѕРґРЅРѕРіРѕ РїРѕС‚РѕРјРєР°
 	{
 		if (e->left == NULL)
 		{
@@ -219,11 +216,11 @@ void SearchTree::deleteNode(char dt)
 		}
 	}
 
-	// Третий случай: удаляемый элемент имеет двух потомков
+	// РўСЂРµС‚РёР№ СЃР»СѓС‡Р°Р№: СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РёРјРµРµС‚ РґРІСѓС… РїРѕС‚РѕРјРєРѕРІ
 	else
 	{
 		SearchTree* s = e->next();
-		// Следующий элемент за удаляемым
+		// РЎР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ Р·Р° СѓРґР°Р»СЏРµРјС‹Рј
 		e->data = s->data;
 		if (s->parent->left == s)
 		{
@@ -242,16 +239,16 @@ void SearchTree::deleteNode(char dt)
 
 inline SearchTree::SearchTree(char dt)
 {
-	data = dt;															//задаётся значение элемента
-	left = NULL;														//задаётся значение элемента слева
-	right = NULL;														//задаётся значение элемента справа
-	parent = NULL;														//задаётся значение элемента предка
+	data = dt;															//Р·Р°РґР°С‘С‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+	left = NULL;														//Р·Р°РґР°С‘С‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃР»РµРІР°
+	right = NULL;														//Р·Р°РґР°С‘С‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃРїСЂР°РІР°
+	parent = NULL;														//Р·Р°РґР°С‘С‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїСЂРµРґРєР°
 }
 
 SearchTree::~SearchTree()
 {
-	delete this->left;													//удаляется элемент слева
-	delete this->right;													//удаляется элемент справа
+	delete this->left;													//СѓРґР°Р»СЏРµС‚СЃСЏ СЌР»РµРјРµРЅС‚ СЃР»РµРІР°
+	delete this->right;													//СѓРґР°Р»СЏРµС‚СЃСЏ СЌР»РµРјРµРЅС‚ СЃРїСЂР°РІР°
 }
 
 inline SearchTree::SearchTree(const SearchTree& temp) :data(temp.data), left(temp.left), right(temp.right), parent(temp.parent)
@@ -260,74 +257,74 @@ inline SearchTree::SearchTree(const SearchTree& temp) :data(temp.data), left(tem
 
 void SearchTree::printSearchTree(int level)
 {
-	if (this != NULL)													//проверяется существование элемента
+	if (this != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		this->right->printSearchTree(level + 1);						//переход к элементу справа
+		this->right->printSearchTree(level + 1);						//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 
-		for (int i = 1; i < level; i++)									//выводятся пробелы
+		for (int i = 1; i < level; i++)									//РІС‹РІРѕРґСЏС‚СЃСЏ РїСЂРѕР±РµР»С‹
 		{
 			std::cout << "  ";
 		}
 
-		std::cout << this->data << std::endl;										//выводится значение элемента
-		this->left->printSearchTree(level + 1);								//переход к элементу слева
+		std::cout << this->data << std::endl;										//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+		this->left->printSearchTree(level + 1);								//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
 	}
 }
 
 void SearchTree::preOrder(SearchTree* temp)
 {
-	if (temp != NULL)													//проверяется существование элемента
+	if (temp != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		std::cout << temp->data << "   ";									//выводится значение элемента
-		preOrder(temp->left);											//переход к элементу слева
-		preOrder(temp->right);											//переход к элементу справа
+		std::cout << temp->data << "   ";									//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+		preOrder(temp->left);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
+		preOrder(temp->right);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 	}
 }
 
 void SearchTree::inOrder(SearchTree* temp)
 {
-	if (temp != NULL)													//проверяется существование элемента
+	if (temp != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		inOrder(temp->left);											//переход к элементу слева
-		std::cout << temp->data << "   ";									//выводится значение элемента
-		inOrder(temp->right);											//переход к элементу справа
+		inOrder(temp->left);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
+		std::cout << temp->data << "   ";									//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+		inOrder(temp->right);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 	}
 }
 
 void SearchTree::postOrder(SearchTree* temp)
 {
-	if (temp != NULL)													//проверяется существование элемента
+	if (temp != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		postOrder(temp->left);											//переход к элементу слева
-		postOrder(temp->right);											//переход к элементу справа
-		std::cout << temp->data << "   ";									//выводится значение элемента
+		postOrder(temp->left);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
+		postOrder(temp->right);											//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
+		std::cout << temp->data << "   ";									//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	}
 }
 
 void SearchTree::printTree(int level)
 {
-	if (this != NULL)													//проверяется существование элемента
+	if (this != NULL)													//РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚Р°
 	{
-		this->right->printTree(level + 1);								//переход к элементу справа
+		this->right->printTree(level + 1);								//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃРїСЂР°РІР°
 
-		for (int i = 1; i < level; i++)									//выводятся пробелы
+		for (int i = 1; i < level; i++)									//РІС‹РІРѕРґСЏС‚СЃСЏ РїСЂРѕР±РµР»С‹
 		{
 			std::cout << "  ";
 		}
 
-		std::cout << this->data << std::endl;										//выводится значение элемента
-		this->left->printTree(level + 1);								//переход к элементу слева
+		std::cout << this->data << std::endl;										//РІС‹РІРѕРґРёС‚СЃСЏ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+		this->left->printTree(level + 1);								//РїРµСЂРµС…РѕРґ Рє СЌР»РµРјРµРЅС‚Сѓ СЃР»РµРІР°
 	}
 }
 
 void SearchTree::printVTree(int k)
 {
-	int height = this->getHeight(); //Максимальное число листов на нижнем уровне(нумерация с нуля)
-	int maxLeafs = pow(2, height - 1); //Минимальная ширина дерева для печати	(не конечная, но необходимая)
+	int height = this->getHeight(); //РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ Р»РёСЃС‚РѕРІ РЅР° РЅРёР¶РЅРµРј СѓСЂРѕРІРЅРµ(РЅСѓРјРµСЂР°С†РёСЏ СЃ РЅСѓР»СЏ)
+	int maxLeafs = pow(2, height - 1); //РњРёРЅРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР° РґРµСЂРµРІР° РґР»СЏ РїРµС‡Р°С‚Рё	(РЅРµ РєРѕРЅРµС‡РЅР°СЏ, РЅРѕ РЅРµРѕР±С…РѕРґРёРјР°СЏ)
 	int width = (2 * maxLeafs - 1);
-	int curLevel = 0; // Номер строки (на выводе)
-	int index = 0; // Номер элемента в строке (нумерация с нуля)
-	int factSpaces = getPos(index, width, curLevel, height - 1); //Позиция корня (число пробелов перед ним)
+	int curLevel = 0; // РќРѕРјРµСЂ СЃС‚СЂРѕРєРё (РЅР° РІС‹РІРѕРґРµ)
+	int index = 0; // РќРѕРјРµСЂ СЌР»РµРјРµРЅС‚Р° РІ СЃС‚СЂРѕРєРµ (РЅСѓРјРµСЂР°С†РёСЏ СЃ РЅСѓР»СЏ)
+	int factSpaces = getPos(index, width, curLevel, height - 1); //РџРѕР·РёС†РёСЏ РєРѕСЂРЅСЏ (С‡РёСЃР»Рѕ РїСЂРѕР±РµР»РѕРІ РїРµСЂРµРґ РЅРёРј)
 	pos node;
 	std::vector<SearchTree*> V;
 	std::vector<pos> Vi;
@@ -365,8 +362,8 @@ void SearchTree::printVTree(int k)
 			index++;
 		}
 	}
-	/* Редактируем позиции в строчках (теперь они обозначают количество пробелов перед данным символом начиная с предыдущего символа):
- до этого эти значения представляли собой координаты (как х) */
+	/* Р РµРґР°РєС‚РёСЂСѓРµРј РїРѕР·РёС†РёРё РІ СЃС‚СЂРѕС‡РєР°С… (С‚РµРїРµСЂСЊ РѕРЅРё РѕР±РѕР·РЅР°С‡Р°СЋС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР±РµР»РѕРІ РїРµСЂРµРґ РґР°РЅРЅС‹Рј СЃРёРјРІРѕР»РѕРј РЅР°С‡РёРЅР°СЏ СЃ РїСЂРµРґС‹РґСѓС‰РµРіРѕ СЃРёРјРІРѕР»Р°):
+ РґРѕ СЌС‚РѕРіРѕ СЌС‚Рё Р·РЅР°С‡РµРЅРёСЏ РїСЂРµРґСЃС‚Р°РІР»СЏР»Рё СЃРѕР±РѕР№ РєРѕРѕСЂРґРёРЅР°С‚С‹ (РєР°Рє С…) */
 	for (int i = V.size() - 1; i >= 0; i--)
 	{
 		if (i != 0)
@@ -374,11 +371,11 @@ void SearchTree::printVTree(int k)
 			if (Vi.at(i - 1).str == Vi.at(i).str) Vi.at(i).col = Vi.at(i).col - Vi.at(i - 1).col - 1;
 		}
 	}
-	int flag = 0; // Следит за тем, что y меняется
+	int flag = 0; // РЎР»РµРґРёС‚ Р·Р° С‚РµРј, С‡С‚Рѕ y РјРµРЅСЏРµС‚СЃСЏ
 	for (int i = 0; i < V.size(); i++)
 	{
 		node = Vi.at(i);
-		curLevel = node.str; //Переход на новую строчку будет, когда y1	станет меньше y (слежка за изменением y)
+		curLevel = node.str; //РџРµСЂРµС…РѕРґ РЅР° РЅРѕРІСѓСЋ СЃС‚СЂРѕС‡РєСѓ Р±СѓРґРµС‚, РєРѕРіРґР° y1	СЃС‚Р°РЅРµС‚ РјРµРЅСЊС€Рµ y (СЃР»РµР¶РєР° Р·Р° РёР·РјРµРЅРµРЅРёРµРј y)
 		if (flag < curLevel)
 		{
 			flag = curLevel;
@@ -484,7 +481,7 @@ void SearchTree::add(char dt)
 	}
 }
 
-SearchTree* SearchTree::ejectLeft() // Извлечение
+SearchTree* SearchTree::ejectLeft() // РР·РІР»РµС‡РµРЅРёРµ
 {
 	if (this->left != nullptr)
 	{
@@ -495,7 +492,7 @@ SearchTree* SearchTree::ejectLeft() // Извлечение
 	return nullptr;
 }
 
-void SearchTree::deleteLeft() // Удаление
+void SearchTree::deleteLeft() // РЈРґР°Р»РµРЅРёРµ
 {
 	SearchTree* temp = this->ejectLeft();
 	delete temp;

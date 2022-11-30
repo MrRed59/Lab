@@ -1,4 +1,4 @@
-#include "Graph.h"
+п»ї#include "Graph.h"
 #include "GL/glut.h"
 #include <iostream>
 #include "draw.h"
@@ -6,7 +6,7 @@
 
 Graph::Graph()
 {
-	// Перебор строк и столбцов матрицы смежности и заполнение ее нулями
+	// РџРµСЂРµР±РѕСЂ СЃС‚СЂРѕРє Рё СЃС‚РѕР»Р±С†РѕРІ РјР°С‚СЂРёС†С‹ СЃРјРµР¶РЅРѕСЃС‚Рё Рё Р·Р°РїРѕР»РЅРµРЅРёРµ РµРµ РЅСѓР»СЏРјРё
 	for (int i = 0; i < maxSize; ++i)
 	{
 		for (int j = 0; j < maxSize; ++j)
@@ -47,21 +47,21 @@ int Graph::GetAmountVerts()
 
 int Graph::GetAmountEdges()
 {
-	int amount = 0; // Обнуляем счетчик
-	if (!this->IsEmpty()) // Проверяем, что граф не пуст
+	int amount = 0; // РћР±РЅСѓР»СЏРµРј СЃС‡РµС‚С‡РёРє
+	if (!this->IsEmpty()) // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РіСЂР°С„ РЅРµ РїСѓСЃС‚
 	{
 		for (int i = 0, vertListSize = this->vertList.size(); i < vertListSize; ++i)
 		{
 			for (int j = 0; j < vertListSize; ++j)
 			{
-				if (this->adjMatrix[i][j] == 1) // Находим ребра
-					++amount; // Считаем количество ребер
+				if (this->adjMatrix[i][j] == 1) // РќР°С…РѕРґРёРј СЂРµР±СЂР°
+					++amount; // РЎС‡РёС‚Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЂРµР±РµСЂ
 			}
 		}
-		return amount; // Возвращаем количество ребер
+		return amount; // Р’РѕР·РІСЂР°С‰Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЂРµР±РµСЂ
 	}
 	else
-		return 0; // Если граф пуст, возвращаем 0
+		return 0; // Р•СЃР»Рё РіСЂР°С„ РїСѓСЃС‚, РІРѕР·РІСЂР°С‰Р°РµРј 0
 }
 
 int Graph::GetWeight(const int& vertex1, const int& vertex2)
@@ -77,17 +77,17 @@ int Graph::GetWeight(const int& vertex1, const int& vertex2)
 
 std::vector<int> Graph::GetNbrs(const int& vertex)
 {
-	std::vector<int> nbrsList; // Создание списка соседей
-	int pos = this->GetVertPos(vertex); // Вычисление позиции vertex в матрице смежности	
-	if (pos != (-1)) // Проверка, что vertex есть в матрице смежности
+	std::vector<int> nbrsList; // РЎРѕР·РґР°РЅРёРµ СЃРїРёСЃРєР° СЃРѕСЃРµРґРµР№
+	int pos = this->GetVertPos(vertex); // Р’С‹С‡РёСЃР»РµРЅРёРµ РїРѕР·РёС†РёРё vertex РІ РјР°С‚СЂРёС†Рµ СЃРјРµР¶РЅРѕСЃС‚Рё	
+	if (pos != (-1)) // РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ vertex РµСЃС‚СЊ РІ РјР°С‚СЂРёС†Рµ СЃРјРµР¶РЅРѕСЃС‚Рё
 	{
 		for (int i = 0, vertListSize = this->vertList.size(); i < vertListSize; ++i)
 		{
-			if (this->adjMatrix[pos][i] != 0) // Вычисление соседей
-				nbrsList.push_back(this->vertList[i]); // Запись соседей в вектор			
+			if (this->adjMatrix[pos][i] != 0) // Р’С‹С‡РёСЃР»РµРЅРёРµ СЃРѕСЃРµРґРµР№
+				nbrsList.push_back(this->vertList[i]); // Р—Р°РїРёСЃСЊ СЃРѕСЃРµРґРµР№ РІ РІРµРєС‚РѕСЂ			
 		}
 	}
-	return nbrsList; // Возврат списка соседей
+	return nbrsList; // Р’РѕР·РІСЂР°С‚ СЃРїРёСЃРєР° СЃРѕСЃРµРґРµР№
 }
 
 void Graph::InsertVertex(const int& vertex)
@@ -98,7 +98,7 @@ void Graph::InsertVertex(const int& vertex)
 	}
 	else
 	{
-		std::cout << "Граф уже заполнен. Невозможно добавить новую вершину " << std::endl;
+		std::cout << "Р“СЂР°С„ СѓР¶Рµ Р·Р°РїРѕР»РЅРµРЅ. РќРµРІРѕР·РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ РІРµСЂС€РёРЅСѓ " << std::endl;
 		return;
 	}
 }
@@ -111,21 +111,21 @@ void Graph::InsertEdge(const int& vertex1, const int& vertex2, int weight)
 		int vertPos2 = GetVertPos(vertex2);
 		if (this->adjMatrix[vertPos1][vertPos2] != 0)
 		{
-			std::cout << "Ребро между этими вершинами уже существует" << std::endl;
+			std::cout << "Р РµР±СЂРѕ РјРµР¶РґСѓ СЌС‚РёРјРё РІРµСЂС€РёРЅР°РјРё СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚" << std::endl;
 			return;
 		}
 		else
 			this->adjMatrix[vertPos1][vertPos2] = weight;
 	}
 	else
-		std::cout << "Обеих вершин (или одной из них) нет в графе " << std::endl;
+		std::cout << "РћР±РµРёС… РІРµСЂС€РёРЅ (РёР»Рё РѕРґРЅРѕР№ РёР· РЅРёС…) РЅРµС‚ РІ РіСЂР°С„Рµ " << std::endl;
 }
 
 void Graph::Print()
 {
 	if (!this->IsEmpty())
 	{
-		std::cout << "Матрица смежности графа: " << std::endl;
+		std::cout << "РњР°С‚СЂРёС†Р° СЃРјРµР¶РЅРѕСЃС‚Рё РіСЂР°С„Р°: " << std::endl;
 		for (int i = 0, vertListSize = this->vertList.size(); i < vertListSize; ++i)
 		{
 			std::cout << this->vertList[i] << "|\t";
@@ -137,22 +137,22 @@ void Graph::Print()
 		}
 	}
 	else
-		std::cout << "Граф пуст " << std::endl;
+		std::cout << "Р“СЂР°С„ РїСѓСЃС‚ " << std::endl;
 }
 
 void Graph::DFS(int startVertex, bool* visitedVerts)
 {
-    // Выводим сообщение о том, что вершина посещена
-    std::cout << "Вершина " << startVertex << " посещена" << std::endl;
-    // Отмечаем в массиве посещенных вершин, что вершина посещена
+    // Р’С‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ Рѕ С‚РѕРј, С‡С‚Рѕ РІРµСЂС€РёРЅР° РїРѕСЃРµС‰РµРЅР°
+    std::cout << "Р’РµСЂС€РёРЅР° " << startVertex << " РїРѕСЃРµС‰РµРЅР°" << std::endl;
+    // РћС‚РјРµС‡Р°РµРј РІ РјР°СЃСЃРёРІРµ РїРѕСЃРµС‰РµРЅРЅС‹С… РІРµСЂС€РёРЅ, С‡С‚Рѕ РІРµСЂС€РёРЅР° РїРѕСЃРµС‰РµРЅР°
     visitedVerts[this->GetVertPos(startVertex)] = true;
     std::vector<int> neighbors = this -> GetNbrs(startVertex);
-    // Создаем вектор соседей
+    // РЎРѕР·РґР°РµРј РІРµРєС‚РѕСЂ СЃРѕСЃРµРґРµР№
     for (int i = 0, size = this -> GetNbrs(startVertex).size();
         i < size; ++i)
     {
         if (visitedVerts[this -> GetVertPos(neighbors[i])] != true)
-            // В цикле проверяем, что соседи текущей вершины еще не посещены и вызываем функцию обхода графа в глубину
+            // Р’ С†РёРєР»Рµ РїСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЃРѕСЃРµРґРё С‚РµРєСѓС‰РµР№ РІРµСЂС€РёРЅС‹ РµС‰Рµ РЅРµ РїРѕСЃРµС‰РµРЅС‹ Рё РІС‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЋ РѕР±С…РѕРґР° РіСЂР°С„Р° РІ РіР»СѓР±РёРЅСѓ
             this->DFS(neighbors[i], visitedVerts);
     }
 }
