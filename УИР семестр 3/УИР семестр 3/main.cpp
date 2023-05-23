@@ -44,7 +44,7 @@ void new_algorithm(std::vector<int>& V, size_t &arr_accesses)
         arr_accesses++;
     }
 
-    for (size_t i = num_max_el + 1; i < V.size(); i++) //сортировка с начала до максимальной позиции
+    for (size_t i = 1; i < V.size(); i++) //сортировка с начала до максимальной позиции
     {
         int x = V[i];
         size_t j = i;
@@ -84,9 +84,9 @@ int main()
 
     size_t all_arr_accesses_for_first{};
     size_t all_arr_accesses{};
-    size_t n = 10000;
+    size_t n = 10;
 
-    size_t range = 10000;
+    size_t range = 10;
     size_t iter = 10;
 
     for (size_t j = 0; j < n; j++)
@@ -102,11 +102,16 @@ int main()
 
         auto start = std::chrono::high_resolution_clock::now();
 
-        //InsertionSort_part(V, arr_accesses);
-        InsertionSort(V, arr_accesses);
+        new_algorithm(V, arr_accesses);
+        //InsertionSort(V, arr_accesses);
 
         auto end = std::chrono::high_resolution_clock::now();
 
+        for (size_t i = 0; i < V.size(); i++)
+        {
+            std::cout << "V[i]" << i << " = " << V[i] << std::endl;
+        }
+        std::cout << "//////////" << std::endl;
         std::chrono::duration<double> duration = end - start;
         all_time_for_first += duration.count();
         all_arr_accesses_for_first += arr_accesses;
@@ -118,31 +123,31 @@ int main()
 
     //srand(1);
 
-    for (size_t j = 0; j < n; j++)
-    {
-        std::vector<int> V;
-        size_t arr_accesses{};
+    //for (size_t j = 0; j < n; j++)
+    //{
+    //    std::vector<int> V;
+    //    size_t arr_accesses{};
 
-        srand(time(NULL));
+    //    srand(time(NULL));
 
-        for (size_t i = 0; i < iter; i++)
-        {
-            V.push_back(rand() % range);
-        }
+    //    for (size_t i = 0; i < iter; i++)
+    //    {
+    //        V.push_back(rand() % range);
+    //    }
 
-        auto start = std::chrono::high_resolution_clock::now();
-        
-        //InsertionSort_part(V, arr_accesses);
-        InsertionSort(V, arr_accesses);
+    //    auto start = std::chrono::high_resolution_clock::now();
+    //    
+    //    //InsertionSort_part(V, arr_accesses);
+    //    InsertionSort(V, arr_accesses);
 
-        auto end = std::chrono::high_resolution_clock::now();
+    //    auto end = std::chrono::high_resolution_clock::now();
 
-        std::chrono::duration<double> duration = end - start;
-        //std::cout << "Duration: " << duration.count() << std::endl << std::endl;
-        all_time += duration.count();
-        all_arr_accesses += arr_accesses;
-        srand(1);
-    }
+    //    std::chrono::duration<double> duration = end - start;
+    //    //std::cout << "Duration: " << duration.count() << std::endl << std::endl;
+    //    all_time += duration.count();
+    //    all_arr_accesses += arr_accesses;
+    //    srand(1);
+    //}
     std::cout << "////////////////////////////////////" << std::endl;
     all_arr_accesses /= n;
     std::cout << "all_arr_accesses = " << all_arr_accesses << std::endl;
