@@ -58,7 +58,7 @@ namespace Lab1_csharp
             }
         }
 
-        static void Task1()
+        public static void Task1()
         {
             Console.Write("Введите значение n: ");
             int n = ReadAndConvToInt();
@@ -77,7 +77,7 @@ namespace Lab1_csharp
             Console.WriteLine(5 * (Math.Pow(x, 3)) * Math.Pow(((1 / (Math.Pow(x, 2))) + (1 / (Math.Pow(x, 3)))), 1.0 / 5.0));
         }
 
-        static void Task2()
+        public static void Task2()
         {
             Console.WriteLine("Введите значение х: ");
             double x = ReadAndConvToDouble();
@@ -90,7 +90,7 @@ namespace Lab1_csharp
 
         }
 
-        static void Task3()
+        public static void Task3()
         {
             Console.WriteLine("Тип данных Float");
             float a = 1000, b = (float)0.0001;
@@ -101,7 +101,7 @@ namespace Lab1_csharp
 
         }
 
-            static int ReadAndConvToInt()
+        public static int ReadAndConvToInt()
         {
             string str; 
             int value;
@@ -113,7 +113,7 @@ namespace Lab1_csharp
             }            
         }
 
-        static double ReadAndConvToDouble()
+        public static double ReadAndConvToDouble()
         {
             string str;
             double value;
