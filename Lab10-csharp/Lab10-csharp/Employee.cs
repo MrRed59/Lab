@@ -14,12 +14,12 @@ namespace Lab10_csharp
             get => placeWork;
             set
             {
-                if (placeWork.Length > 2)
+                if (value.Length > 2)
                     placeWork = value;
                 else
                 {
                     Console.WriteLine("Ошибка. Место работы не может быть меньше 3 символов");
-                    placeWork = "";
+                    placeWork = "-";
                 }
             }
         }
@@ -28,7 +28,7 @@ namespace Lab10_csharp
         public Employee(): base()
         {
             Salary = 0;
-            placeWork = "";
+            placeWork = "-";
         }
 
         //конструктор с параметрами
@@ -39,7 +39,7 @@ namespace Lab10_csharp
         }
 
         //вывод на экран
-        public void Show()
+        public override void Show()
         {
             base.Show();
             Console.WriteLine(  $"Место работы: {placeWork}\n" +

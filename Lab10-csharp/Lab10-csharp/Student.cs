@@ -12,7 +12,7 @@ namespace Lab10_csharp
             get => averageGrade;
             set
             {
-                if (averageGrade >= 2 && averageGrade <= 5)
+                if (value >= 2 && value <= 5)
                     averageGrade = value;
                 else
                 {
@@ -27,12 +27,12 @@ namespace Lab10_csharp
             get => educInstitution;
             set
             {
-                if (educInstitution.Length > 2)
+                if (value.Length > 2)
                     educInstitution = value;
                 else
                 {
                     Console.WriteLine("Ошибка. Учебное заведение не может быть меньше 3 символов");
-                    educInstitution = "";
+                    educInstitution = "-";
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace Lab10_csharp
         public Student() : base()
         {
             averageGrade = 2;
-            educInstitution = "";
+            educInstitution = "-";
         }
 
         //конструктор с параметрами
@@ -52,7 +52,7 @@ namespace Lab10_csharp
         }
 
         //вывод на экран
-        public void Show()
+        public override void Show()
         {
             base.Show();
             Console.WriteLine(  $"Учебное заведение: {educInstitution}\n" +

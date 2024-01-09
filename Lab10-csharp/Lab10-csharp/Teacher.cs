@@ -11,12 +11,12 @@ namespace Lab10_csharp
             get => subjectTaught;
             set
             {
-                if (subjectTaught.Length > 2)
+                if (value.Length > 2)
                     subjectTaught = value;
                 else
                 {
                     Console.WriteLine("Ошибка. Преподаваемый предмет не может быть меньше 3 символов");
-                    subjectTaught = "";
+                    subjectTaught = "-";
                 }
             }
         }
@@ -24,7 +24,7 @@ namespace Lab10_csharp
         //конструктор без параметров
         public Teacher():base()
         {
-            subjectTaught = "";
+            subjectTaught = "-";
         }
 
         //конструктор с параметрами
@@ -35,7 +35,7 @@ namespace Lab10_csharp
         }
 
         //вывод на экран
-        public void Show()
+        public override void Show()
         {
             base.Show();
             Console.WriteLine($"Преподаваемый предмет: {subjectTaught}");

@@ -12,12 +12,12 @@ namespace Lab10_csharp
             get => firstName;
             set
             {
-                if (firstName.Length > 1)
+                if (value.Length > 1)
                     firstName = value;
                 else
                 {
                     Console.WriteLine("Ошибка. Имя не может быть меньше 2 символов");
-                    firstName = "";
+                    firstName = "-";
                 }
             }
         }
@@ -27,12 +27,12 @@ namespace Lab10_csharp
             get => secondName;
             set
             {
-                if (secondName.Length > 1)
+                if (value.Length > 1)
                     secondName = value;
                 else
                 {
                     Console.WriteLine("Ошибка. Фамилия не может быть меньше 2 символов");
-                    secondName = "";
+                    secondName = "-";
                 }
             }
         }
@@ -40,19 +40,20 @@ namespace Lab10_csharp
         //конструктор без параметров
         public Person()
         {
-            firstName = "";
-            secondName = "";
+            firstName = "-";
+            secondName = "-";
         }
 
         //конструктор с параметрами
         public Person(string _firstName, string _secondName)
         {
+
             FirstName = _firstName;
             SecondtName = _secondName;
         }
 
         //вывод на экран
-        public void Show()
+        public virtual void Show()
         {
             Console.WriteLine($"Фамилия и имя: {secondName} {firstName}.");
         }

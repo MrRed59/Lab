@@ -25,18 +25,21 @@ namespace Lab10_csharp
                         {
                             Console.WriteLine("Создание иерархии классов");
                             Task1();
+                            Console.Clear();
                             break;
                         }
                     case 2:
                         {
                             Console.WriteLine("Динамическая идентификация типов");
                             Task2();
+                            Console.Clear();
                             break;
                         }
                     case 3:
                         {
                             Console.WriteLine("Абстрактные классы и интерфейсы");
                             Task3();
+                            Console.Clear();
                             break;
                         }
                     case 0:
@@ -55,6 +58,42 @@ namespace Lab10_csharp
             byte option = 546 % 16 - 1; // Вариант 1
             Console.WriteLine("Вариант " + option + ".");
 
+            Person person = new Person();
+            person.Show();
+            Person person1 = new Person("Alex", "Alexovich");
+            person1.Show();
+
+            Console.WriteLine("////////////////////////////////////////");
+
+            Student student = new Student();
+            student.Show();
+            Student student1 = new Student("Alex", "Erypalov", (ushort)4.2, "PNIPU");
+            student1.Show();
+
+            Console.WriteLine("////////////////////////////////////////");
+
+            Employee employee = new Employee();
+            employee.Show();
+            Employee employee1 = new Employee("Alex", "Alexov", 50000, "Ice cream factory");
+            employee1.Show();
+
+            Console.WriteLine("////////////////////////////////////////");
+
+            Teacher teacher = new Teacher();
+            teacher.Show();
+            Teacher teacher1 = new Teacher("Alex", "Alexov", 50000, "Ice cream factory", "Matan");
+            teacher1.Show();
+
+            Person[] arr = { person, person1, student, student1, employee, employee1, teacher, teacher1 };
+
+            foreach (Person s in arr)
+            {
+                Console.WriteLine("////////////////////////////////////////");
+                s.Show();
+                Console.WriteLine("////////////////////////////////////////");
+            }
+
+            Console.ReadLine();
         }
 
         static void Task2()
