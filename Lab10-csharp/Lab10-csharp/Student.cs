@@ -27,7 +27,7 @@ namespace Lab10_csharp
             get => educInstitution;
             set
             {
-                if (educInstitution.Length > 3)
+                if (educInstitution.Length > 2)
                     educInstitution = value;
                 else
                 {
