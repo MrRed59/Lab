@@ -12,16 +12,12 @@ namespace Lab10_csharp
             get => firstName;
             set
             {
-                while (true)
+                if (firstName.Length > 1)
+                    firstName = value;
+                else
                 {
-                    Console.Write("Имя: ");
-                    if (firstName.Length > 1)
-                    {
-                        firstName = value;
-                        break;
-                    }
-                    else
-                        Console.WriteLine("Ошибка. Имя не может быть меньше 2 символов");
+                    Console.WriteLine("Ошибка. Имя не может быть меньше 2 символов");
+                    firstName = "";
                 }
             }
         }
@@ -31,32 +27,31 @@ namespace Lab10_csharp
             get => secondName;
             set
             {
-                while (true)
+                if (secondName.Length > 1)
+                    secondName = value;
+                else
                 {
-                    Console.Write("Фамилия: ");
-                    if (secondName.Length > 1)
-                    {
-                        secondName = value;
-                        break;
-                    }
-                    else
-                        Console.WriteLine("Ошибка. Фамилия не может быть меньше 2 символов");
-                }                
+                    Console.WriteLine("Ошибка. Фамилия не может быть меньше 2 символов");
+                    secondName = "";
+                }
             }
         }
 
+        //конструктор без параметров
         public Person()
         {
             firstName = "";
             secondName = "";
         }
 
+        //конструктор с параметрами
         public Person(string _firstName, string _secondName)
         {
             FirstName = _firstName;
             SecondtName = _secondName;
         }
 
+        //вывод на экран
         public void Show()
         {
             Console.WriteLine($"Фамилия и имя: {secondName} {firstName}.");
