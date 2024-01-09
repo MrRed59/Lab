@@ -34,6 +34,55 @@ namespace Lab10_csharp
             SubjectTaught = _subjectTaught;
         }
 
+        //Ввод данных в класс вручную
+        public void Init(string _firstName, string _secondName, double _salary, string _placeWork, string _subjectTaught)
+        {
+            base.Init(_firstName, _secondName, _salary, _placeWork);
+            SubjectTaught = _subjectTaught;
+        }
+
+        //Ввод данных в класс автоматически
+        public override void RandomInit()
+        {
+            base.RandomInit();
+
+            Random random = new Random();
+            switch (random.Next(6))
+            {
+                case 1:
+                    {
+                        subjectTaught = "Математика";
+                        break;
+                    }
+                case 2:
+                    {
+                        subjectTaught = "Физика";
+                        break;
+                    }
+                case 3:
+                    {
+                        subjectTaught = "Информатика";
+                        break;
+                    }
+                case 4:
+                    {
+                        subjectTaught = "Биология";
+                        break;
+                    }
+                case 5:
+                    {
+                        subjectTaught = "Философия";
+                        break;
+                    }
+                case 6:
+                    {
+                        subjectTaught = "Социология";
+                        break;
+                    }
+            }
+
+        }
+
         //вывод на экран
         public override void Show()
         {

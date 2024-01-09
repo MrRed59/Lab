@@ -27,7 +27,7 @@ namespace Lab10_csharp
         //конструктор без параметров
         public Employee(): base()
         {
-            Salary = 0;
+            salary = 0;
             placeWork = "-";
         }
 
@@ -36,6 +36,57 @@ namespace Lab10_csharp
         {
             Salary = _salary;
             PlaceWork = _placeWork;
+        }
+
+        //Ввод данных в класс вручную
+        public void Init(string _firstName, string _secondName, double _salary, string _placeWork)
+        {
+            base.Init(_firstName, _secondName);
+            Salary = _salary;
+            PlaceWork = _placeWork;
+        }
+
+        //Ввод данных в класс автоматически
+        public override void RandomInit()
+        {
+            base.RandomInit();
+
+            Random random = new Random();
+            salary = (double)random.Next(30000);
+
+            switch (random.Next(6))
+            {
+                case 1:
+                    {
+                        placeWork = "ПНИПУ";
+                        break;
+                    }
+                case 2:
+                    {
+                        placeWork = "ПГНИУ";
+                        break;
+                    }
+                case 3:
+                    {
+                        placeWork = "ПГМУ";
+                        break;
+                    }
+                case 4:
+                    {
+                        placeWork = "ПГГПУ";
+                        break;
+                    }
+                case 5:
+                    {
+                        placeWork = "НИУ ВШЭ в Перми";
+                        break;
+                    }
+                case 6:
+                    {
+                        placeWork = "Пермский ГАТУ";
+                        break;
+                    }
+            }
         }
 
         //вывод на экран

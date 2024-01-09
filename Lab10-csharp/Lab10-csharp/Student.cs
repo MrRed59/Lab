@@ -51,6 +51,57 @@ namespace Lab10_csharp
             EducInstitution = _educInstitution;
         }
 
+        //Ввод данных в класс вручную
+        public void Init(string _firstName, string _secondName, ushort _averageGrade, string _educInstitution)
+        {
+            base.Init(_firstName, _secondName);
+            AverageGrade = _averageGrade;
+            EducInstitution = _educInstitution;
+        }
+
+        //Ввод данных в класс автоматически
+        public override void RandomInit()
+        {
+            base.RandomInit();
+
+            Random random = new Random();
+            averageGrade = (ushort)random.Next(2,5);
+
+            switch (random.Next(6))
+            {
+                case 1:
+                    {
+                        educInstitution = "ПНИПУ";
+                        break;
+                    }
+                case 2:
+                    {
+                        educInstitution = "ПГНИУ";
+                        break;
+                    }
+                case 3:
+                    {
+                        educInstitution = "ПГМУ";
+                        break;
+                    }
+                case 4:
+                    {
+                        educInstitution = "ПГГПУ";
+                        break;
+                    }
+                case 5:
+                    {
+                        educInstitution = "НИУ ВШЭ в Перми";
+                        break;
+                    }
+                case 6:
+                    {
+                        educInstitution = "Пермский ГАТУ";
+                        break;
+                    }
+            }
+        }
+
         //вывод на экран
         public override void Show()
         {

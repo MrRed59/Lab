@@ -58,31 +58,22 @@ namespace Lab10_csharp
             byte option = 546 % 16 - 1; // Вариант 1
             Console.WriteLine("Вариант " + option + ".");
 
-            Person person = new Person();
-            person.Show();
-            Person person1 = new Person("Alex", "Alexovich");
-            person1.Show();
+            /*Console.WriteLine("Имя: ");
+            FirstName = Console.ReadLine();
+            Console.WriteLine("Фамилия: ");
+            SecondName = Console.ReadLine();*/
 
-            Console.WriteLine("////////////////////////////////////////");
+            Person person = new Person();
+            Person person1 = new Person("Alex", "Alexovich");
 
             Student student = new Student();
-            student.Show();
             Student student1 = new Student("Alex", "Erypalov", (ushort)4.2, "PNIPU");
-            student1.Show();
-
-            Console.WriteLine("////////////////////////////////////////");
 
             Employee employee = new Employee();
-            employee.Show();
             Employee employee1 = new Employee("Alex", "Alexov", 50000, "Ice cream factory");
-            employee1.Show();
-
-            Console.WriteLine("////////////////////////////////////////");
 
             Teacher teacher = new Teacher();
-            teacher.Show();
             Teacher teacher1 = new Teacher("Alex", "Alexov", 50000, "Ice cream factory", "Matan");
-            teacher1.Show();
 
             Person[] arr = { person, person1, student, student1, employee, employee1, teacher, teacher1 };
 
@@ -92,6 +83,8 @@ namespace Lab10_csharp
                 s.Show();
                 Console.WriteLine("////////////////////////////////////////");
             }
+
+            
 
             Console.ReadLine();
         }
