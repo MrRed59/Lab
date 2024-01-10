@@ -2,7 +2,7 @@
 
 namespace ClassLibraryLab10
 {
-    class Teacher:Employee
+    public class Teacher :Employee
     {
         protected string subjectTaught; //преподаваемый предмет
 

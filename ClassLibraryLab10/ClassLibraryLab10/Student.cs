@@ -2,7 +2,7 @@
 
 namespace ClassLibraryLab10
 {
-    class Student:Person
+    public class Student :Person
     {
         protected ushort averageGrade;      //средний балл
         protected string educInstitution;   //учебное заведение

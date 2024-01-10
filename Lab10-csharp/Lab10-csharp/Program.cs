@@ -1,5 +1,5 @@
 ﻿using System;
-using libLab10;
+using ClassLibraryLab10;
 
 namespace Lab10_csharp
 {
@@ -10,7 +10,6 @@ namespace Lab10_csharp
             Console.WriteLine("Лабораторная работа № 10.");
 
             int TaskNum = 5;
-
 
             while (TaskNum != 0)
             {
@@ -63,6 +62,8 @@ namespace Lab10_csharp
             FirstName = Console.ReadLine();
             Console.WriteLine("Фамилия: ");
             SecondName = Console.ReadLine();*/
+
+
 
             Person person = new Person();
             Person person1 = new Person("Alex", "Alexovich");

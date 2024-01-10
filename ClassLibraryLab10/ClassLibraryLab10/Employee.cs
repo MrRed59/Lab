@@ -2,7 +2,7 @@
 
 namespace ClassLibraryLab10
 {
-    class Employee:Person
+    public class Employee:Person
     {
         protected double salary;
         protected string placeWork;
