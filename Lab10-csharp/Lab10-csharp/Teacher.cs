@@ -83,6 +83,21 @@ namespace Lab10_csharp
 
         }
 
+        //метод для сравнения объектов
+        public override bool Equals(object obj)
+        {
+            if (obj is Teacher teacher)
+            {
+                return FirstName == teacher.FirstName
+                        && SecondName == teacher.SecondName
+                        && Salary == teacher.Salary
+                        && PlaceWork == teacher.PlaceWork
+                        && SubjectTaught == teacher.SubjectTaught;
+            }
+            else
+                return false;
+        }
+
         //вывод на экран
         public override void Show()
         {

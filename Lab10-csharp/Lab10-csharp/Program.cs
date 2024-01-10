@@ -82,6 +82,7 @@ namespace Lab10_csharp
                 Console.WriteLine("////////////////////////////////////////");
                 s.Show();
                 Console.WriteLine("////////////////////////////////////////");
+                
             }
 
             

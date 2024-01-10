@@ -102,6 +102,20 @@ namespace Lab10_csharp
             }
         }
 
+        //метод для сравнения объектов
+        public override bool Equals(object obj)
+        {
+            if (obj is Student student)
+            {
+                return  FirstName == student.FirstName 
+                        && SecondName == student.SecondName 
+                        && AverageGrade == student.AverageGrade 
+                        && EducInstitution == student.EducInstitution;
+            }
+            else
+                return false;
+        }
+
         //вывод на экран
         public override void Show()
         {
