@@ -45,11 +45,16 @@ namespace ClassLibraryLab10
         }
 
         //конструктор с параметрами
-        public Student(string _firstName, string _secondName, ushort _averageGrade, string _educInstitution) : base(_firstName, _secondName)
+        public Student( string _firstName, string _secondName, char _gender, byte _age, float _averageGrade, string _educInstitution) 
+                        : base(_firstName, _secondName,  _gender, _age)
         {
             AverageGrade = _averageGrade;
             EducInstitution = _educInstitution;
         }
+
+        public override object Clone() => new Student(FirstName, SecondName, Gender, Age , AverageGrade, EducInstitution);
+
+        public override object ShallowCopy() => (Student)MemberwiseClone();
 
         //Ввод данных в класс вручную
         public override void Init()
@@ -60,13 +65,6 @@ namespace ClassLibraryLab10
             Console.Write("Введите место учебы: ");
             EducInstitution = Console.ReadLine();
         }
-
-        /*public override void Init(string _firstName, string _secondName, char _gender, ushort _averageGrade, string _educInstitution)
-        {
-            base.Init(_firstName, _secondName, _gender);
-            AverageGrade = _averageGrade;
-            EducInstitution = _educInstitution;
-        }*/
 
         //Ввод данных в класс автоматически
         public override void RandomInit()
@@ -119,6 +117,7 @@ namespace ClassLibraryLab10
                 return  FirstName == student.FirstName 
                         && SecondName == student.SecondName
                         && Gender == student.Gender
+                        && Age == student.Age
                         && AverageGrade == student.AverageGrade 
                         && EducInstitution == student.EducInstitution;
             }

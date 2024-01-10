@@ -2,11 +2,12 @@
 
 namespace ClassLibraryLab10
 {
-    public class Person : IInit
+    public class Person : IInit, IComparable, ICloneable
     {
         protected string firstName;
         protected string secondName;
         protected char gender;
+        protected byte age;
 
         public string FirstName
         {
@@ -53,6 +54,12 @@ namespace ClassLibraryLab10
             }
         }
 
+        public byte Age 
+        { 
+            get => age; 
+            set => age = value; 
+        }
+
         //конструктор без параметров
         public Person()
         {
@@ -61,11 +68,27 @@ namespace ClassLibraryLab10
         }
 
         //конструктор с параметрами
-        public Person(string _firstName, string _secondName)
+        public Person(string _firstName, string _secondName, char _gender, byte _age)
         {
 
             FirstName = _firstName;
             SecondName = _secondName;
+            Gender = _gender;
+            Age = _age;
+        }
+
+        public virtual object Clone() => new Person(FirstName, SecondName, Gender, Age);
+
+        public virtual object ShallowCopy() => (Person)MemberwiseClone();
+
+        public int CompareTo(object obj)
+        {
+            if (obj is Person org)
+            {
+                return string.Compare(SecondName, org.SecondName);
+            }
+
+            throw new ArgumentException("Некорректное значение параметра");
         }
 
         //Ввод данных в класс вручную
@@ -77,14 +100,10 @@ namespace ClassLibraryLab10
             SecondName = Console.ReadLine();
             Console.Write("Введите Пол (м или ж): ");
             Gender = CheckGender();
+            Console.Write("Введите возраст: ");
+            Age = ReadAndConvToByte(12, 85);
         }
 
-        /*public virtual void Init(string _firstName, string _secondName, char _gender)
-        {
-            FirstName = _firstName;
-            SecondName = _secondName;
-            Gender = _gender;
-        }*/
 
         //Ввод данных в класс в автомате
         public virtual void RandomInit()
@@ -238,6 +257,8 @@ namespace ClassLibraryLab10
             }
             else
                 gender = 'м';
+
+            Age = (byte)random.Next(12, 85);
         }
 
         //метод для сравнения объектов
@@ -247,7 +268,8 @@ namespace ClassLibraryLab10
             {
                 return  FirstName == person.FirstName 
                         && SecondName == person.SecondName 
-                        && Gender == person.Gender;
+                        && Gender == person.Gender
+                        && Age == person.Age;
             }
             else
                 return false;
@@ -261,18 +283,18 @@ namespace ClassLibraryLab10
         //вывод на экран как виртуальный метод
         public virtual void Show()
         {
-            Console.WriteLine($"Фамилия и имя: {secondName} {firstName}. Пол: {gender}");
+            Console.WriteLine($"Фамилия и имя: {secondName} {firstName}. Пол: {gender}. Возраст: {Age}");
         }
 
         //вывод на экран как перегрузка
         public void ShowOverload()
         {
-            Console.WriteLine($"Фамилия и имя: {secondName} {firstName}. Пол: {gender}");
+            Console.WriteLine($"Фамилия и имя: {secondName} {firstName}. Пол: {gender}. Возраст: {Age}");
         }
 
         //Считывание ввода из консоли и преобразование полученной строки в byte
         //Возвращает считанную строку с типом byte
-        protected static byte ReadAndConvToByte()
+        protected static byte ReadAndConvToByte(int minValue = 0, int maxValue = 255)
         {
             string str;
             byte value;
@@ -282,7 +304,10 @@ namespace ClassLibraryLab10
                 try
                 {
                     value = Convert.ToByte(str);
-                    return value;
+                    if (value >= minValue && value <= maxValue)
+                        return value;
+                    else
+                        Console.WriteLine($"Значение вне диапазона {minValue}...{maxValue}");
                 }
                 catch
                 {

@@ -28,11 +28,15 @@ namespace ClassLibraryLab10
         }
 
         //конструктор с параметрами
-        public Teacher( string _firstName, string _secondName, double _salary, string _placeWork, string _subjectTaught) 
-                        :base(_firstName, _secondName, _salary, _placeWork)
+        public Teacher( string _firstName, string _secondName, char _gender, byte _age, double _salary, string _placeWork, string _subjectTaught) 
+                        :base(_firstName, _secondName, _gender, _age, _salary, _placeWork)
         {
             SubjectTaught = _subjectTaught;
         }
+
+        public override object Clone() => new Teacher(FirstName, SecondName, Gender, Age, Salary, PlaceWork, SubjectTaught);
+
+        public override object ShallowCopy() => (Teacher)MemberwiseClone();
 
         //Ввод данных в класс вручную
         public override void Init()
@@ -41,11 +45,6 @@ namespace ClassLibraryLab10
             Console.Write("Введите преподаваемый предмет: ");
             SubjectTaught = Console.ReadLine();
         }
-        /*public override void Init(string _firstName, string _secondName, char _gender, double _salary, string _placeWork, string _subjectTaught)
-        {
-            base.Init(_firstName, _secondName, _gender, _salary, _placeWork);
-            SubjectTaught = _subjectTaught;
-        }*/
 
         //Ввод данных в класс автоматически
         public override void RandomInit()
@@ -96,6 +95,7 @@ namespace ClassLibraryLab10
                 return  FirstName == teacher.FirstName
                         && SecondName == teacher.SecondName
                         && Gender == teacher.Gender
+                        && Age == teacher.Age
                         && Salary == teacher.Salary
                         && PlaceWork == teacher.PlaceWork
                         && SubjectTaught == teacher.SubjectTaught;

@@ -43,7 +43,7 @@ namespace Lab10_csharp
                     case 3:
                         {
                             Console.WriteLine("Абстрактные классы и интерфейсы");
-                            Task3();
+                            Task3(ref p);
                             Console.Clear();
                             break;
                         }
@@ -182,6 +182,7 @@ namespace Lab10_csharp
                     default:
                         {
                             Console.WriteLine("Команда не распознана.");
+                            i--;
                             break;
                         }
                 }
@@ -266,8 +267,19 @@ namespace Lab10_csharp
             }
         }
 
-        static void Task3()
+        static void Task3(ref Person[] p)
         {
+            Console.WriteLine("Сортировка элементов массива, используя стандартный интерфейс IComparable  и метод Sort класса Array");
+            Array.Sort(p);
+            Console.WriteLine("Отсортированный массив: ");
+            ShowArr(ref p);
+            Console.WriteLine("Сортировка элементов массива, используя стандартный интерфейс ICompare  и метод Sort класса Array");
+            Array.Sort(p, new SortByName());
+            Console.WriteLine("Отсортированный массив по возрасту: ");
+            ShowArr(ref p);
+
+            Console.WriteLine("Нажмите \"Enter\" для продолжения");
+            Console.ReadLine();
 
         }
 

@@ -32,11 +32,15 @@ namespace ClassLibraryLab10
         }
 
         //конструктор с параметрами
-        public Employee(string _firstName, string _secondName, double _salary, string _placeWork) :base(_firstName, _secondName)
+        public Employee(string _firstName, string _secondName, char _gender, byte _age, double _salary, string _placeWork) :base(_firstName, _secondName, _gender, _age)
         {
             Salary = _salary;
             PlaceWork = _placeWork;
         }
+
+        public override object Clone() => new Employee(FirstName, SecondName, Gender,  Age, Salary, PlaceWork);
+
+        public override object ShallowCopy() => (Employee)MemberwiseClone();
 
         //Ввод данных в класс вручную
         public override void Init()
@@ -47,13 +51,7 @@ namespace ClassLibraryLab10
             Console.Write("Введите место работы: ");
             PlaceWork = Console.ReadLine();
         }
-        /*public override void Init(string _firstName, string _secondName, char _gender, double _salary, string _placeWork)
-        {
-            base.Init(_firstName, _secondName, _gender);
-            Salary = _salary;
-            PlaceWork = _placeWork;
-        }*/
-
+        
         //Ввод данных в класс автоматически
         public override void RandomInit()
         {
@@ -105,6 +103,7 @@ namespace ClassLibraryLab10
                 return  FirstName == employee.FirstName
                         && SecondName == employee.SecondName
                         && Gender == employee.Gender
+                        && Age == employee.Age
                         && Salary == employee.Salary
                         && PlaceWork == employee.PlaceWork;
             }
