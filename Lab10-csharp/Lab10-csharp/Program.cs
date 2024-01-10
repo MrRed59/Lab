@@ -277,10 +277,44 @@ namespace Lab10_csharp
             Array.Sort(p, new SortByName());
             Console.WriteLine("Отсортированный массив по возрасту: ");
             ShowArr(ref p);
+            Console.WriteLine("Бинарный поиск.");
+            Console.Write("Введите человека с возрастом: ");
+            var i = BinarySearch(ref p, 0, p.Length - 1, ReadAndConvToByte());
+
+            if (i == -1)
+                Console.WriteLine("Элемент не найден");
+            else
+            {
+                Console.WriteLine($"Класс: {p[i].GetType().Name}");
+                p[i].Show();
+            }
+
 
             Console.WriteLine("Нажмите \"Enter\" для продолжения");
             Console.ReadLine();
 
+        }
+
+        static int BinarySearch(ref Person[] arr, int start, int end, byte _age)
+        {
+            while (true)
+            {
+                if (end < start)
+                    return -1;
+
+                int middleIndex = (start + end) / 2;
+
+                if (arr[middleIndex].Age == _age)
+                    return middleIndex;
+
+                if (arr[middleIndex].Age > _age)
+                {
+                    end = middleIndex - 1;
+                    continue;
+                }
+
+                start = middleIndex + 1;
+            }
         }
 
         //Вывести имена и фамиили студентов и преподавателей указанного университета
@@ -357,7 +391,7 @@ namespace Lab10_csharp
 
         //Считывание ввода из консоли и преобразование полученной строки в byte
         //Возвращает считанную строку с типом byte
-        static byte ReadAndConvToByte()
+        protected static byte ReadAndConvToByte(int minValue = 0, int maxValue = 255)
         {
             string str;
             byte value;
@@ -367,7 +401,10 @@ namespace Lab10_csharp
                 try
                 {
                     value = Convert.ToByte(str);
-                    return value;
+                    if (value >= minValue && value <= maxValue)
+                        return value;
+                    else
+                        Console.WriteLine($"Значение вне диапазона {minValue}...{maxValue}");
                 }
                 catch
                 {
