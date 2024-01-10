@@ -2,7 +2,7 @@
 
 namespace ClassLibraryLab10
 {
-    public class Person
+    public class Person : IInit
     {
         protected string firstName;
         protected string secondName;
@@ -69,12 +69,22 @@ namespace ClassLibraryLab10
         }
 
         //Ввод данных в класс вручную
-        public void Init(string _firstName, string _secondName, char _gender)
+        public virtual void Init()
+        {
+            Console.Write("Введите Имя: ");
+            FirstName = Console.ReadLine();
+            Console.Write("Введите Фамилию: ");
+            SecondName = Console.ReadLine();
+            Console.Write("Введите Пол (м или ж): ");
+            Gender = CheckGender();
+        }
+
+        /*public virtual void Init(string _firstName, string _secondName, char _gender)
         {
             FirstName = _firstName;
             SecondName = _secondName;
             Gender = _gender;
-        }
+        }*/
 
         //Ввод данных в класс в автомате
         public virtual void RandomInit()
@@ -258,6 +268,124 @@ namespace ClassLibraryLab10
         public void ShowOverload()
         {
             Console.WriteLine($"Фамилия и имя: {secondName} {firstName}. Пол: {gender}");
+        }
+
+        //Считывание ввода из консоли и преобразование полученной строки в byte
+        //Возвращает считанную строку с типом byte
+        protected static byte ReadAndConvToByte()
+        {
+            string str;
+            byte value;
+            while (true)
+            {
+                str = Console.ReadLine();
+                try
+                {
+                    value = Convert.ToByte(str);
+                    return value;
+                }
+                catch
+                {
+                    Console.WriteLine("Ошибка конвертации, значение должно быть byte");
+                }
+            }
+        }
+
+        //Считывание ввода из консоли и преобразование полученной строки в uint
+        //Возвращает считанную строку с типом uint
+        protected static uint ReadAndConvToUInt()
+        {
+            string str;
+            uint value;
+            while (true)
+            {
+                str = Console.ReadLine();
+                try
+                {
+                    value = Convert.ToUInt32(str);
+                    return value;
+                }
+                catch
+                {
+                    Console.WriteLine("Ошибка конвертации, значение должно быть uint");
+                }
+            }
+        }
+
+        //Считывание ввода из консоли и преобразование полученной строки в double
+        //Возвращает считанную строку с типом double
+        protected static double ReadAndConvToDouble()
+        {
+            string str;
+            double value;
+            while (true)
+            {
+                str = Console.ReadLine();
+                try
+                {
+                    value = Convert.ToDouble(str);
+                    return value;
+                }
+                catch
+                {
+                    Console.WriteLine("Ошибка конвертации, значение должно быть double");
+                }
+            }
+        }
+
+        //Считывание ввода из консоли и преобразование полученной строки в int
+        //Возвращает считанную строку с типом int
+        protected static int ReadAndConvToInt()
+        {
+            string str;
+            int value;
+            while (true)
+            {
+                str = Console.ReadLine();
+                try
+                {
+                    value = Convert.ToInt32(str);
+                    return value;
+                }
+                catch
+                {
+                    Console.WriteLine("Ошибка конвертации, значение должно быть int");
+                }
+            }
+        }
+
+        protected static char CheckGender()
+        {
+            char gender;
+            while (true)
+            {
+                gender = ReadAndConvToChar();
+                if (gender == 'м' || gender == 'ж')
+                    return gender;
+                else
+                    Console.WriteLine("Ошибка ввода. Пол может быть м или ж.");
+            }
+        }
+
+        //Считывание ввода из консоли и преобразование полученной строки в char
+        //Возвращает считанную строку с типом char
+        protected static char ReadAndConvToChar()
+        {
+            string str;
+            char ch;
+            while (true)
+            {
+                str = Console.ReadLine();
+                try
+                {
+                    ch = Convert.ToChar(str);
+                    return ch;
+                }
+                catch
+                {
+                    Console.WriteLine("Ошибка конвертации, значение должно быть char");
+                }
+            }
         }
     }
 }

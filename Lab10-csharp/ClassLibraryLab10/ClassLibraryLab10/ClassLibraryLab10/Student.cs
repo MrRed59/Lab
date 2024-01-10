@@ -4,10 +4,10 @@ namespace ClassLibraryLab10
 {
     public class Student :Person
     {
-        protected ushort averageGrade;      //средний балл
+        protected float averageGrade;      //средний балл
         protected string educInstitution;   //учебное заведение
 
-        public ushort AverageGrade
+        public float AverageGrade
         {
             get => averageGrade;
             set
@@ -52,12 +52,21 @@ namespace ClassLibraryLab10
         }
 
         //Ввод данных в класс вручную
-        public void Init(string _firstName, string _secondName, char _gender, ushort _averageGrade, string _educInstitution)
+        public override void Init()
+        {
+            base.Init();
+            Console.Write("Введите средний балл: ");
+            AverageGrade = (ushort)ReadAndConvToUInt();
+            Console.Write("Введите место учебы: ");
+            EducInstitution = Console.ReadLine();
+        }
+
+        /*public override void Init(string _firstName, string _secondName, char _gender, ushort _averageGrade, string _educInstitution)
         {
             base.Init(_firstName, _secondName, _gender);
             AverageGrade = _averageGrade;
             EducInstitution = _educInstitution;
-        }
+        }*/
 
         //Ввод данных в класс автоматически
         public override void RandomInit()
@@ -65,7 +74,7 @@ namespace ClassLibraryLab10
             base.RandomInit();
 
             Random random = new Random();
-            averageGrade = (ushort)random.Next(2,5);
+            averageGrade = (float)Math.Round(((double)random.NextDouble() * (5 - 2) + 2), 2);
 
             switch (random.Next(1, 6))
             {

@@ -35,11 +35,17 @@ namespace ClassLibraryLab10
         }
 
         //Ввод данных в класс вручную
-        public void Init(string _firstName, string _secondName, char _gender, double _salary, string _placeWork, string _subjectTaught)
+        public override void Init()
+        {
+            base.Init();
+            Console.Write("Введите преподаваемый предмет: ");
+            SubjectTaught = Console.ReadLine();
+        }
+        /*public override void Init(string _firstName, string _secondName, char _gender, double _salary, string _placeWork, string _subjectTaught)
         {
             base.Init(_firstName, _secondName, _gender, _salary, _placeWork);
             SubjectTaught = _subjectTaught;
-        }
+        }*/
 
         //Ввод данных в класс автоматически
         public override void RandomInit()

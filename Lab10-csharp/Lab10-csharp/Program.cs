@@ -103,15 +103,7 @@ namespace Lab10_csharp
                             {
                                 Person personTemp = new Person();
 
-                                Console.Write("Введите Имя: ");
-                                string strName = Console.ReadLine();
-                                Console.Write("Введите Фамилию: ");
-                                string strSecName = Console.ReadLine();
-                                Console.Write("Введите Пол (м или ж): ");
-                                char gender = CheckGender();
-
-                                personTemp.Init(strName, strSecName, gender);
-
+                                personTemp.Init();
                                 arrPerson[iter] = personTemp;
                                 iter++;
                             }
@@ -130,18 +122,7 @@ namespace Lab10_csharp
                             {
                                 Student studentTemp = new Student();
 
-                                Console.Write("Введите Имя: ");
-                                string strName = Console.ReadLine();
-                                Console.Write("Введите Фамилию: ");
-                                string strSecName = Console.ReadLine();
-                                Console.Write("Введите Пол (м или ж): ");
-                                char gender = CheckGender();
-                                Console.Write("Введите средний балл: ");
-                                ushort averageGrade = (ushort)ReadAndConvToUInt();
-                                Console.Write("Введите место учебы: ");
-                                string educ = Console.ReadLine();
-
-                                studentTemp.Init(strName, strSecName, gender, averageGrade, educ);
+                                studentTemp.Init();
 
                                 arrPerson[iter] = studentTemp;
                                 iter++;
@@ -162,18 +143,7 @@ namespace Lab10_csharp
                             {
                                 Employee employeeTemp = new Employee();
 
-                                Console.Write("Введите Имя: ");
-                                string strName = Console.ReadLine();
-                                Console.Write("Введите Фамилию: ");
-                                string strSecName = Console.ReadLine();
-                                Console.Write("Введите Пол (м или ж): ");
-                                char gender = CheckGender();
-                                Console.Write("Введите зарплату: ");
-                                double salary = ReadAndConvToDouble();
-                                Console.Write("Введите место работы: ");
-                                string workPlace = Console.ReadLine();
-
-                                employeeTemp.Init(strName, strSecName, gender, salary, workPlace);
+                                employeeTemp.Init();
 
                                 arrPerson[iter] = employeeTemp;
                                 iter++;
@@ -193,20 +163,7 @@ namespace Lab10_csharp
                             {
                                 Teacher teacherTemp = new Teacher();
 
-                                Console.Write("Введите Имя: ");
-                                string strName = Console.ReadLine();
-                                Console.Write("Введите Фамилию: ");
-                                string strSecName = Console.ReadLine();
-                                Console.Write("Введите Пол (м или ж): ");
-                                char gender = CheckGender();
-                                Console.Write("Введите зарплату: ");
-                                double salary = ReadAndConvToDouble();
-                                Console.Write("Введите место работы: ");
-                                string workPlace = Console.ReadLine();
-                                Console.Write("Введите преподаваемый предмет: ");
-                                string subjectTaught = Console.ReadLine();
-
-                                teacherTemp.Init(strName, strSecName, gender, salary, workPlace, subjectTaught);
+                                teacherTemp.Init();
 
                                 arrPerson[iter] = teacherTemp;
                                 iter++;
@@ -260,17 +217,110 @@ namespace Lab10_csharp
             person = arrPerson;
         }
 
-        
+
 
         static void Task2(ref Person[] p)
         {
-            Console.WriteLine("Нажмите \"Enter\" для продолжения");
-            Console.ReadLine();
+            int requestNum = 5;
+
+            while (requestNum != 0)
+            {
+                Console.WriteLine(  "1. Имена всех лиц мужского или женского пола\n" +
+                                    "2. Средний балл больше x\n" +
+                                    "3. Вывести имена и фамиили студентов и преподавателей указанного университета\n" +
+                                    "0. Выход");
+                requestNum = ReadAndConvToInt();
+                Console.Clear();
+                switch (requestNum)
+                {
+                    case 1:
+                        {
+                            Console.Write("Вывести имена всех лиц муского или женского пола? :");
+                            Console.WriteLine(AllNamesSelectedGenders(ref p, CheckGender()));
+                            break;
+                        }
+                    case 2:
+                        {
+                            Console.Write("Вывести имена и фамилии студентов, если средний балл больше или равен :");
+                            Console.WriteLine(AllNamesSelectedAverageScore(ref p, AverageScore()));
+                            break;
+                        }
+                    case 3:
+                        {
+                            Console.WriteLine("Вывести имена и фамиили студентов и преподавателей университета: ");
+                            Console.WriteLine(NamesStudentsTeachers(ref p, Console.ReadLine()));
+                            break;
+                        }
+                    case 0:
+                        break;
+                    default:
+                        {
+                            Console.WriteLine("Команда не распознана.");
+                            break;
+                        }
+                }
+
+
+                Console.WriteLine("Нажмите \"Enter\" для продолжения");
+                Console.ReadLine();
+            }
         }
 
         static void Task3()
         {
 
+        }
+
+        //Вывести имена и фамиили студентов и преподавателей указанного университета
+        static string NamesStudentsTeachers(ref Person[] arr, string university)
+        {
+            string nameFromGender = "";
+
+            foreach (Person p in arr)
+            {
+                if (p is Student z && z.EducInstitution == university)
+                    nameFromGender += "Студент " + p.FirstName + " " + p.SecondName + ". Учебное заведение: " + university + '\n';
+                if (p is Teacher t && t.PlaceWork == university)
+                    nameFromGender += "Преподаватель " + p.FirstName + " " + p.SecondName + ". Учебное заведение: " + university + '\n';
+            }
+
+            return nameFromGender;
+        }
+
+        //Считывает ввод из консоли и возвращает значение byte в диапазоне 2...5
+        static byte AverageScore()
+        {
+            byte value = 0;
+            while (true)
+            {
+                value = ReadAndConvToByte();
+                if (value >= 2 && value <= 5)
+                    return value;
+                else
+                    Console.WriteLine("Средний балл не может быть меньше 2 и больше 5");
+            }
+        }
+
+        //Возвращает имена и фамилии студентов с средним баллом x
+        static string AllNamesSelectedAverageScore(ref Person[] arr, byte x)
+        {
+            string nameAverScore = "";
+
+            foreach (Student p in arr)
+                if (p is Student && p.AverageGrade >= x)
+                    nameAverScore += p.FirstName + " ср.балл = " + p.AverageGrade + ", ";
+
+            return nameAverScore.TrimEnd(new char[] { ',', ' ' }); //удалить 2 последних символа и венуть строку
+        }
+
+        //Возвращает все мужские или все женские имена
+        static string AllNamesSelectedGenders(ref Person[] arr, char _gender)
+        {
+            string nameFromGender = "";
+            foreach (Person p in arr)
+                if (p.Gender == _gender)
+                    nameFromGender += p.FirstName + ", ";
+            return nameFromGender.TrimEnd(new char[] { ',', ' ' }); //удалить 2 последних символа и венуть строку
         }
 
         static void ShowArr(ref Person[] person)
@@ -291,6 +341,27 @@ namespace Lab10_csharp
             }
             else
                 Console.WriteLine("Массив пустой.");
+        }
+
+        //Считывание ввода из консоли и преобразование полученной строки в byte
+        //Возвращает считанную строку с типом byte
+        static byte ReadAndConvToByte()
+        {
+            string str;
+            byte value;
+            while (true)
+            {
+                str = Console.ReadLine();
+                try
+                {
+                    value = Convert.ToByte(str);
+                    return value;
+                }
+                catch
+                {
+                    Console.WriteLine("Ошибка конвертации, значение должно быть byte");
+                }
+            }
         }
 
         //Считывание ввода из консоли и преобразование полученной строки в uint

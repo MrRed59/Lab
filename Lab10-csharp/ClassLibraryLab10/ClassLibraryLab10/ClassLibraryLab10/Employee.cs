@@ -39,12 +39,20 @@ namespace ClassLibraryLab10
         }
 
         //Ввод данных в класс вручную
-        public void Init(string _firstName, string _secondName, char _gender, double _salary, string _placeWork)
+        public override void Init()
+        {
+            base.Init();
+            Console.Write("Введите зарплату: ");
+            Salary = ReadAndConvToDouble();
+            Console.Write("Введите место работы: ");
+            PlaceWork = Console.ReadLine();
+        }
+        /*public override void Init(string _firstName, string _secondName, char _gender, double _salary, string _placeWork)
         {
             base.Init(_firstName, _secondName, _gender);
             Salary = _salary;
             PlaceWork = _placeWork;
-        }
+        }*/
 
         //Ввод данных в класс автоматически
         public override void RandomInit()
