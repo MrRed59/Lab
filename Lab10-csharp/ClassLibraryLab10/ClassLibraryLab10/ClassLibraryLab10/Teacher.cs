@@ -35,9 +35,9 @@ namespace ClassLibraryLab10
         }
 
         //Ввод данных в класс вручную
-        public void Init(string _firstName, string _secondName, double _salary, string _placeWork, string _subjectTaught)
+        public void Init(string _firstName, string _secondName, char _gender, double _salary, string _placeWork, string _subjectTaught)
         {
-            base.Init(_firstName, _secondName, _salary, _placeWork);
+            base.Init(_firstName, _secondName, _gender, _salary, _placeWork);
             SubjectTaught = _subjectTaught;
         }
 
@@ -47,7 +47,7 @@ namespace ClassLibraryLab10
             base.RandomInit();
 
             Random random = new Random();
-            switch (random.Next(6))
+            switch (random.Next(1, 6))
             {
                 case 1:
                     {
@@ -87,8 +87,9 @@ namespace ClassLibraryLab10
         {
             if (obj is Teacher teacher)
             {
-                return FirstName == teacher.FirstName
+                return  FirstName == teacher.FirstName
                         && SecondName == teacher.SecondName
+                        && Gender == teacher.Gender
                         && Salary == teacher.Salary
                         && PlaceWork == teacher.PlaceWork
                         && SubjectTaught == teacher.SubjectTaught;
