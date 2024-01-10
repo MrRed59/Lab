@@ -1,4 +1,5 @@
 ﻿using System;
+using libLab10;
 
 namespace Lab10_csharp
 {

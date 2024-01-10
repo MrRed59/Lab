@@ -98,10 +98,22 @@ namespace Lab10_csharp
                 return false;
         }
 
-        //вывод на экран
+        public override string ToString()
+        {
+            return base.ToString() + $"\nПреподаваемый предмет: {subjectTaught}";
+        }
+
+        //вывод на экран как виртуальный метод
         public override void Show()
         {
             base.Show();
+            Console.WriteLine($"Преподаваемый предмет: {subjectTaught}");
+        }
+
+        //вывод на экран как перегрузка
+        public new void ShowOverload()
+        {
+            base.ShowOverload();
             Console.WriteLine($"Преподаваемый предмет: {subjectTaught}");
         }
     }

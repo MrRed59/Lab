@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lab10_csharp
+namespace ClassLibraryLab10
 {
     public class Person
     {
@@ -221,8 +221,19 @@ namespace Lab10_csharp
                 return false;
         }
 
-        //вывод на экран
+        public override string ToString()
+        {
+            return $"Фамилия и имя: {secondName} {firstName}.";
+        }
+
+        //вывод на экран как виртуальный метод
         public virtual void Show()
+        {
+            Console.WriteLine($"Фамилия и имя: {secondName} {firstName}.");
+        }
+
+        //вывод на экран как перегрузка
+        public void ShowOverload()
         {
             Console.WriteLine($"Фамилия и имя: {secondName} {firstName}.");
         }

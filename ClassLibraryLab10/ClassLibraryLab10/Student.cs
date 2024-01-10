@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lab10_csharp
+namespace ClassLibraryLab10
 {
     class Student:Person
     {
@@ -116,10 +116,24 @@ namespace Lab10_csharp
                 return false;
         }
 
-        //вывод на экран
+        public override string ToString()
+        {
+            return base.ToString()  + $"\nУчебное заведение: {educInstitution}\n"
+                                    + $"Средний балл: {averageGrade}";
+        }
+
+        //вывод на экран как виртуальный метод
         public override void Show()
         {
             base.Show();
+            Console.WriteLine(  $"Учебное заведение: {educInstitution}\n" 
+                                + $"Средний балл: {averageGrade}");
+        }
+
+        //вывод на экран как перегрузка
+        public new void ShowOverload()
+        {
+            base.ShowOverload();
             Console.WriteLine(  $"Учебное заведение: {educInstitution}\n" +
                                 $"Средний балл: {averageGrade}");
         }

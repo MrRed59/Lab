@@ -103,10 +103,24 @@ namespace Lab10_csharp
                 return false;
         }
 
-        //вывод на экран
+        public override string ToString()
+        {
+            return base.ToString()  + $"\nМесто работы: {placeWork}\n" 
+                                    + $"Зарплата: {salary}";
+        }
+
+        //вывод на экран как виртуальный метод
         public override void Show()
         {
             base.Show();
+            Console.WriteLine(  $"Место работы: {placeWork}\n" +
+                                $"Зарплата: {salary}");
+        }
+
+        //вывод на экран как перегрузка
+        public new void ShowOverload()
+        {
+            base.ShowOverload();
             Console.WriteLine(  $"Место работы: {placeWork}\n" +
                                 $"Зарплата: {salary}");
         }
