@@ -123,6 +123,13 @@ namespace lab2_csharp
             Console.WriteLine("S=(1/a)+(1/a^2)+(1/a^4)+...+(1/a^(n-1)");
             Console.Write("Введите a: ");
             double a = ReadAndConvToDouble();
+
+            while (a == 0)
+            {
+                Console.Write("a не может быть 0\n");
+                a = ReadAndConvToDouble();
+            }            
+            
             Console.Write("Введите n: ");
             double n = ReadAndConvToDouble();
 
@@ -134,7 +141,6 @@ namespace lab2_csharp
             }
 
             Console.WriteLine($"S = {sum}");
-
         }
 
         //Считывание ввода из консоли и преобразование полученной строки в uint

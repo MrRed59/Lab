@@ -72,9 +72,20 @@ namespace Lab1_csharp
             Console.WriteLine("3) --n>--m = " + (--n > --m) + " | " + $"n = {n}; m = {m}.");
             // 4.
             Console.WriteLine("Введите значение х: ");
-            double x = ReadAndConvToDouble();
-            Console.Write("4) 5x^3((1/x^2)+1/(x^3))^1/5 = ");
-            Console.WriteLine(5 * (Math.Pow(x, 3)) * Math.Pow(((1 / (Math.Pow(x, 2))) + (1 / (Math.Pow(x, 3)))), 1.0 / 5.0));
+
+            while (true)
+            {
+                double x = ReadAndConvToDouble();
+
+                if (x == 0)
+                    Console.WriteLine("Ошибка. не может быть 0");
+                else
+                {
+                    Console.Write("4) 5x^3((1/x^2)+1/(x^3))^1/5 = ");
+                    Console.WriteLine(5 * (Math.Pow(x, 3)) * Math.Pow(((1 / (Math.Pow(x, 2))) + (1 / (Math.Pow(x, 3)))), 1.0 / 5.0));
+                    break;
+                }
+            }                       
         }
 
         public static void Task2()

@@ -292,7 +292,6 @@ namespace Lab10_csharp
 
             Console.WriteLine("Нажмите \"Enter\" для продолжения");
             Console.ReadLine();
-
         }
 
         static int BinarySearch(ref Person[] arr, int start, int end, byte _age)
