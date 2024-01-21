@@ -218,8 +218,6 @@ namespace Lab10_csharp
             person = arrPerson;
         }
 
-
-
         static void Task2(ref Person[] p)
         {
             int requestNum = 5;
@@ -274,7 +272,7 @@ namespace Lab10_csharp
             Console.WriteLine("Отсортированный массив: ");
             ShowArr(ref p);
             Console.WriteLine("Сортировка элементов массива, используя стандартный интерфейс ICompare  и метод Sort класса Array");
-            Array.Sort(p, new SortByName());
+            Array.Sort(p, new SortByAge());
             Console.WriteLine("Отсортированный массив по возрасту: ");
             ShowArr(ref p);
             Console.WriteLine("Бинарный поиск.");
@@ -429,27 +427,6 @@ namespace Lab10_csharp
                 catch
                 {
                     Console.WriteLine("Ошибка конвертации, значение должно быть uint");
-                }
-            }
-        }
-
-        //Считывание ввода из консоли и преобразование полученной строки в double
-        //Возвращает считанную строку с типом double
-        static double ReadAndConvToDouble()
-        {
-            string str;
-            double value;
-            while (true)
-            {
-                str = Console.ReadLine();
-                try
-                {
-                    value = Convert.ToDouble(str);
-                    return value;
-                }
-                catch
-                {
-                    Console.WriteLine("Ошибка конвертации, значение должно быть double");
                 }
             }
         }

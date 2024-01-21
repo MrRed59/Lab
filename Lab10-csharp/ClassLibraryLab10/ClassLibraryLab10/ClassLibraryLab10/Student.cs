@@ -74,7 +74,7 @@ namespace ClassLibraryLab10
             Random random = new Random();
             averageGrade = (float)Math.Round(((double)random.NextDouble() * (5 - 2) + 2), 2);
 
-            switch (random.Next(1, 6))
+            switch (random.Next(6))
             {
                 case 1:
                     {
@@ -101,7 +101,7 @@ namespace ClassLibraryLab10
                         educInstitution = "НИУ ВШЭ в Перми";
                         break;
                     }
-                case 6:
+                default:
                     {
                         educInstitution = "Пермский ГАТУ";
                         break;

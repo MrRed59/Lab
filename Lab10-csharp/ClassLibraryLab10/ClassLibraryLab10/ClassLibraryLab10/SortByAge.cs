@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace ClassLibraryLab10
 {
-    public class SortByName: IComparer
+    public class SortByAge: IComparer
     {
         public int Compare(object x, object y)
         {

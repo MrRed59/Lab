@@ -65,6 +65,8 @@ namespace ClassLibraryLab10
         {
             firstName = "-";
             secondName = "-";
+            gender = '-';
+            Age = 0;
         }
 
         //конструктор с параметрами
@@ -83,12 +85,12 @@ namespace ClassLibraryLab10
 
         public int CompareTo(object obj)
         {
-            if (obj is Person org)
+            if (obj is Person p)
             {
-                return string.Compare(SecondName, org.SecondName);
+                return string.Compare(SecondName, p.SecondName);
             }
 
-            throw new ArgumentException("Некорректное значение параметра");
+            throw new ArgumentException("Некорректное значение параметра");            
         }
 
         //Ввод данных в класс вручную
@@ -109,7 +111,7 @@ namespace ClassLibraryLab10
         public virtual void RandomInit()
         {
             Random random = new Random();
-            int randName = random.Next(1, 16);
+            int randName = random.Next(16);
 
             switch (randName)
             {
@@ -189,14 +191,14 @@ namespace ClassLibraryLab10
                         firstName = "Мария";
                         break;
                     }
-                case 16:
+                default:
                     {
                         firstName = "Татьяна";
                         break;
                     }
             }
 
-            switch (random.Next(1, 10))
+            switch (random.Next(10))
             {
                 case 1:
                     {
@@ -243,7 +245,7 @@ namespace ClassLibraryLab10
                         secondName = "Морозов";
                         break;
                     }
-                case 10:
+                default:
                     {
                         secondName = "Волков";
                         break;
@@ -358,26 +360,6 @@ namespace ClassLibraryLab10
             }
         }
 
-        //Считывание ввода из консоли и преобразование полученной строки в int
-        //Возвращает считанную строку с типом int
-        protected static int ReadAndConvToInt()
-        {
-            string str;
-            int value;
-            while (true)
-            {
-                str = Console.ReadLine();
-                try
-                {
-                    value = Convert.ToInt32(str);
-                    return value;
-                }
-                catch
-                {
-                    Console.WriteLine("Ошибка конвертации, значение должно быть int");
-                }
-            }
-        }
 
         protected static char CheckGender()
         {

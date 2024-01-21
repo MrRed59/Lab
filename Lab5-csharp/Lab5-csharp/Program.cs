@@ -11,6 +11,200 @@ namespace Lab5_csharp
             MainMenu();
         }
 
+        static void Task1()
+        {
+            int[] arrTask1 = new int[0];
+
+            int msg = 5;
+
+            while (msg != 0)
+            {
+                msg = MenuTask("3. Удалить элемент с заданным номером");
+
+                switch (msg)
+                {
+                    case 1: //Создание массива
+                        {
+                            Console.WriteLine("Введите количество элементов массива");
+                            uint arrLength = ReadAndConvToUInt();
+
+                            if (arrLength == 0)
+                            {
+                                Console.WriteLine("Ошибка. Длина массива не может быть 0.");
+                                break;
+                            }
+
+                            int value = ArrayCreateMenu();
+
+                            if (value == 1)
+                                CreateArrManual(ref arrTask1, arrLength);
+                            else if (value == 2)
+                                CreateArrRand(ref arrTask1, arrLength);
+
+                            break;
+                        }
+                    case 2: //Вывод массива на экран
+                        {
+                            if (arrTask1.Length != 0)
+                                ShowArr(ref arrTask1);
+                            else
+                                Console.WriteLine("Массив не существует.");
+
+                            break;
+                        }
+                    case 3: //Удалить элемент с заданным номером
+                        {
+                            if (arrTask1.Length != 0)
+                            {
+                                Console.Write("Элемент с каким номером требуется удалить? :");
+                                uint numElem = ReadAndConvToUInt();
+                                DeleteArrElement(ref arrTask1, numElem);
+                            }
+                            else
+                                Console.WriteLine("Массив не существует.");
+                            break;
+                        }
+                    case 0:
+                        break;
+                }
+            }
+        }
+
+        static void Task2()
+        {
+            int[,] arrTask2 = new int[0, 0];
+
+            int msg = 5;
+
+            while (msg != 0)
+            {
+                msg = MenuTask("3. Добавить строки после каждой четной строки матрицы");
+
+                switch (msg)
+                {
+                    case 1: //Создание массива
+                        {
+                            Console.WriteLine("Введите количество столбцов массива");
+                            uint arrColumns = ReadAndConvToUInt();
+                            if (arrColumns == 0)
+                            {
+                                Console.WriteLine("Ошибка. Количество столбцов не может быть 0.");
+                                break;
+                            }
+
+                            Console.WriteLine("Введите количество строк массива");
+                            uint arrLines = ReadAndConvToUInt();
+                            if (arrLines == 0)
+                            {
+                                Console.WriteLine("Ошибка. Количество строк не может быть 0.");
+                                break;
+                            }
+
+                            int value = ArrayCreateMenu();
+
+                            if (value == 1)
+                                CreateArrManual(ref arrTask2, arrLines, arrColumns);
+                            else if (value == 2)
+                                CreateArrRand(ref arrTask2, arrLines, arrColumns);
+
+
+                            break;
+                        }
+                    case 2: //Вывод массива на экран
+                        {
+                            if (arrTask2.GetLength(0) != 0)
+                                ShowArr(ref arrTask2);
+                            else
+                                Console.WriteLine("Массив не существует.");
+
+                            break;
+                        }
+                    case 3: //Добавить строки после каждого четного столбца матрицы
+                        {
+                            if (arrTask2.GetLength(0) != 0)
+                            {
+                                AddLinesForTask2(ref arrTask2);
+                            }
+                            else
+                                Console.WriteLine("Массив не существует.");
+                            break;
+                        }
+                    case 0:
+                        break;
+                }
+            }
+        }
+
+        static void Task3()
+        {
+            int[][] arrTask3 = new int[0][];
+
+            int msg = 5;
+
+            while (msg != 0)
+            {
+                msg = MenuTask("3. Добавить строку в конец массива");
+
+                switch (msg)
+                {
+                    case 1: //Создание массива
+                        {
+                            Console.WriteLine("Введите количество строк массива");
+                            uint numLines = ReadAndConvToUInt();
+                            if (numLines == 0)
+                            {
+                                Console.WriteLine("Ошибка. Количество столбцов не может быть 0.");
+                                break;
+                            }
+
+                            uint[] arrColumns = new uint[numLines];
+
+                            for (int i = 0; i < numLines; i++)
+                            {
+                                Console.WriteLine($"Введите длину массива [{i}]");
+                                arrColumns[i] = ReadAndConvToUInt();
+                                if (arrColumns[i] == 0)
+                                {
+                                    Console.WriteLine("Ошибка. Длина массива не может быть 0.");
+                                    i--;
+                                }
+                            }
+
+                            int value = ArrayCreateMenu();
+
+                            if (value == 1)
+                                CreateArrManual(ref arrTask3, numLines, arrColumns);
+                            else if (value == 2)
+                                CreateArrRand(ref arrTask3, numLines, arrColumns);
+
+
+                            break;
+                        }
+                    case 2: //Вывод массива на экран
+                        {
+                            if (arrTask3.Length != 0)
+                                ShowArr(ref arrTask3);
+                            else
+                                Console.WriteLine("Массив не существует.");
+
+                            break;
+                        }
+                    case 3: //Добавить строку в конец массива
+                        {
+                            if (arrTask3.Length != 0)
+                            {
+                                AddLinesForTask3(ref arrTask3);
+                            }
+                            else
+                                Console.WriteLine("Массив не существует.");
+                            break;
+                        }
+                    case 0:
+                        break;
+                }
+            }
+        }
+
         static void MainMenu()
         {
             int mainMenuNum = 5;
@@ -179,7 +373,6 @@ namespace Lab5_csharp
             array = arrTemp;
         }
 
-
         static void ShowArr(ref int[] array)
         {
             Console.Write("\nArr = ");
@@ -284,200 +477,6 @@ namespace Lab5_csharp
         }
 
 
-        static void Task1()
-        {
-            int[] arrTask1 = new int[0];
-
-            int msg = 5;
-
-            while (msg != 0)
-            {
-                msg = MenuTask("3. Удалить элемент с заданным номером");
-
-                switch (msg)
-                {
-                    case 1: //Создание массива
-                        {
-                            Console.WriteLine("Введите количество элементов массива");
-                            uint arrLength = ReadAndConvToUInt();
-
-                            if (arrLength == 0)
-                            {
-                                Console.WriteLine("Ошибка. Длина массива не может быть 0.");
-                                break;
-                            }
-
-                            int value = ArrayCreateMenu();
-
-                            if (value == 1)
-                                CreateArrManual(ref arrTask1, arrLength);
-                            else if (value == 2)
-                                CreateArrRand(ref arrTask1, arrLength);
-
-                            break;
-                        }
-                    case 2: //Вывод массива на экран
-                        {
-                            if (arrTask1.Length != 0)
-                                ShowArr(ref arrTask1);
-                            else
-                                Console.WriteLine("Массив не существует.");
-
-                            break;
-                        }
-                    case 3: //Удалить элемент с заданным номером
-                        {
-                            if (arrTask1.Length != 0)
-                            {
-                                Console.Write("Элемент с каким номером требуется удалить? :");
-                                uint numElem = ReadAndConvToUInt();
-                                DeleteArrElement(ref arrTask1, numElem);
-                            }
-                            else
-                                Console.WriteLine("Массив не существует.");
-                            break;
-                        }
-                    case 0:
-                        break;
-                }
-            }
-        }
-
-        static void Task2()
-        {
-            int[,] arrTask2 = new int[0,0];
-
-            int msg = 5;
-
-            while (msg != 0)
-            {
-                msg = MenuTask("3. Добавить строки после каждой четной строки матрицы");
-
-                switch (msg)
-                {
-                    case 1: //Создание массива
-                        {
-                            Console.WriteLine("Введите количество столбцов массива");
-                            uint arrColumns = ReadAndConvToUInt();
-                            if (arrColumns == 0)
-                            {
-                                Console.WriteLine("Ошибка. Количество столбцов не может быть 0.");
-                                break;
-                            }
-
-                            Console.WriteLine("Введите количество строк массива");
-                            uint arrLines = ReadAndConvToUInt();
-                            if (arrLines == 0)
-                            {
-                                Console.WriteLine("Ошибка. Количество строк не может быть 0.");
-                                break;
-                            }
-
-                            int value = ArrayCreateMenu();
-
-                            if (value == 1)
-                                CreateArrManual(ref arrTask2, arrLines, arrColumns);
-                            else if (value == 2)
-                                CreateArrRand(ref arrTask2, arrLines, arrColumns);
-
-
-                            break;
-                        }
-                    case 2: //Вывод массива на экран
-                        {
-                            if (arrTask2.GetLength(0) != 0)
-                                ShowArr(ref arrTask2);
-                            else
-                                Console.WriteLine("Массив не существует.");
-                            
-                            break;
-                        }
-                    case 3: //Добавить строки после каждого четного столбца матрицы
-                        {
-                            if (arrTask2.GetLength(0) != 0)
-                            {
-                                AddLinesForTask2(ref arrTask2);
-                            }
-                            else
-                                Console.WriteLine("Массив не существует.");
-                            break;
-                        }
-                    case 0:
-                        break;
-                }
-            }
-        }
-
-        static void Task3()
-        {
-            int[][] arrTask3 = new int[0][];
-
-            int msg = 5;
-
-            while (msg != 0)
-            {
-                msg = MenuTask("3. Добавить строку в конец массива");
-
-                switch (msg)
-                {
-                    case 1: //Создание массива
-                        {
-                            Console.WriteLine("Введите количество строк массива");
-                            uint numLines = ReadAndConvToUInt();
-                            if (numLines == 0)
-                            {
-                                Console.WriteLine("Ошибка. Количество столбцов не может быть 0.");
-                                break;
-                            }
-
-                            uint[] arrColumns = new uint[numLines];
-
-                            for (int i = 0; i < numLines; i++)
-                            {
-                                Console.WriteLine($"Введите длину массива [{i}]");
-                                arrColumns[i] = ReadAndConvToUInt();
-                                if (arrColumns[i] == 0) 
-                                {
-                                    Console.WriteLine("Ошибка. Длина массива не может быть 0.");
-                                    i--;
-                                }
-                            }                            
-
-                            int value = ArrayCreateMenu();
-
-                            if (value == 1)
-                                CreateArrManual(ref arrTask3, numLines, arrColumns);
-                            else if (value == 2)
-                                CreateArrRand(ref arrTask3, numLines, arrColumns);
-
-
-                            break;
-                        }
-                    case 2: //Вывод массива на экран
-                        {
-                            if (arrTask3.Length != 0)
-                                ShowArr(ref arrTask3);
-                            else
-                                Console.WriteLine("Массив не существует.");
-
-                            break;
-                        }
-                    case 3: //Добавить строку в конец массива
-                        {
-                            if (arrTask3.Length != 0)
-                            {
-                                AddLinesForTask3(ref arrTask3);
-                            }
-                            else
-                                Console.WriteLine("Массив не существует.");
-                            break;
-                        }
-                    case 0:
-                        break;
-                }
-            }
-        }
-
         //Считывание ввода из консоли и преобразование полученной строки в uint
         //Возвращает считанную строку с типом uint
         static uint ReadAndConvToUInt()
@@ -495,27 +494,6 @@ namespace Lab5_csharp
                 catch
                 {
                     Console.WriteLine("Ошибка конвертации, значение должно быть uint");
-                }
-            }
-        }
-
-        //Считывание ввода из консоли и преобразование полученной строки в double
-        //Возвращает считанную строку с типом double
-        static double ReadAndConvToDouble()
-        {
-            string str;
-            double value;
-            while (true)
-            {
-                str = Console.ReadLine();
-                try
-                {
-                    value = Convert.ToDouble(str);
-                    return value;
-                }
-                catch
-                {
-                    Console.WriteLine("Ошибка конвертации, значение должно быть double");
                 }
             }
         }

@@ -45,7 +45,7 @@
     <Compile Include="IInit.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SortByName.cs" />
+    <Compile Include="SortByAge.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Teacher.cs" />
   </ItemGroup>

@@ -131,7 +131,12 @@ namespace lab2_csharp
             }            
             
             Console.Write("Введите n: ");
-            double n = ReadAndConvToDouble();
+            double n = ReadAndConvToUInt();
+            while (n == 0)
+            {
+                Console.Write("n не может быть 0\n");
+                n = ReadAndConvToDouble();
+            }
 
             double sum = 0.0;
 
