@@ -16,10 +16,10 @@ def read_temperature():
         # Чтение значения с АЦП и преобразование его в температуру (пример на ТСП 100, подключенный к АЦП MCP3008 через делитель напряжения)
         adc_value = adc.value
         voltage = adc_value * 3.3  # Напряжение АЦП 0...3.3 В
-        lowV = (5*39.225)/(50+39.225)
-        highV = (5*92.775)/(50+92.775)
+        lowV = (3.3*39.225)/(50+39.225)
+        highV = (3.3*92.775)/(50+92.775)
         rangeV = highV - lowV
-        temperature_celsius = (voltage - 2.198) * (250/1.51) - 50
+        temperature_celsius = (pot - lowV) * (550/1.51) - 50
         return round(temperature_celsius, 2)
     except Exception as e:
         print("Error reading temperature: {}".format(e))
