@@ -8,8 +8,7 @@ import time
 relay_pin = 17  # Пин, к которому подключено реле
 setpoint = 25.0  # Уставка температуры в градусах Цельсия
 relay = OutputDevice(relay_pin)
-adc_channel = 0  # Канал АЦП, к которому подключено термосопротивление
-adc = MCP3008(channel=adc_channel)
+adc = MCP3008(0)  # Канал АЦП, к которому подключено термосопротивление
 
 def read_temperature():
     try:
@@ -31,12 +30,12 @@ def control_heating_relay(target_temperature):
     else:
         relay.off()
 
-@app.route("/")
+@route('/')
 def index():
     temperature = read_temperature()
-    return template("index", temperature=temperature, setpoint=setpoint)
+    return template("index.html", temperature=temperature, setpoint=setpoint)
 
-@app.route("/setpoint", method="POST")
+@route("/setpoint", method="POST")
 def set_setpoint():
     new_setpoint = request.forms.get("setpoint")
     try:
@@ -49,5 +48,5 @@ def set_setpoint():
     return template("index", temperature=read_temperature(), setpoint=setpoint)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8888, debug=True)
+    run(host='localhost', port=8080)
 
