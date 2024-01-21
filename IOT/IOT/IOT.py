@@ -33,3 +33,23 @@ def control_heating_relay(target_temperature):
     else:
         relay.off()
 
+@app.route("/")
+def index():
+    temperature = read_temperature()
+    return template("index", temperature=temperature, setpoint=setpoint)
+
+@app.route("/setpoint", method="POST")
+def set_setpoint():
+    new_setpoint = request.forms.get("setpoint")
+    try:
+        new_setpoint = float(new_setpoint)
+        global setpoint
+        setpoint = new_setpoint
+    except ValueError:
+        pass
+    control_heating_relay(setpoint)
+    return template("index", temperature=read_temperature(), setpoint=setpoint)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8888, debug=True)
+
