@@ -19,8 +19,7 @@ def read_temperature():
         lowV = (5*39.225)/(50+39.225)
         highV = (5*92.775)/(50+92.775)
         rangeV = highV - lowV
-        temperature_celsius = (pot - 2.198)
-        temperature_celsius = value * (250/1.51) - 50
+        temperature_celsius = (voltage - 2.198) * (250/1.51) - 50
         return round(temperature_celsius, 2)
     except Exception as e:
         print("Error reading temperature: {}".format(e))
