@@ -1,8 +1,13 @@
 import os
+from bottle import Bottle, template, request
 from gpiozero import MCP3008, OutputDevice
+import time
 
 
 # Параметры для управления реле и термодатчиком
+relay_pin = 17  # Пин, к которому подключено реле
+setpoint = 25.0  # Уставка температуры в градусах Цельсия
+relay = OutputDevice(relay_pin)
 adc_channel = 0  # Канал АЦП, к которому подключено термосопротивление
 adc = MCP3008(channel=adc_channel)
 
@@ -20,4 +25,11 @@ def read_temperature():
     except Exception as e:
         print("Error reading temperature: {}".format(e))
         return None
+
+def control_heating_relay(target_temperature):
+    current_temperature = read_temperature()
+    if current_temperature is not None and current_temperature < target_temperature:
+        relay.on()
+    else:
+        relay.off()
 
