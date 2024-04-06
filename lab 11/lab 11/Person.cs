@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ClassLibraryLab10
 {
@@ -8,6 +9,62 @@ namespace ClassLibraryLab10
         protected string secondName;
         protected char gender;
         protected byte age;
+
+        private readonly Dictionary<int, string> firstNameArr = new()
+        {
+            {0, "Алексей" },
+            {1, "Иван" },
+            {2, "Александр" },
+            {3, "Максим" },
+            {4, "Сергей" },
+            {5, "Николай" },
+            {6, "Данил" },
+            {7, "Антон" },
+            {8, "Андрей" },
+            {9, "Владимир" },
+            {10, "Владислав" },
+            {11, "Илья" },
+            {12, "Макар" },
+            {13, "Дарья" },
+            {14, "Анна" },
+            {15, "Валентина" },
+            {16, "Анастасия" },
+            {17, "Ольга" },
+            {18, "Людмила" },
+            {19, "Мария" },
+            {20, "Татьяна" },
+            {21, "Евгения" },
+            {22, "Елена" },
+            {23, "Ирина" },
+            {24, "Валерия" },
+            {25, "Надежда" }
+
+        };
+
+        private readonly Dictionary<int, string> secondNameArr = new()
+        {
+            {0, "Иванов" },
+            {1, "Петров" },
+            {2, "Смирнов" },
+            {3, "Кузнецов" },
+            {4, "Соколов" },
+            {5, "Попов" },
+            {6, "Лебедев" },
+            {7, "Козлов" },
+            {8, "Морозов" },
+            {9, "Волков" },
+            {10, "Белкин" },
+            {11, "Авдеев" },
+            {12, "Глухов" },
+            {13, "Баженов" },
+            {14, "Елиссев" },
+            {15, "Давыдов" },
+            {16, "Жуков" },
+            {17, "Казакова" },
+            {18, "Дроздов" },
+            {19, "Демидов" }
+        };
+
 
         public string FirstName
         {
@@ -78,14 +135,6 @@ namespace ClassLibraryLab10
             Age = _age;
         }
 
-        public Person BasePerson
-        {
-            get
-            {
-                return new Person(firstName, secondName, gender, age);
-            }
-        }
-
         public virtual object Clone() => new Person(FirstName, SecondName, Gender, Age);
 
         public virtual object ShallowCopy() => (Person)MemberwiseClone();
@@ -118,148 +167,12 @@ namespace ClassLibraryLab10
         public virtual void RandomInit()
         {
             Random random = new Random();
-            int randName = random.Next(16);
+            int randName = random.Next(25);
 
-            switch (randName)
-            {
-                case 1:
-                    {
-                        firstName = "Алексей";
-                        break;
-                    }
-                case 2:
-                    {
-                        firstName = "Иван";
-                        break;
-                    }
-                case 3:
-                    {
-                        firstName = "Александр";
-                        break;
-                    }
-                case 4:
-                    {
-                        firstName = "Максим";
-                        break;
-                    }
-                case 5:
-                    {
-                        firstName = "Сергей";
-                        break;
-                    }
-                case 6:
-                    {
-                        firstName = "Николай";
-                        break;
-                    }
-                case 7:
-                    {
-                        firstName = "Данил";
-                        break;
-                    }
-                case 8:
-                    {
-                        firstName = "Антон";
-                        break;
-                    }
-                    /////////////////////////
-                case 9:
-                    {
-                        firstName = "Дарья";
-                        break;
-                    }
-                case 10:
-                    {
-                        firstName = "Анна";
-                        break;
-                    }
-                case 11:
-                    {
-                        firstName = "Валентина";
-                        break;
-                    }
-                case 12:
-                    {
-                        firstName = "Анастасия";
-                        break;
-                    }
-                case 13:
-                    {
-                        firstName = "Ольга";
-                        break;
-                    }
-                case 14:
-                    {
-                        firstName = "Людмила";
-                        break;
-                    }
-                case 15:
-                    {
-                        firstName = "Мария";
-                        break;
-                    }
-                default:
-                    {
-                        firstName = "Татьяна";
-                        break;
-                    }
-            }
+            firstName = firstNameArr[randName];
+            secondName = secondNameArr[random.Next(19)];
 
-            switch (random.Next(10))
-            {
-                case 1:
-                    {
-                        secondName = "Иванов";
-                        break;
-                    }
-                case 2:
-                    {
-                        secondName = "Петров";
-                        break;
-                    }
-                case 3:
-                    {
-                        secondName = "Смирнов";
-                        break;
-                    }
-                case 4:
-                    {
-                        secondName = "Кузнецов";
-                        break;
-                    }
-                case 5:
-                    {
-                        secondName = "Соколов";
-                        break;
-                    }
-                case 6:
-                    {
-                        secondName = "Попов";
-                        break;
-                    }
-                case 7:
-                    {
-                        secondName = "Лебедев";
-                        break;
-                    }
-                case 8:
-                    {
-                        secondName = "Козлов";
-                        break;
-                    }
-                case 9:
-                    {
-                        secondName = "Морозов";
-                        break;
-                    }
-                default:
-                    {
-                        secondName = "Волков";
-                        break;
-                    }
-            }
-
-            if (randName > 8)
+            if (randName > 12)
             {
                 secondName += "а";
                 gender = 'ж';
@@ -267,7 +180,7 @@ namespace ClassLibraryLab10
             else
                 gender = 'м';
 
-            Age = (byte)random.Next(12, 85);
+            Age = (byte)random.Next(18, 85);
         }
 
         //метод для сравнения объектов
@@ -286,13 +199,13 @@ namespace ClassLibraryLab10
 
         public override string ToString()
         {
-            return $"Фамилия и имя: {secondName} {firstName}. Пол: {gender}";
+            return $"Фамилия и имя: {secondName} {firstName}. Пол: {gender}. Возраст: {age}. ";
         }
 
         //вывод на экран как виртуальный метод
         public virtual void Show()
         {
-            Console.WriteLine($"Фамилия и имя: {secondName} {firstName}. Пол: {gender}. Возраст: {Age}");
+            Console.WriteLine($"Фамилия и имя: {secondName} {firstName}.\tПол: {gender}.\tВозраст: {Age}");
         }
 
         //вывод на экран как перегрузка

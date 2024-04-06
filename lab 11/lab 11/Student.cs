@@ -1,11 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ClassLibraryLab10
 {
-    public class Student :Person
+    interface IExcellent
+    {
+        bool IsExellent();
+    }
+
+    public class Student :Person, IExcellent
     {
         protected float averageGrade;      //средний балл
         protected string educInstitution;   //учебное заведение
+
+        private readonly Dictionary<int, string> educInstitutionArr = new()
+        {
+            {0, "ПНИПУ" },
+            {1, "ПГНИУ" },
+            {2, "ПГМУ" },
+            {3, "ПГГПУ" },
+            {4, "НИУ ВШЭ в Перми" },
+            {5, "Пермский ГАТУ" }
+        };
 
         public float AverageGrade
         {
@@ -52,6 +68,22 @@ namespace ClassLibraryLab10
             EducInstitution = _educInstitution;
         }
 
+        //ссылка на объект базового класса
+        public Person BasePerson
+        {
+            get
+            {
+                return new Person(firstName, secondName, gender, age);
+            }
+        }
+
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), averageGrade, educInstitution);
+        }
+
+
         public override object Clone() => new Student(FirstName, SecondName, Gender, Age , AverageGrade, EducInstitution);
 
         public override object ShallowCopy() => (Student)MemberwiseClone();
@@ -74,39 +106,7 @@ namespace ClassLibraryLab10
             Random random = new Random();
             averageGrade = (float)Math.Round(((double)random.NextDouble() * (5 - 2) + 2), 2);
 
-            switch (random.Next(6))
-            {
-                case 1:
-                    {
-                        educInstitution = "ПНИПУ";
-                        break;
-                    }
-                case 2:
-                    {
-                        educInstitution = "ПГНИУ";
-                        break;
-                    }
-                case 3:
-                    {
-                        educInstitution = "ПГМУ";
-                        break;
-                    }
-                case 4:
-                    {
-                        educInstitution = "ПГГПУ";
-                        break;
-                    }
-                case 5:
-                    {
-                        educInstitution = "НИУ ВШЭ в Перми";
-                        break;
-                    }
-                default:
-                    {
-                        educInstitution = "Пермский ГАТУ";
-                        break;
-                    }
-            }
+            educInstitution = educInstitutionArr[random.Next(5)];
         }
 
         //метод для сравнения объектов
@@ -145,6 +145,11 @@ namespace ClassLibraryLab10
             base.ShowOverload();
             Console.WriteLine(  $"Учебное заведение: {educInstitution}\n" +
                                 $"Средний балл: {averageGrade}");
+        }
+
+        public bool IsExellent()
+        {
+            return this.averageGrade >= 4;
         }
     }
 }

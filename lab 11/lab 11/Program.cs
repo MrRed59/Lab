@@ -13,25 +13,14 @@ namespace lab_11
 
             Console.WriteLine("//////////////////////////////////");
 
-            MyCollection<Person> c1 = new MyCollection<Person>();
-            c1.ShowCollection();
-            c1.Add(new Person());
-            Console.WriteLine("Добавление элемента");
-            c1.ShowCollection();
-            Console.WriteLine($"Current={c1.Lenght}");
-            Console.WriteLine($"Lenght={c1.Capacity}");
+            TestCollection t = new(1000);
 
-            Console.WriteLine("//////////////////////////////////");
 
-            MyCollection<int> c2 = new MyCollection<int>(5, 4, 5, 6, 8);
-            c2.ShowCollection();
-            Console.WriteLine($"Current={c2.Lenght}");
-            Console.WriteLine($"Lenght={c2.Capacity}");
-            c2.Add(100);
-            Console.WriteLine("Добавление элемента");
-            c2.ShowCollection();
-            Console.WriteLine($"Current={c2.Lenght}");
-            Console.WriteLine($"Lenght={c2.Capacity}");
+            /*TestCollection t = new(4);
+            t.Show();
+            t.Remove(new Student("Alex", "Alex", 'M', 33, 2, "A"));
+            t.Remove(new Student("Alex", "Alex", 'M', 22, 3, "A"));*/
+
         }
     }
 }
