@@ -78,13 +78,18 @@ namespace lab_11
 
         private static void SearchFirstElement(TestCollection testCollection)
         {
-            var firstElement = TestCollection.stackStudent.Peek();
+            
+            Person[] array = testCollection.stackStudent.ToArray();
+            Person last = array[array.Length - 1];
+            Console.WriteLine("Поиск первого элемента в списках:");
+
+            /*var firstElement = TestCollection.stackStudent.Peek();
             Console.WriteLine("Поиск первого элемента в списках:");
             TimeList(TestCollection.stackStudent, firstElement);
             TimeList(TestCollection.stackString, firstElement.BasePerson.ToString());
             Console.WriteLine("Поиск первого элемента в словорях:");
             TimeDictionary(TestCollection.dPerson, firstElement.BasePerson);
-            TimeDictionary(TestCollection.dString, firstElement.BasePerson.ToString());
+            TimeDictionary(TestCollection.dString, firstElement.BasePerson.ToString());*/
         }
 
 
@@ -107,5 +112,44 @@ namespace lab_11
                 }
             }
         }
+
+        private static void TimeList<T>(List<T> list, T item)
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var found = list.Contains(item);
+            stopWatch.Stop();
+            if (found)
+            {
+                Console.WriteLine("Элемент найден.");
+                Console.WriteLine("Время поиска: " + stopWatch.Elapsed.ToString(@"m\:ss\.ffffff"));
+            }
+            else
+            {
+                Console.WriteLine("Элемент не найден");
+                Console.WriteLine("Время поиска: " + stopWatch.Elapsed.ToString(@"m\:ss\.ffffff"));
+            }
+        }
+
+        private static void TimeDictionary<T, K>(Dictionary<T, K> dict, T value)
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var found = dict.ContainsKey(value);
+            stopWatch.Stop();
+            if (found)
+            {
+                Console.WriteLine("Элемент найден.");
+                Console.WriteLine("Время поиска: " + stopWatch.Elapsed.ToString(@"m\:ss\.ffffff"));
+            }
+            else
+            {
+                Console.WriteLine("Элемент не найден");
+                Console.WriteLine("Время поиска: " + stopWatch.Elapsed.ToString(@"m\:ss\.ffffff"));
+            }
+        }
+    }
+}
+
     }
 }

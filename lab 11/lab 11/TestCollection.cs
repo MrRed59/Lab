@@ -83,8 +83,6 @@ namespace lab_11
         // Добавить элемент в коллекции
         public void Add(Student temp)
         {
-
-
             stackStudent.Push(temp);
             stackString.Push(temp.BasePerson.ToString());
             dPerson.Add(temp.BasePerson, temp);
