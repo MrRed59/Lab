@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using LibraryLab10;
 using ClassLibraryLab10;
 
 namespace lab_11
@@ -76,20 +83,53 @@ namespace lab_11
             }
         }
 
+        //Поиск первого элемента
         private static void SearchFirstElement(TestCollection testCollection)
-        {
-            
+        {            
             Person[] array = testCollection.stackStudent.ToArray();
-            Person last = array[array.Length - 1];
-            Console.WriteLine("Поиск первого элемента в списках:");
-
-            /*var firstElement = TestCollection.stackStudent.Peek();
+            Person firstElement = array[array.Length - 1];
             Console.WriteLine("Поиск первого элемента в списках:");
             TimeList(TestCollection.stackStudent, firstElement);
             TimeList(TestCollection.stackString, firstElement.BasePerson.ToString());
             Console.WriteLine("Поиск первого элемента в словорях:");
             TimeDictionary(TestCollection.dPerson, firstElement.BasePerson);
             TimeDictionary(TestCollection.dString, firstElement.BasePerson.ToString());*/
+        }
+
+        //поиск среднего элемента
+         private static void SearchMiddleElement(TestCollections testCollection)
+        {
+            var middleElement = testCollection.col1[testCollection.col1.Count / 2];
+            Console.WriteLine("Поиск среднего элемента в списках:");
+            TimeList(testCollection.col1, middleElement);
+            TimeList(testCollection.col2, middleElement.BasePerson.ToString());
+            Console.WriteLine("Поиск среднего элемента в словорях:");
+            TimeDictionary(testCollection.col3, middleElement.BasePerson);
+            TimeDictionary(testCollection.col4, middleElement.BasePerson.ToString());
+        }
+
+        //поиск последнего элемента
+        private static void SearchLastElement(TestCollections testCollection)
+        {
+            var lastElement = testCollection.col1[testCollection.col1.Count - 1];
+            Console.WriteLine("Поиск последнего элемента в списках:");
+            TimeList(testCollection.col1, lastElement);
+            TimeList(testCollection.col2, lastElement.BasePerson.ToString());
+            Console.WriteLine("Поиск последнего элемента в словорях:");
+            TimeDictionary(testCollection.col3, lastElement.BasePerson);
+            TimeDictionary(testCollection.col4, lastElement.BasePerson.ToString());
+        }
+
+        //поиск элемента, не входящего в коллекцию
+        private static void outOfBoundsElement(TestCollections testCollection)
+        {
+            Student outOfBoundsElement = new Student("Ульяна", "Женский", 89, 4);
+            Console.WriteLine("Поиск невходящего элемента в списках:");
+            TimeList(testCollection.col1, outOfBoundsElement);
+            TimeList(testCollection.col2, outOfBoundsElement.BasePerson.ToString());
+            Console.WriteLine("Поиск невходящего элемента в словорях:");
+            TimeDictionary(testCollection.col3, outOfBoundsElement.BasePerson);
+            TimeDictionary(testCollection.col4, outOfBoundsElement.BasePerson.ToString());
         }
 
 
@@ -113,11 +153,12 @@ namespace lab_11
             }
         }
 
-        private static void TimeList<T>(List<T> list, T item)
+
+        private static void TimeStack<T>(Stack<T> stack, T item)
         {
             var stopWatch = new Stopwatch();
             stopWatch.Start();
-            var found = list.Contains(item);
+            var found = stack.Contains(item);
             stopWatch.Stop();
             if (found)
             {
@@ -130,6 +171,7 @@ namespace lab_11
                 Console.WriteLine("Время поиска: " + stopWatch.Elapsed.ToString(@"m\:ss\.ffffff"));
             }
         }
+
 
         private static void TimeDictionary<T, K>(Dictionary<T, K> dict, T value)
         {
