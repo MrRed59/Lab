@@ -314,5 +314,10 @@ namespace ClassLibraryLab10
                 }
             }
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.firstName, this.secondName, this.gender, this.age);
+        }
     }
 }
